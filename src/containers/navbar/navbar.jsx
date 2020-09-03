@@ -6,9 +6,9 @@ import logo from '../../logo.png'
 
 const navBar = (props) =>(
     <div className='navbar'>
-        <img src={logo} alt='logo' className='navbar-logo'/>
+        <NavItem link='/'><img src={logo} alt='logo' className='navbar-logo'/></NavItem>
         <NavItems/>
-        <NavItem link='auth'  className='btn btn-primary' activeClassName='btn btn-primary'>Register!</NavItem>
+        <NavItem link='sign-up'  className='btn btn-primary' activeClassName='btn btn-four'>Register!</NavItem>
     </div>
 )
 export default navBar

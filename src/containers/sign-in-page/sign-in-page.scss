@@ -1,0 +1,99 @@
+.sign-in-page{
+    height: 70vh;
+    width: 80vw;
+    border-radius: 7rem;
+    margin: auto;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #eff4f7;
+    box-shadow: 13px 13px 20px #cbced1,
+    -13px -13px 20px #ffffff;
+    padding: 3rem;
+    h1{
+        text-align: center;
+        color: #e9884b;
+        font-weight: bolder;
+    }
+}
+.sign-in{
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+    &-btn{
+        width: 60%;
+        margin: auto;
+        text-align: center;
+        box-shadow: 1rem 1rem 2rem #cbced1,
+                     -1rem -1rem 2rem #ffffff;
+    }
+    &-form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 40px;
+        padding: 2.5rem;
+        background: #f1f7f8;
+        box-shadow: 13px 13px 20px #cbced1,
+                     -13px -13px 20px #ffffff;
+        a{
+            color: #32606d;
+        }
+        
+        &-title{
+            text-align: center;
+            color: #32606d;
+            padding: 1.5rem;
+        }
+        &-fields{
+            margin: auto;
+            padding: 1rem .5rem;
+            width: 80%;
+            input {
+                border: none;
+                outline:none;
+                background: none;
+                color: rgb(124, 124, 124);
+                padding:1rem 2rem;
+                font-size: inherit;
+                
+                &::placeholder{
+                    color: rgb(165, 165, 165);
+                }
+              }
+        
+        }
+        &-field{
+            margin-bottom: 30px;
+            border-radius: 25px;
+            box-shadow: inset 8px 8px 8px #cbced1,
+                inset -8px -8px 8px #ffffff;
+        }
+        
+    }
+    &-img{
+        width: 37%;
+        img{
+          width: 100%;  
+        }
+    }
+}
+
+
+
+.sign-in-to-sign-up{
+    text-align: center;
+    padding: 2rem;
+    &-link{
+        text-decoration: underline;
+        color: #32606d;
+        
+    }
+}
