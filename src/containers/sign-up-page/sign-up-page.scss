@@ -25,7 +25,9 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    
+    &-message{
+        color: red;
+    }
     &-btn{
         width: 60%;
         margin: auto;
