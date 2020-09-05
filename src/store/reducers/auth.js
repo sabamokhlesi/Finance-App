@@ -4,23 +4,17 @@ const initialState ={
     token: null,
     userId:null,
     loading: false,
-    error: false
+    error: null
 }
-
-const updateObject = (oldObject, updatedProperties) => {
-    return {
-        ...oldObject,
-        ...updatedProperties
-    };
-};
-
-const authStart = (state,action) =>{ updateObject(state,{loading:true, error:null})}
 
 const reducer = (state=initialState, action) =>{
     switch(action.type){
-        case actionTypes.AUTH_START: return authStart(state,action)
+        case actionTypes.AUTH_START: return { ...state,loading:true,error:null}
+        case actionTypes.AUTH_SUCCESS: return {...state,loading:false,error:null,token:action.idToken,userId:action.userId}
+        case actionTypes.AUTH_FAIL: return {...state,loading:false,error:action.error}
         default: return state
     }
 
 }
 export default reducer
+
