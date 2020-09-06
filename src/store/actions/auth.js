@@ -62,3 +62,12 @@ export const userSignIn = (email,password) =>{
         .catch(err=>{dispatch(authFail(err));console.log(err)})
     }
 }
+
+
+export const checkSignIn = () =>{
+    return dispatch => {
+        const token = localStorage.getItem('token')
+        const userId = localStorage.getItem('userID')
+        dispatch (authSuccess(token,userId))
+    }
+}
