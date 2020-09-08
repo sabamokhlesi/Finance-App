@@ -3,7 +3,8 @@ import './App.scss';
 import NavBar from '../src/containers/navbar/navbar'
 import HomePage from './containers/home-page/home-page'
 import SignUpPage from './containers/sign-up-page/sign-up-page'
-import SignIpPage from './containers/sign-in-page/sign-in-page'
+import SignInPage from './containers/sign-in-page/sign-in-page'
+import BudgetCalpage from './containers/budget-calculator/budget-calculator'
 import * as actions from './store/actions/index'
 import {connect} from 'react-redux'
 import {Route,Switch} from 'react-router-dom'
@@ -17,7 +18,8 @@ class App extends React.Component{
           <Switch>
             <Route path='/' exact component={HomePage}/>
             <Route path='/sign-up' exact component={SignUpPage}/>
-            <Route path='/sign-in' exact component={SignIpPage}/>
+            <Route path='/sign-in' exact component={SignInPage}/>
+            <Route path='/my-list' exact component={BudgetCalpage}/>
           </Switch>
         </header>
       </div>

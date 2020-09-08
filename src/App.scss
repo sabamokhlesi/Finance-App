@@ -189,4 +189,7 @@ p{
     font-weight: 400;
     // @media only screen and (max-width:$bp-medium) {font-size: 1.6rem;}
 }
-i{color: $color-secondary;}
+
+
+.color-red{color: rgb(240, 69, 50); padding: .5rem;}
+.color-green{color: rgb(44, 184, 86);  padding: .5rem;}
