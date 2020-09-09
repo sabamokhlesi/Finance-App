@@ -2,6 +2,7 @@ import React from 'react'
 import './budget-calculator.scss'
 import BudgetSummary from './budget-summary/budget-summary'
 import BudgetAddTool from './budget-add-tool/budget-add-tool'
+import BudgetList from './budget-list/budget-list'
 class BudgetCal extends React.Component{
     render(){
         return(
@@ -14,10 +15,7 @@ class BudgetCal extends React.Component{
                         <BudgetAddTool/>
                     </div>
                     <div className='budget-list'>
-                        <div className='budget-list-top'>
-                            <div className='budget-list-top-sortby'></div>
-                            <div className='budget-list-top-filter'></div>
-                        </div>
+                        <BudgetList/>
                     </div>
                 </div>
             </div>

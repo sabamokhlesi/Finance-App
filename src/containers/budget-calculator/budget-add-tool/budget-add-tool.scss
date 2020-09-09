@@ -1,20 +1,19 @@
 .budget-add-section{
     margin: 2rem;
     padding:1rem 3rem;
-    background-color: #ffece0;
     width: 90%;
     border-radius: 1rem;
     margin: 1rem auto;
     h2{
         color: #ce5f1a;
         font-style: italic;
-        margin: 5rem;
+        margin: 3rem;
         margin-bottom: 3rem;
     }
 }
 .budget-add-submit{
-    width: 17%;
-    padding: 2rem;
+    min-width: 10%;
+    padding: 1rem 2rem;
     margin: 3rem 1rem;
     border-radius: 1rem;
 }
@@ -28,11 +27,8 @@
 
 .budget-input-unit{
     padding: 1rem;
-    // border: 1px solid #32606d;
     border-radius: 1rem;
-    // background-color: white;
-    margin: 1rem;
-    // box-shadow: .5rem 1rem 1rem #02020228;
+    margin: .5rem;
     display: flex;
     align-items: center;
 }
@@ -42,11 +38,11 @@
     font-family: inherit;
     font-size: inherit;
     border: 2px solid transparent;
+    border-bottom: 2px solid #beeff0;
     border-radius: 1rem;
     &:focus{
         outline: none;
-        // background-color: #fce8dc;
-        border: 2px solid #fc6101;
+        border-bottom: 2px solid #32606d;
     }
     &-btn{
         margin: auto;
