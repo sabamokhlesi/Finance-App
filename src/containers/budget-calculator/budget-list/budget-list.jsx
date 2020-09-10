@@ -1,26 +1,19 @@
 import React from 'react'
 import './budget-list.scss'
-import { FaPencilAlt,FaTrashAlt,FaInfo} from "react-icons/fa";
+import InputUnit from '../../../components/input-unit/input-unit'
+import BudgetListItem from './budget-list-item/budget-list-item'
+import * as actions from '../../../store/actions/index'
+import {connect} from 'react-redux'
 class BudgetList extends React.Component{
+    componentDidMount(){
+        this.props.onFetchTransactions(this.props.token,this.props.userId)
+    }
     render(){
         return(
             <div className='budget-list-section'>
                 <div className='budget-list-top'>
-                    <div className='budget-list-sort-by'>
-                        <label htmlFor="budget-list-sorting" className='budget-input-label'>sort by</label>
-                        <select id="budget-list-sorting" name="cars" className='budget-input'>
-                            <option value="Bills" className='budget-input'>Newest</option>
-                            <option value="Grocery" className='budget-input'>High to Low</option>
-                            <option value="Clothing" className='budget-input'>Low to high</option>
-                            <option value="Entertainment" className='budget-input'>Oldest</option>
-                            <option value="Transportation" className='budget-input'>Spendings first</option>
-                            <option value="Income" className='budget-input'>Earning first</option>
-                        </select>
-                    </div>
-                    <div className='budget-list-search'>
-                        <label htmlFor="budget-list-search" className='budget-input-label'>search</label>
-                        <input type="search" id="budget-list-search" className='budget-input' placeholder='i.e grocery'/>
-                    </div>
+                    <InputUnit inputtype='select' id="budget-list-sorting" name="SortBy" labelname='Sort by' options='Newest,High to low,Low to high,Oldest,Spendings first,Earnings first'/>
+                    <InputUnit inputtype='input' type="search" id="budget-list-search" placeholder='i.e grocery' labelname='Search'/>
                 </div>
                 <div className='budget-list-body'>
                     <div className='budget-list-item'>
@@ -30,118 +23,40 @@ class BudgetList extends React.Component{
                         <div className='budget-list-item-by'>Added by</div>
                         <div className='budget-list-item-edit'>Edit</div>
                     </div>
-                    <div className='budget-list-item'>
-                        <div className='budget-list-item-date'>13/03/2020</div>
-                        <div className='budget-list-item-amount'>-$78</div>
-                        <div className='budget-list-item-title'>Bill</div>
-                        <div className='budget-list-item-by'>Reza</div>
-                        <FaPencilAlt color='#a9c6c7' size='1.5rem' className='budget-list-item-icon'/>
-                        <FaTrashAlt color='#a9c6c7' size='1.5rem' className='budget-list-item-icon'/>  
-                        <FaInfo color='#64a1a2' size='1.5rem' className='budget-list-item-icon'/> 
-                    </div>
-                    <div className='budget-list-item'>
-                        <div className='budget-list-item-date'>12/08/2020</div>
-                        <div className='budget-list-item-amount'>-$10</div>
-                        <div className='budget-list-item-title'>Grocery</div>
-                        <div className='budget-list-item-by'>Reza</div>
-                        <FaPencilAlt color='#a9c6c7' size='1.5rem' className='budget-list-item-icon'/>
-                        <FaTrashAlt color='#a9c6c7' size='1.5rem' className='budget-list-item-icon'/>
-                        <FaInfo color='#64a1a2' size='1.5rem' className='budget-list-item-icon'/>
-                    </div>
-                    <div className='budget-list-item'>
-                        <div className='budget-list-item-date'>29/05/2020</div>
-                        <div className='budget-list-item-amount'>+$2000</div>
-                        <div className='budget-list-item-title'>Salary</div>
-                        <div className='budget-list-item-by'>Saba</div>
-                        <FaPencilAlt color='#a9c6c7' size='1.5rem' className='budget-list-item-icon'/>
-                        <FaTrashAlt color='#a9c6c7' size='1.5rem' className='budget-list-item-icon'/>
-                        <FaInfo color='#64a1a2' size='1.5rem' className='budget-list-item-icon'/>
-                    </div>
-                    <div className='budget-list-item'>
-                        <div className='budget-list-item-date'>09/08/2020</div>
-                        <div className='budget-list-item-amount'>-$15</div>
-                        <div className='budget-list-item-title'>Clothes</div>
-                        <div className='budget-list-item-by'>Saba</div>
-                        <FaPencilAlt color='#a9c6c7' size='1.5rem' className='budget-list-item-icon'/>
-                        <FaTrashAlt color='#a9c6c7' size='1.5rem' className='budget-list-item-icon'/>
-                        <FaInfo color='#64a1a2' size='1.5rem' className='budget-list-item-icon'/>
-                    </div>
-                    <div className='budget-list-item'>
-                        <div className='budget-list-item-date'>13/03/2020</div>
-                        <div className='budget-list-item-amount'>-$78</div>
-                        <div className='budget-list-item-title'>Bill</div>
-                        <div className='budget-list-item-by'>Reza</div>
-                        <FaPencilAlt color='#a9c6c7' size='1.5rem' className='budget-list-item-icon'/>
-                        <FaTrashAlt color='#a9c6c7' size='1.5rem' className='budget-list-item-icon'/>
-                        <FaInfo color='#64a1a2' size='1.5rem' className='budget-list-item-icon'/>
-                    </div>
-                    <div className='budget-list-item'>
-                        <div className='budget-list-item-date'>12/08/2020</div>
-                        <div className='budget-list-item-amount'>-$10</div>
-                        <div className='budget-list-item-title'>Grocery</div>
-                        <div className='budget-list-item-by'>Reza</div>
-                        <FaPencilAlt color='#a9c6c7' size='1.5rem' className='budget-list-item-icon'/>
-                        <FaTrashAlt color='#a9c6c7' size='1.5rem' className='budget-list-item-icon'/>
-                        <FaInfo color='#64a1a2' size='1.5rem' className='budget-list-item-icon'/>
-                    </div>
-                    <div className='budget-list-item'>
-                        <div className='budget-list-item-date'>29/05/2020</div>
-                        <div className='budget-list-item-amount'>+$2000</div>
-                        <div className='budget-list-item-title'>Salary</div>
-                        <div className='budget-list-item-by'>Saba</div>
-                        <FaPencilAlt color='#a9c6c7' size='1.5rem' className='budget-list-item-icon'/>
-                        <FaTrashAlt color='#a9c6c7' size='1.5rem' className='budget-list-item-icon'/>
-                        <FaInfo color='#64a1a2' size='1.5rem' className='budget-list-item-icon'/>
-                    </div>
-                    <div className='budget-list-item'>
-                        <div className='budget-list-item-date'>09/08/2020</div>
-                        <div className='budget-list-item-amount'>-$15</div>
-                        <div className='budget-list-item-title'>Clothes</div>
-                        <div className='budget-list-item-by'>Saba</div>
-                        <FaPencilAlt color='#a9c6c7' size='1.5rem' className='budget-list-item-icon'/>
-                        <FaTrashAlt color='#a9c6c7' size='1.5rem' className='budget-list-item-icon'/>
-                        <FaInfo color='#64a1a2' size='1.5rem' className='budget-list-item-icon'/>
-                    </div>
-                    <div className='budget-list-item'>
-                        <div className='budget-list-item-date'>13/03/2020</div>
-                        <div className='budget-list-item-amount'>-$78</div>
-                        <div className='budget-list-item-title'>Bill</div>
-                        <div className='budget-list-item-by'>Reza</div>
-                        <FaPencilAlt color='#a9c6c7' size='1.5rem' className='budget-list-item-icon'/>
-                        <FaTrashAlt color='#a9c6c7' size='1.5rem' className='budget-list-item-icon'/>
-                        <FaInfo color='#64a1a2' size='1.5rem' className='budget-list-item-icon'/>
-                    </div>
-                    <div className='budget-list-item'>
-                        <div className='budget-list-item-date'>12/08/2020</div>
-                        <div className='budget-list-item-amount'>-$10</div>
-                        <div className='budget-list-item-title'>Grocery</div>
-                        <div className='budget-list-item-by'>Reza</div>
-                        <FaPencilAlt color='#a9c6c7' size='1.5rem' className='budget-list-item-icon'/>
-                        <FaTrashAlt color='#a9c6c7' size='1.5rem' className='budget-list-item-icon'/>
-                        <FaInfo color='#64a1a2' size='1.5rem' className='budget-list-item-icon'/>
-                    </div>
-                    <div className='budget-list-item'>
-                        <div className='budget-list-item-date'>29/05/2020</div>
-                        <div className='budget-list-item-amount'>+$2000</div>
-                        <div className='budget-list-item-title'>Salary</div>
-                        <div className='budget-list-item-by'>Saba</div>
-                        <FaPencilAlt color='#a9c6c7' size='1.5rem' className='budget-list-item-icon'/>
-                        <FaTrashAlt color='#a9c6c7' size='1.5rem' className='budget-list-item-icon'/>
-                        <FaInfo color='#64a1a2' size='1.5rem' className='budget-list-item-icon'/>
-                    </div>
-                    <div className='budget-list-item'>
-                        <div className='budget-list-item-date'>09/08/2020</div>
-                        <div className='budget-list-item-amount'>-$15</div>
-                        <div className='budget-list-item-title'>Clothes</div>
-                        <div className='budget-list-item-by'>Saba</div>
-                        <FaPencilAlt color='#a9c6c7' size='1.5rem' className='budget-list-item-icon'/>
-                        <FaTrashAlt color='#a9c6c7' size='1.5rem' className='budget-list-item-icon'/>
-                        <FaInfo color='#64a1a2' size='1.5rem' className='budget-list-item-icon'/>
-                    </div>
+                    {this.props.transactionList.map(transaction=>{
+                        return(<BudgetListItem date={transaction.date} amount={transaction.amount} title={transaction.title} person={transaction.person}/>)
+                    })}
+                    <BudgetListItem date='13/03/2020' amount='-$78' title='Bill' person='Reza'/>
+                    <BudgetListItem date='12/08/2020' amount='-$10' title='Grocery' person='Reza'/>
+                    <BudgetListItem date='29/05/2020' amount='+$2000' title='Salary' person='Saba'/>
+                    <BudgetListItem date='09/08/2020' amount='-$15' title='Clothes' person='Saba'/>
+                    <BudgetListItem date='13/03/2020' amount='-$78' title='Bill' person='Reza'/>
+                    <BudgetListItem date='12/08/2020' amount='-$10' title='Grocery' person='Reza'/>
+                    <BudgetListItem date='29/05/2020' amount='+$2000' title='Salary' person='Saba'/>
+                    <BudgetListItem date='09/08/2020' amount='-$15' title='Clothes' person='Saba'/>
+                    <BudgetListItem date='13/03/2020' amount='-$78' title='Bill' person='Reza'/>
+                    <BudgetListItem date='12/08/2020' amount='-$10' title='Grocery' person='Reza'/>
+                    <BudgetListItem date='29/05/2020' amount='+$2000' title='Salary' person='Saba'/>
+                    <BudgetListItem date='09/08/2020' amount='-$15' title='Clothes' person='Saba'/>
+                    <BudgetListItem date='13/03/2020' amount='-$78' title='Bill' person='Reza'/>
+                    <BudgetListItem date='12/08/2020' amount='-$10' title='Grocery' person='Reza'/>
+                    <BudgetListItem date='29/05/2020' amount='+$2000' title='Salary' person='Saba'/>
+                    <BudgetListItem date='09/08/2020' amount='-$15' title='Clothes' person='Saba'/>
                 </div>
             </div>
         )
     }
 }
-
-export default BudgetList
+const mapStateToProps = state =>{
+    return{
+        token : state.auth.token,
+        userId:state.auth.userId,
+        transactionList: state.budgetCal.transactionList
+    }
+}
+const mapDispatchToProps = dispatch =>{
+    return {
+        onFetchTransactions:(token,userId)=>{dispatch(actions.fetchTransactions(token,userId))}
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(BudgetList)

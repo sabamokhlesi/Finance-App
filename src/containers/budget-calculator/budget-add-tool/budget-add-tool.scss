@@ -8,7 +8,21 @@
         color: #ce5f1a;
         font-style: italic;
         margin: 3rem;
-        margin-bottom: 3rem;
+        display: inline;
+    }
+    h3{
+        display: inline-flex;
+        color: red;
+        font-size: 2.1rem;
+        font-style: italic;
+        font-weight: lighter;
+    }
+    h4{
+        display: inline-flex;
+        color: green;
+        font-size: 2.1rem;
+        font-style: italic;
+        font-weight: lighter;
     }
 }
 .budget-add-submit{
@@ -25,39 +39,9 @@
     margin: auto;
 }
 
-.budget-input-unit{
-    padding: 1rem;
-    border-radius: 1rem;
-    margin: .5rem;
-    display: flex;
-    align-items: center;
-}
-.budget-input{
-    outline: invert;
-    padding: 1rem;
-    font-family: inherit;
-    font-size: inherit;
-    border: 2px solid transparent;
-    border-bottom: 2px solid #beeff0;
-    border-radius: 1rem;
-    &:focus{
-        outline: none;
-        border-bottom: 2px solid #32606d;
-    }
-    &-btn{
+.budget-input-btn{
         margin: auto;
         display: flex;
         justify-content: center;
         width: 100%;
-    }
-    &-label{
-        padding: 1rem;
-        font-size: 1.8rem;
-        color: #32606d;
-        
-    }
-    &::placeholder{
-        color: #cab9af;
-        font-style: italic;
-    }
 }

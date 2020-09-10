@@ -11,7 +11,7 @@ import spendingListsReducer from './store/reducers/spending-lists'
 import budgetCalculatorReducer from './store/reducers/budget-calculator'
 import * as serviceWorker from './serviceWorker';
 
-const rootReducer = combineReducers({auth:authReducer,spendingListsReducer,budgetCalculatorReducer})
+const rootReducer = combineReducers({auth:authReducer,list:spendingListsReducer,budgetCal:budgetCalculatorReducer})
 const composeEnhancers =process.env.NODE_ENV=== 'development' ?window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__: null || compose
 const store = createStore(rootReducer,composeEnhancers(applyMiddleware(thunk)))
 
