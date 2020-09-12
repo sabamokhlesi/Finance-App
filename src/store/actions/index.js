@@ -1,5 +1,5 @@
 export {authStart,authSuccess,authFail,addUser,userSignIn,checkSignIn,logout} from './auth'
 
-export {addTransaction,addTransactionStart} from './spending-lists'
+export {addTransaction,addTransactionStart,fetchTransactions,deleteTransaction} from './spending-lists'
 
-export {fetchTransactions} from './budget-calculator'
+export {} from './budget-calculator'

@@ -40,16 +40,16 @@ class SignInPage extends React.Component{
                     <img src={SignInImg} alt="sign in here"/>
                 </div>
                     <form className='sign-in-form'>
-                        <div class="sign-in-form-title h3">Start Budgeting!</div>
+                        <div className="sign-in-form-title h3">Start Budgeting!</div>
                         <p className='sign-in-message'>{this.state.signInMessage}</p>
                         <p className='sign-in-message'>{errorMassage}</p>
-                        <div class="sign-in-form-fields">
-                            <div class="sign-in-form-field"><input ref={input => {this.signInEmail = input;}} type="email" class="sign-in-form-username" placeholder="Email" /></div>
-                            <div class="sign-in-form-field"><input ref={input => {this.signInPass = input;}} type="password" class="sign-in-form-password" placeholder="Password" /></div>
+                        <div className="sign-in-form-fields">
+                            <div className="sign-in-form-field"><input ref={input => {this.signInEmail = input;}} type="email" className="sign-in-form-username" placeholder="Email" autoComplete='username'/></div>
+                            <div className="sign-in-form-field"><input ref={input => {this.signInPass = input;}} type="password" className="sign-in-form-password" placeholder="Password" autoComplete='current-password'/></div>
                             <h5>Forgot Your Password? <a href="/">Click Here</a></h5>
                         </div>
                         <input type="submit" className="btn btn-primary sign-in-btn" value='Sign In' onClick={this.submitHandler.bind(this)}></input>
-                        <div class="sign-in-to-sign-up">
+                        <div className="sign-in-to-sign-up">
                             <h4>Do not have an account? <Link to="/sign-up" className='sign-in-to-sign-up-link'> Sign Up</Link></h4>
                         </div>
                     </form>

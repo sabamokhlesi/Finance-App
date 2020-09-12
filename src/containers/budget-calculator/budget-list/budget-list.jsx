@@ -4,8 +4,9 @@ import InputUnit from '../../../components/input-unit/input-unit'
 import BudgetListItem from './budget-list-item/budget-list-item'
 import * as actions from '../../../store/actions/index'
 import {connect} from 'react-redux'
+
 class BudgetList extends React.Component{
-    componentDidMount(){
+   componentDidMount(){
         this.props.onFetchTransactions(this.props.token,this.props.userId)
     }
     render(){
@@ -23,25 +24,15 @@ class BudgetList extends React.Component{
                         <div className='budget-list-item-by'>Added by</div>
                         <div className='budget-list-item-edit'>Edit</div>
                     </div>
-                    {this.props.transactionList.map(transaction=>{
-                        return(<BudgetListItem date={transaction.date} amount={transaction.amount} title={transaction.title} person={transaction.person}/>)
+                    {this.props.transactionsList.map(transaction=>{
+                        return(<BudgetListItem 
+                            key={transaction.id} 
+                            date={transaction.date} 
+                            amount={transaction.amount} 
+                            title={transaction.title} 
+                            person={transaction.person}
+                            onDeleteClicked={()=>this.props.onDeleteHandler(transaction.id,this.props.token)}/>)
                     })}
-                    <BudgetListItem date='13/03/2020' amount='-$78' title='Bill' person='Reza'/>
-                    <BudgetListItem date='12/08/2020' amount='-$10' title='Grocery' person='Reza'/>
-                    <BudgetListItem date='29/05/2020' amount='+$2000' title='Salary' person='Saba'/>
-                    <BudgetListItem date='09/08/2020' amount='-$15' title='Clothes' person='Saba'/>
-                    <BudgetListItem date='13/03/2020' amount='-$78' title='Bill' person='Reza'/>
-                    <BudgetListItem date='12/08/2020' amount='-$10' title='Grocery' person='Reza'/>
-                    <BudgetListItem date='29/05/2020' amount='+$2000' title='Salary' person='Saba'/>
-                    <BudgetListItem date='09/08/2020' amount='-$15' title='Clothes' person='Saba'/>
-                    <BudgetListItem date='13/03/2020' amount='-$78' title='Bill' person='Reza'/>
-                    <BudgetListItem date='12/08/2020' amount='-$10' title='Grocery' person='Reza'/>
-                    <BudgetListItem date='29/05/2020' amount='+$2000' title='Salary' person='Saba'/>
-                    <BudgetListItem date='09/08/2020' amount='-$15' title='Clothes' person='Saba'/>
-                    <BudgetListItem date='13/03/2020' amount='-$78' title='Bill' person='Reza'/>
-                    <BudgetListItem date='12/08/2020' amount='-$10' title='Grocery' person='Reza'/>
-                    <BudgetListItem date='29/05/2020' amount='+$2000' title='Salary' person='Saba'/>
-                    <BudgetListItem date='09/08/2020' amount='-$15' title='Clothes' person='Saba'/>
                 </div>
             </div>
         )
@@ -50,13 +41,15 @@ class BudgetList extends React.Component{
 const mapStateToProps = state =>{
     return{
         token : state.auth.token,
-        userId:state.auth.userId,
-        transactionList: state.budgetCal.transactionList
+        userId :state.auth.userId,
+        transactionsList: state.list.transactionsList,
+        loading:state.list.loading
     }
 }
 const mapDispatchToProps = dispatch =>{
     return {
-        onFetchTransactions:(token,userId)=>{dispatch(actions.fetchTransactions(token,userId))}
+        onFetchTransactions:(token,userId)=>{dispatch(actions.fetchTransactions(token,userId))},
+        onDeleteHandler:(transactionId,token)=>{dispatch(actions.deleteTransaction(transactionId,token))}
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(BudgetList)

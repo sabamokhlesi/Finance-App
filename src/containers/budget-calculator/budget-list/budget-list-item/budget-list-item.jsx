@@ -10,7 +10,7 @@ function budgetListItem (props){
             <div className='budget-list-item-title'>{props.title}</div>
             <div className='budget-list-item-by'>{props.person}</div>
             <FaPencilAlt color='#a9c6c7' size='1.5rem' className='budget-list-item-icon'/>
-            <FaTrashAlt color='#a9c6c7' size='1.5rem' className='budget-list-item-icon'/>  
+            <FaTrashAlt color='#a9c6c7' size='1.5rem' className='budget-list-item-icon' onClick={props.onDeleteClicked}/>  
             <FaInfo color='#64a1a2' size='1.5rem' className='budget-list-item-icon'/> 
         </div>
     )
