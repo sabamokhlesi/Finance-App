@@ -1,0 +1,38 @@
+.budget-dashboard-category{
+    padding: 3rem 2rem;
+    margin: 1.5rem;
+    border-radius: 1rem;
+    background-color: white;
+    display: flex;
+    outline: 1px solid rgb(240, 240, 240);
+    outline-offset: -8px;
+    transition: all .3s;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    &-container{
+        flex: 1;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+    }
+    &:hover{
+        box-shadow: 0 0 3rem rgba(0, 0, 0, 0.199);
+        border-left: 6px solid  #32606d;
+        border-right: 6px solid  #32606d;
+    }
+    p{color: green;}
+    &-inside{
+        display: flex;
+        align-items: center;
+        &-icon{
+            padding: 0 2rem;
+        }
+        h4{
+            padding-left: 6rem;
+        }
+    }
+    &-edit-icon{
+        justify-self: flex-start;
+    }
+}
