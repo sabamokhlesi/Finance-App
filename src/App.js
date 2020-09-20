@@ -10,7 +10,12 @@ import * as actions from './store/actions/index'
 import {connect} from 'react-redux'
 import {Route,Switch} from 'react-router-dom'
 class App extends React.Component{
-  componentWillMount(){this.props.onTryAutoSignUp()}
+
+  componentWillMount(){
+    this.props.onTryAutoSignUp()
+  }
+  
+
   render(){
     return (
       <div className="App">

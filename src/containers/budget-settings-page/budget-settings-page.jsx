@@ -8,7 +8,7 @@ import BudgetSettingsCurrentStatus from './budget-settings-page-current-status/b
 
 class BudgetSettingsPage extends React.Component{
     state={
-        settingPage:<BudgetSettingsTotals/>,
+        settingPage:<BudgetSettingsGeneral/>,
         monthlyBudgetLinkClass:'budget-dashboard-nav-item budget-dashboard-nav-item-active',
         generalSettngsLinkClass: 'budget-dashboard-nav-item',
         longTermGoalLinkClass: 'budget-dashboard-nav-item',

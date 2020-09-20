@@ -1,97 +1,139 @@
 import React from 'react'
 import { FaRegChartBar,FaProjectDiagram,FaChartPie,FaChartLine,FaChartArea,FaCalculator,FaClipboardList,FaCocktail} from "react-icons/fa";
 import './budget-summary.scss'
-const budgetSummary = (props) =>{
-    return(
-        <div className='budget-summary'>
-            <div className='budget-summary-total'>
-            <h2>Budget Summary</h2>
-                <div className='budget-summary-total-body'>
-                    <div className='budget-summary-total-monthly'>
-                        <FaRegChartBar color='#ce5f1a' size='4.5rem'/>
-                        <h4 className='budget-summary-total-monthly-title'>Total Budget</h4>
-                        <div className='budget-summary-total-monthly-body'>
-                                <h1>$5400</h1>
-                                <h5> (+20%)</h5>
+import {connect} from 'react-redux'
+import * as actions from '../../../store/actions/index'
+
+class BudgetSummary extends React.Component{
+    
+    componentDidMount(){
+        this.props.onFetchBudgetInfo(this.props.token,this.props.userId)
+      }
+
+    render(){
+        const spendingAmountList=[]
+        const groceryAmountList=[]
+        const billsAndRentAmountList=[]
+        for (let transaction in this.props.transactionsList){
+            if(this.props.transactionsList[transaction].type === 'spending'){    
+                spendingAmountList.push(+this.props.transactionsList[transaction].amount)
+            } 
+            if(this.props.transactionsList[transaction].category === 'Groceries'){    
+                groceryAmountList.push(+this.props.transactionsList[transaction].amount)
+            }
+            if(this.props.transactionsList[transaction].category === 'Bills' || this.props.transactionsList[transaction].category === 'Rent'){    
+                billsAndRentAmountList.push(+this.props.transactionsList[transaction].amount)
+            }
+        }
+        const totalSpendings = spendingAmountList.reduce((total, amount) => total + amount,0)
+        const totalGroceryAmount = groceryAmountList.reduce((total, amount) => total + amount,0)
+        const billsAndRentAmount = billsAndRentAmountList.reduce((total, amount) => total + amount,0)
+        return(
+            <div className='budget-summary'>
+                <div className='budget-summary-total'>
+                <h2>Budget Summary</h2>
+                    <div className='budget-summary-total-body'>
+                        <div className='budget-summary-total-monthly'>
+                            <FaRegChartBar color='#ce5f1a' size='4.5rem'/>
+                            <h4 className='budget-summary-total-monthly-title'>Total Budget</h4>
+                            <div className='budget-summary-total-monthly-body'>
+                                    <h1>${this.props.budgetSettingsInfo.totalBudget}</h1>
+                                    <h5> (+20%)</h5>
+                            </div>
+                        </div>
+                        <div className='budget-summary-total-monthly'>
+                            <FaProjectDiagram color='#ce5f1a' size='4.5rem'/>
+                            <h4 className='budget-summary-total-monthly-title'>Total Spending</h4>
+                            <div className='budget-summary-total-monthly-body'>
+                                    <h1>${totalSpendings}</h1>
+                                    <h5 className='color-red'> (+10%)</h5>
+                            </div>
+                        </div>
+                        <div className='budget-summary-total-monthly'>
+                            <FaChartPie color='#ce5f1a' size='4.5rem'/>
+                            <h4 className='budget-summary-total-monthly-title'>Total Remaining</h4>
+                            <div className='budget-summary-total-monthly-body'>
+                                    <h1>${this.props.budgetSettingsInfo.totalBudget-totalSpendings}</h1>
+                                    <h5 className='color-green'> (+70%)</h5>
+                            </div>
+                        </div>
+                        <div className='budget-summary-total-monthly'>
+                            <FaChartLine color='#ce5f1a' size='4.5rem'/>
+                            <h4 className='budget-summary-total-monthly-title'>Total Saving</h4>
+                            <div className='budget-summary-total-monthly-body'>
+                                    <h1>${this.props.budgetSettingsInfo.totalEarning-this.props.budgetSettingsInfo.totalBudget}</h1>
+                                    <h5 className='color-green'> (+15%)</h5>
+                            </div>
                         </div>
                     </div>
-                    <div className='budget-summary-total-monthly'>
-                        <FaProjectDiagram color='#ce5f1a' size='4.5rem'/>
-                        <h4 className='budget-summary-total-monthly-title'>Total Spending</h4>
-                        <div className='budget-summary-total-monthly-body'>
-                                <h1>$5400</h1>
-                                <h5 className='color-red'> (+10%)</h5>
-                        </div>
-                    </div>
-                    <div className='budget-summary-total-monthly'>
-                        <FaChartPie color='#ce5f1a' size='4.5rem'/>
-                        <h4 className='budget-summary-total-monthly-title'>Total Remaining</h4>
-                        <div className='budget-summary-total-monthly-body'>
-                                <h1>$4100</h1>
-                                <h5 className='color-green'> (+70%)</h5>
-                        </div>
-                    </div>
-                    <div className='budget-summary-total-monthly'>
-                        <FaChartLine color='#ce5f1a' size='4.5rem'/>
-                        <h4 className='budget-summary-total-monthly-title'>Total Saving</h4>
-                        <div className='budget-summary-total-monthly-body'>
-                                <h1>$1200</h1>
-                                <h5 className='color-green'> (+15%)</h5>
-                        </div>
-                    </div>
+                    <div className='budget-summary-total-spending'></div>
+                    <div className='budget-summary-total-remaining'></div>
+                    <div className='budget-summary-total-saving'></div>
                 </div>
-                <div className='budget-summary-total-spending'></div>
-                <div className='budget-summary-total-remaining'></div>
-                <div className='budget-summary-total-saving'></div>
-            </div>
-            <div className='budget-summary-total'>
-            <h2>Spendings Overview</h2>
-                <div className='budget-summary-total-body'>
-                    <div className='budget-summary-total-monthly'>
-                        <FaChartArea color='#ce5f1a' size='4.5rem'/>
-                        <h4 className='budget-summary-total-monthly-title'>Groceries</h4>
-                        <div className='budget-summary-total-monthly-body'>
-                                <h1>$5400</h1>
-                                <h5 className='color-red'> (+10%)</h5>
+                <div className='budget-summary-total'>
+                <h2>Spendings Overview</h2>
+                    <div className='budget-summary-total-body'>
+                        <div className='budget-summary-total-monthly'>
+                            <FaChartArea color='#ce5f1a' size='4.5rem'/>
+                            <h4 className='budget-summary-total-monthly-title'>Groceries</h4>
+                            <div className='budget-summary-total-monthly-body'>
+                                    <h1>${totalGroceryAmount}</h1>
+                                    <h5 className='color-red'> (+10%)</h5>
+                            </div>
+                        </div>
+                        <div className='budget-summary-total-monthly'>
+                            <FaClipboardList color='#ce5f1a' size='4.5rem'/>
+                            <h4 className='budget-summary-total-monthly-title'>Bills And Rent</h4>
+                            <div className='budget-summary-total-monthly-body'>
+                                    <h1>${billsAndRentAmount}</h1>
+                                    <h5> (0%)</h5>
+                            </div>
+                        </div>
+                        <div className='budget-summary-total-monthly'>
+                            <FaCocktail color='#ce5f1a' size='4.5rem'/>
+                            <h4 className='budget-summary-total-monthly-title'>Entertainment</h4>
+                            <div className='budget-summary-total-monthly-body'>
+                                    <h1>$5400</h1>
+                                    <h5 className='color-green'> (-35%)</h5>
+                            </div>
+                        </div>
+                        <div className='budget-summary-total-monthly'>
+                            <FaCalculator color='#ce5f1a' size='4.5rem'/>
+                            <h4 className='budget-summary-total-monthly-title'>Others</h4>
+                            <div className='budget-summary-total-monthly-body'>
+                                    <h1>$570</h1>
+                                    <h5 className='color-red'> (+25%)</h5>
+                            </div>
                         </div>
                     </div>
-                    <div className='budget-summary-total-monthly'>
-                        <FaClipboardList color='#ce5f1a' size='4.5rem'/>
-                        <h4 className='budget-summary-total-monthly-title'>Bills And Rent</h4>
-                        <div className='budget-summary-total-monthly-body'>
-                                <h1>$3300</h1>
-                                <h5> (0%)</h5>
-                        </div>
-                    </div>
-                    <div className='budget-summary-total-monthly'>
-                        <FaCocktail color='#ce5f1a' size='4.5rem'/>
-                        <h4 className='budget-summary-total-monthly-title'>Entertainment</h4>
-                        <div className='budget-summary-total-monthly-body'>
-                                <h1>$5400</h1>
-                                <h5 className='color-green'> (-35%)</h5>
-                        </div>
-                    </div>
-                    <div className='budget-summary-total-monthly'>
-                        <FaCalculator color='#ce5f1a' size='4.5rem'/>
-                        <h4 className='budget-summary-total-monthly-title'>Others</h4>
-                        <div className='budget-summary-total-monthly-body'>
-                                <h1>$570</h1>
-                                <h5 className='color-red'> (+25%)</h5>
-                        </div>
-                    </div>
+                    <div className='budget-summary-total-spending'></div>
+                    <div className='budget-summary-total-remaining'></div>
+                    <div className='budget-summary-total-saving'></div>
                 </div>
-                <div className='budget-summary-total-spending'></div>
-                <div className='budget-summary-total-remaining'></div>
-                <div className='budget-summary-total-saving'></div>
+                <div className='budget-spending-overview'>
+                    <div className='budget-spending-groceries'></div>
+                    <div className='budget-spending-bills-and-rent'></div>
+                    <div className='budget-spending-entertainment'></div>
+                    <div className='budget-spending-others'></div>
+                </div> 
             </div>
-            <div className='budget-spending-overview'>
-                <div className='budget-spending-groceries'></div>
-                <div className='budget-spending-bills-and-rent'></div>
-                <div className='budget-spending-entertainment'></div>
-                <div className='budget-spending-others'></div>
-            </div> 
-        </div>
-    )
+        )
+    }
+    
+}
+const mapStateToProps = state =>{
+    return{
+        token : state.auth.token,
+        userId :state.auth.userId,
+        budgetSettingsInfo:state.budgetCal.budgetInfo,
+        transactionsList:state.list.transactionsList
+    }
 }
 
-export default budgetSummary
+const mapDispatchToProps = dispatch =>{
+    return {
+        onFetchBudgetInfo:(token,userId)=>{dispatch(actions.fetchBudgetInfo(token,userId))}
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(BudgetSummary)

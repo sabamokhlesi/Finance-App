@@ -2,4 +2,4 @@ export {authStart,authSuccess,authFail,addUser,userSignIn,checkSignIn,logout} fr
 
 export {addTransaction,addTransactionStart,fetchTransactions,deleteTransaction} from './spending-lists'
 
-export {} from './budget-calculator'
+export {fetchBudgetInfo,saveChangedSettingsInfo} from './budget-calculator'

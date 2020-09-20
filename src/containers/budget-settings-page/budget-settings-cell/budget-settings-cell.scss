@@ -12,28 +12,17 @@
     &-container{
         flex: 1;
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         justify-content: center;
         flex-direction: column;
+        h4{
+            padding-bottom: 1rem;
+            color:#61a0af;
+        }
     }
     &:hover{
         box-shadow: 0 0 3rem rgba(0, 0, 0, 0.199);
         border-left: 6px solid  #32606d;
         border-right: 6px solid  #32606d;
-    }
-    p{color: green;}
-    &-inside{
-        display: flex;
-        align-items: center;
-        &-icon{
-            padding: 0 2rem;
-        }
-        h4{
-            padding-left: 7rem;
-            padding-bottom: 1rem;
-        }
-    }
-    &-edit-icon{
-        justify-self: flex-start;
     }
 }
