@@ -11,23 +11,17 @@ class BudgetSummary extends React.Component{
       }
 
     render(){
-        const spendingAmountList=[]
-        const groceryAmountList=[]
-        const billsAndRentAmountList=[]
-        for (let transaction in this.props.transactionsList){
-            if(this.props.transactionsList[transaction].type === 'spending'){    
-                spendingAmountList.push(+this.props.transactionsList[transaction].amount)
-            } 
-            if(this.props.transactionsList[transaction].category === 'Groceries'){    
-                groceryAmountList.push(+this.props.transactionsList[transaction].amount)
+
+        const totalSpendingcalculator = (list,key,value) =>{
+            const spendingAmountList=[]
+            for (let transaction in list){
+                if(list[transaction][key] === value){    
+                    spendingAmountList.push(+list[transaction].amount)
+                }
             }
-            if(this.props.transactionsList[transaction].category === 'Bills' || this.props.transactionsList[transaction].category === 'Rent'){    
-                billsAndRentAmountList.push(+this.props.transactionsList[transaction].amount)
-            }
+            return spendingAmountList.reduce((total, amount) => total + amount,0)
         }
-        const totalSpendings = spendingAmountList.reduce((total, amount) => total + amount,0)
-        const totalGroceryAmount = groceryAmountList.reduce((total, amount) => total + amount,0)
-        const billsAndRentAmount = billsAndRentAmountList.reduce((total, amount) => total + amount,0)
+
         return(
             <div className='budget-summary'>
                 <div className='budget-summary-total'>
@@ -45,7 +39,7 @@ class BudgetSummary extends React.Component{
                             <FaProjectDiagram color='#ce5f1a' size='4.5rem'/>
                             <h4 className='budget-summary-total-monthly-title'>Total Spending</h4>
                             <div className='budget-summary-total-monthly-body'>
-                                    <h1>${totalSpendings}</h1>
+                                    <h1>${totalSpendingcalculator(this.props.transactionsList,'type','spending')}</h1>
                                     <h5 className='color-red'> (+10%)</h5>
                             </div>
                         </div>
@@ -53,7 +47,7 @@ class BudgetSummary extends React.Component{
                             <FaChartPie color='#ce5f1a' size='4.5rem'/>
                             <h4 className='budget-summary-total-monthly-title'>Total Remaining</h4>
                             <div className='budget-summary-total-monthly-body'>
-                                    <h1>${this.props.budgetSettingsInfo.totalBudget-totalSpendings}</h1>
+                                    <h1>${this.props.budgetSettingsInfo.totalBudget-totalSpendingcalculator(this.props.transactionsList,'type','spending')}</h1>
                                     <h5 className='color-green'> (+70%)</h5>
                             </div>
                         </div>
@@ -77,7 +71,7 @@ class BudgetSummary extends React.Component{
                             <FaChartArea color='#ce5f1a' size='4.5rem'/>
                             <h4 className='budget-summary-total-monthly-title'>Groceries</h4>
                             <div className='budget-summary-total-monthly-body'>
-                                    <h1>${totalGroceryAmount}</h1>
+                                    <h1>${totalSpendingcalculator(this.props.transactionsList,'category','Groceries')}</h1>
                                     <h5 className='color-red'> (+10%)</h5>
                             </div>
                         </div>
@@ -85,7 +79,7 @@ class BudgetSummary extends React.Component{
                             <FaClipboardList color='#ce5f1a' size='4.5rem'/>
                             <h4 className='budget-summary-total-monthly-title'>Bills And Rent</h4>
                             <div className='budget-summary-total-monthly-body'>
-                                    <h1>${billsAndRentAmount}</h1>
+                                    <h1>${totalSpendingcalculator(this.props.transactionsList,'category','Bills')}</h1>
                                     <h5> (0%)</h5>
                             </div>
                         </div>
@@ -93,15 +87,15 @@ class BudgetSummary extends React.Component{
                             <FaCocktail color='#ce5f1a' size='4.5rem'/>
                             <h4 className='budget-summary-total-monthly-title'>Entertainment</h4>
                             <div className='budget-summary-total-monthly-body'>
-                                    <h1>$5400</h1>
+                                    <h1>${totalSpendingcalculator(this.props.transactionsList,'category','Entertainment')}</h1>
                                     <h5 className='color-green'> (-35%)</h5>
                             </div>
                         </div>
                         <div className='budget-summary-total-monthly'>
                             <FaCalculator color='#ce5f1a' size='4.5rem'/>
-                            <h4 className='budget-summary-total-monthly-title'>Others</h4>
+                            <h4 className='budget-summary-total-monthly-title'>Other expenses</h4>
                             <div className='budget-summary-total-monthly-body'>
-                                    <h1>$570</h1>
+                                    <h1>${totalSpendingcalculator(this.props.transactionsList,'type','spending')-totalSpendingcalculator(this.props.transactionsList,'category','Entertainment')-totalSpendingcalculator(this.props.transactionsList,'category','Bills')-totalSpendingcalculator(this.props.transactionsList,'category','Groceries')}</h1>
                                     <h5 className='color-red'> (+25%)</h5>
                             </div>
                         </div>
@@ -126,7 +120,8 @@ const mapStateToProps = state =>{
         token : state.auth.token,
         userId :state.auth.userId,
         budgetSettingsInfo:state.budgetCal.budgetInfo,
-        transactionsList:state.list.transactionsList
+        transactionsList:state.list.transactionsList,
+        list:state.list
     }
 }
 

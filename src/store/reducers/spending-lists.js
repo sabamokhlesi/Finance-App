@@ -6,9 +6,9 @@ const initialState ={
     loading: false,
     error:null,
     errorMessage:'',
-    successMessage:''
+    successMessage:'',
+    totalSpending:0
 }
-
 
 const reducer = (state=initialState,action) => {
     switch(action.type){
