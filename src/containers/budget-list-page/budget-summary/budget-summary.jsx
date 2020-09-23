@@ -71,7 +71,7 @@ class BudgetSummary extends React.Component{
                             <FaChartArea color='#ce5f1a' size='4.5rem'/>
                             <h4 className='budget-summary-total-monthly-title'>Groceries</h4>
                             <div className='budget-summary-total-monthly-body'>
-                                    <h1>${totalSpendingcalculator(this.props.transactionsList,'category','Groceries')}</h1>
+                                    <h1>${totalSpendingcalculator(this.props.transactionsList,'category','groceries')}</h1>
                                     <h5 className='color-red'> (+10%)</h5>
                             </div>
                         </div>
@@ -79,7 +79,7 @@ class BudgetSummary extends React.Component{
                             <FaClipboardList color='#ce5f1a' size='4.5rem'/>
                             <h4 className='budget-summary-total-monthly-title'>Bills And Rent</h4>
                             <div className='budget-summary-total-monthly-body'>
-                                    <h1>${totalSpendingcalculator(this.props.transactionsList,'category','Bills')}</h1>
+                                    <h1>${totalSpendingcalculator(this.props.transactionsList,'category','bills')}</h1>
                                     <h5> (0%)</h5>
                             </div>
                         </div>
@@ -87,7 +87,7 @@ class BudgetSummary extends React.Component{
                             <FaCocktail color='#ce5f1a' size='4.5rem'/>
                             <h4 className='budget-summary-total-monthly-title'>Entertainment</h4>
                             <div className='budget-summary-total-monthly-body'>
-                                    <h1>${totalSpendingcalculator(this.props.transactionsList,'category','Entertainment')}</h1>
+                                    <h1>${totalSpendingcalculator(this.props.transactionsList,'category','entertainment')}</h1>
                                     <h5 className='color-green'> (-35%)</h5>
                             </div>
                         </div>

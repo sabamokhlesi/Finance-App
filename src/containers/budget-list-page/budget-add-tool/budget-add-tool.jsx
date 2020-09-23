@@ -27,9 +27,8 @@ class BudgetAddTool extends React.Component{
         } else {this.props.onAddTransactionClicked({...this.state.transactionInfo,userId:this.props.id},this.props.token); 
             validationMessage= null
             this.setState({transactionInfo:initialState,validationMessage:validationMessage})}
-        
-
     }
+    
     render(){
         const currentDate=(new Date().getFullYear()+'-'+('0'+(new Date().getMonth()+1)).slice(-2)+'-'+('0'+new Date().getDate()).slice(-2)).toString()
         let form = null
@@ -41,7 +40,7 @@ class BudgetAddTool extends React.Component{
                 <InputUnit inputtype='input' type="date" id="datemin" name="datemin" min="2000-01-02" max={currentDate} labelname='Date' onChange={event=>this.setState({ transactionInfo: { ...this.state.transactionInfo, date:event.target.value}})}/>
                 <InputUnit inputtype='select' id="transaction-type" labelname='Type' options='spending,earning' onChange={event=>this.setState({ transactionInfo: { ...this.state.transactionInfo, type:event.target.value}})}/>
                 <InputUnit inputtype='input' type="text" id='spending-writer-input' placeholder='i.e John' labelname='By' onChange={event=>this.setState({ transactionInfo: { ...this.state.transactionInfo, person:event.target.value}})}/>
-                <InputUnit inputtype='select' id="transaction-category" name="categories" labelname='Category' options='-select-,Bills,Groceries,Clothing,Entertainment,Transportation,Income,Rent,Retaurant,Others' onChange={event=>this.setState({ transactionInfo: { ...this.state.transactionInfo, category:event.target.value}})}/>
+                <InputUnit inputtype='select' id="transaction-category" name="categories" labelname='Category' options={`-select-,${Object.keys(this.props.budgetInfo.categories).join()},none of above`} onChange={event=>this.setState({ transactionInfo: { ...this.state.transactionInfo, category:event.target.value}})}/>
                 <InputUnit inputtype='textArea' type="textarea" rows="1" cols='50' id='spending-note' placeholder='i.e note: Paid for the next 6 months' labelname='Note(optional)' onChange={event=>this.setState({ transactionInfo: { ...this.state.transactionInfo, note:event.target.value}})}/>
                 <div className='budget-input-btn'>
                     <input type="submit" id='spending-input-submit' value='Add' className='btn btn-primary budget-add-submit' onClick={this.addHandler.bind(this)}/>
@@ -67,7 +66,8 @@ const mapStateToProps = state =>{
         id :state.auth.userId,
         loading: state.list.loading,
         errorMessage:state.list.errorMessage,
-        successMessage: state.list.successMessage
+        successMessage: state.list.successMessage,
+        budgetInfo:state.budgetCal.budgetInfo
     }
 }
 const mapDispatchToProps = dispatch =>{

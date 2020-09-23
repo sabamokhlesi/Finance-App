@@ -21,7 +21,9 @@ class BudgetSettingsGeneral extends React.Component{
     }
     componentDidMount(){
         this.props.onFetchBudgetInfo(this.props.token,this.props.userId)
+        this.props.onFetchTransactions(this.props.token,this.props.userId)
     }
+
    
     deleteHandler(item){
         const updatedState = {...this.state.budgetSettingsInfo}
@@ -45,7 +47,16 @@ class BudgetSettingsGeneral extends React.Component{
     }
     
     render(){
-
+        const totalSpendingcalculator = (list,key,value) =>{
+            const spendingAmountList=[]
+            for (let transaction in list){
+                if(list[transaction][key] === value){    
+                    spendingAmountList.push(+list[transaction].amount)
+                }
+            }
+            return spendingAmountList.reduce((total, amount) => total + amount,0)
+        }
+        
         let remainingDaysOfMonth = 0
         const date = new Date();
         const time = new Date(date.getTime());
@@ -89,11 +100,11 @@ class BudgetSettingsGeneral extends React.Component{
                 <h2>Your Monthly Budget goals</h2>
                 <div className='budget-dashboard-body-inside'>
                     <div className='budget-dashboard-body-left'>
-                        {Object.keys(this.props.budgetInfo.categories).map(category=>< BudgetSettingsCell title={category} key={category} amount={'$'+this.props.budgetInfo.categories[category]}/>)}
+                        {Object.keys(this.props.budgetInfo.categories).map(category=>< BudgetSettingsCell title={category} key={category} usedpercent={(totalSpendingcalculator(this.props.transactionsList,'category',category)/this.props.budgetInfo.categories[category]*100).toFixed(1)} usedamount={totalSpendingcalculator(this.props.transactionsList,'category',category)} amountIsNumber amount={this.props.budgetInfo.categories[category]}/>)}
                     </div>
                     <div className='budget-dashboard-body-right'>
-                        < BudgetSettingsCell title='Total monthly budget' amount={'$'+this.props.budgetInfo.totalBudget} />
-                        < BudgetSettingsCell title='Total monthly earning' amount={'$'+this.props.budgetInfo.totalEarning}/>
+                        < BudgetSettingsCell title='Total monthly budget' amount={this.props.budgetInfo.totalBudget} usedpercent={(totalSpendingcalculator(this.props.transactionsList,'type','spending')/this.props.budgetInfo.totalBudget*100).toFixed(1)} usedamount={totalSpendingcalculator(this.props.transactionsList,'type','spending')} amountIsNumber/>
+                        < BudgetSettingsCell title='Total monthly earning' amount={'$'+totalSpendingcalculator(this.props.transactionsList,'type','earning')}/>
                         < BudgetSettingsCell title='Monthly saving goal' amount={'$'+this.props.budgetInfo.savingGoal}/>
                         < BudgetSettingsCell title='Remaining days of this month' amount={remainingDaysOfMonth}/>
                     </div>
@@ -113,11 +124,14 @@ const mapStateToProps = state =>{
         token : state.auth.token,
         userId :state.auth.userId,
         loading:state.budgetCal.loading,
-        budgetInfo:state.budgetCal.budgetInfo
+        budgetInfo:state.budgetCal.budgetInfo,
+        transactionsList:state.list.transactionsList,
+        list:state.list
     }
 }
 const mapDispatchToProps = dispatch =>{
     return {
+        onFetchTransactions:(token,userId)=>{dispatch(actions.fetchTransactions(token,userId))},
         onFetchBudgetInfo:(token,userId)=>{dispatch(actions.fetchBudgetInfo(token,userId))},
         onSaveChangesHandler:(newInfo,token,userId)=>{dispatch(actions.saveChangedSettingsInfo(newInfo,token,userId))}
     }
