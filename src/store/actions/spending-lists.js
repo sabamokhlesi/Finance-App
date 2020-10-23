@@ -5,11 +5,26 @@ export const addTransactionStart=() =>{return{type:actionTypes.ADD_START}}
 export const addTransactionFailed =(error) =>{return{type:actionTypes.ADD_FAILED,error:error}}
 export const addTransactionSuccess =(id,data) =>{return{type:actionTypes.ADD_SUCCESSFUL,transactionId: id,transactionData: data }
 }
+// export const addTransaction = (transactionInfo,token) =>{
+//     return dispatch => {
+//         dispatch(addTransactionStart())
+//         axios.post('/transactions.json?auth=' +token, transactionInfo)
+//         .then(res =>{dispatch(addTransactionSuccess(res.data.name,transactionInfo))})
+//         .catch(err=>{dispatch(addTransactionFailed(err))})
+//     }
+// }
+
 export const addTransaction = (transactionInfo,token) =>{
     return dispatch => {
         dispatch(addTransactionStart())
-        axios.post('/transactions.json?auth=' +token, transactionInfo)
-        .then(res =>{dispatch(addTransactionSuccess(res.data.name,transactionInfo))})
+        
+        fetch('http://localhost:8080/budget-manager/transaction', 
+            {method: 'POST',body: transactionInfo,headers: {Authorization: 'Bearer ' + token}})
+        .then(res => {
+            if (res.status !== 200 && res.status !== 201) {throw new Error('Creating or editing a post failed!');}
+            return res.json();
+            })
+        .then(res =>{dispatch(addTransactionSuccess(res.transaction._id,transactionInfo))})
         .catch(err=>{dispatch(addTransactionFailed(err))})
     }
 }
@@ -18,10 +33,24 @@ export const deleteTransactionStart=() =>{return{type:actionTypes.DELETE_START}}
 export const deleteTransactionFailed =(error) =>{return{type:actionTypes.DELETE_FAILED,error:error}}
 export const deleteTransactionSuccess =(id) =>{return{type:actionTypes.DELETE_SUCCESSFUL,transactionId: id }
 }
+// export const deleteTransaction = (transactionId,token) =>{
+//     return dispatch => {
+//         dispatch(deleteTransactionStart())
+//         axios.delete('/transactions/'+transactionId+'.json?auth='+token)
+//         .then(res =>{dispatch(deleteTransactionSuccess(transactionId))})
+//         .catch(err=>{dispatch(deleteTransactionFailed(err))})
+//     }
+// }
 export const deleteTransaction = (transactionId,token) =>{
     return dispatch => {
         dispatch(deleteTransactionStart())
-        axios.delete('/transactions/'+transactionId+'.json?auth='+token)
+        fetch(`http://localhost:8080/budget-manager/transaction/${transactionId}`, {
+            method: 'DELETE',headers: {Authorization: 'Bearer ' + token}
+        })
+        .then(res => {
+        if (res.status !== 200 && res.status !== 201) {throw new Error('Deleting a post failed!');}
+        return res.json();
+        })
         .then(res =>{dispatch(deleteTransactionSuccess(transactionId))})
         .catch(err=>{dispatch(deleteTransactionFailed(err))})
     }
@@ -31,14 +60,30 @@ export const fetchTransactionsSuccess = (transactions) =>{return{type: actionTyp
 export const fetchTransactionsFail = (error) => {return{type: actionTypes.FETCH_TRANSACTIONS_FAILED,error: error}}
 export const fetchTransactionsStart =() => {return{type: actionTypes.FETCH_TRANSACTIONS_START}}
 
+// export const fetchTransactions = (token,userId) =>{
+//     return dispatch => {
+//         dispatch(fetchTransactionsStart())
+//         axios.get('/transactions.json?auth='+ token + '&orderBy="userId"&equalTo="' + userId + '"')
+//         .then(res=>{
+//             const fetchedData=[]
+//             for(let key in res.data){fetchedData.push({...res.data[key],id:key})}
+//             dispatch(fetchTransactionsSuccess(fetchedData))
+//         }).catch(err=>dispatch(fetchTransactionsFail(err)))
+//     }
+// }
+
 export const fetchTransactions = (token,userId) =>{
     return dispatch => {
         dispatch(fetchTransactionsStart())
-        axios.get('/transactions.json?auth='+ token + '&orderBy="userId"&equalTo="' + userId + '"')
-        .then(res=>{
-            const fetchedData=[]
-            for(let key in res.data){fetchedData.push({...res.data[key],id:key})}
-            dispatch(fetchTransactionsSuccess(fetchedData))
-        }).catch(err=>dispatch(fetchTransactionsFail(err)))
+        let page = 1
+        // userId should not contain " " and page should be fixed
+        fetch(`http://localhost:8080/budget-manager/transactions?page=${page}&userId=${userId}`, 
+        {headers: {Authorization: 'Bearer ' + token}})
+            .then(res => {
+                if (res.status !== 200) {throw new Error('Failed to fetch transactions.')}
+                return res.json();
+            })
+        .then(res=>{dispatch(fetchTransactionsSuccess(res.transactionData))})
+        .catch(err=>dispatch(fetchTransactionsFail(err)))
     }
 }
