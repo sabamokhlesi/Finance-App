@@ -1,5 +1,5 @@
 import * as actionTypes from './action-types'
-import axios from '../../axios-transactions'
+// import axios from '../../axios-transactions'
 
 
 export const fetchBudgetInfoSuccess = (info) =>{return{type: actionTypes.FETCH_BUDGETINFO_SUCCESS,budgetInfo: info }}
@@ -48,8 +48,9 @@ export const saveChangedSettingsInfoStart =() => {return{type: actionTypes.SAVE_
 export const saveChangedSettingsInfo =(newInfo,token,userId)=>{
     return dispatch => {
         dispatch(saveChangedSettingsInfoStart())
+        console.log(JSON.stringify(newInfo))
         fetch(`http://localhost:8080/budget-manager/budget-info/${userId}`, {
-            method: 'put',body:newInfo,headers: {Authorization: 'Bearer ' + token}
+            method: 'put',body:JSON.stringify(newInfo) ,headers: {Authorization: 'Bearer ' + token,'Content-Type': 'application/json'}
         })
         .then(res => {
         if (res.status !== 200 && res.status !== 201) {throw new Error('Updating information failed!');}

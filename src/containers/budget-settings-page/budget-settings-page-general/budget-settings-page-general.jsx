@@ -64,11 +64,11 @@ class BudgetSettingsGeneral extends React.Component{
         time.setDate(0);
         remainingDaysOfMonth= time.getDate() > date.getDate() ? time.getDate() - date.getDate() : 0;
 
-        const inputs = Object.keys(this.props.budgetInfo.categories).map(category=>
+        const inputs = this.props.budgetInfo.categories?Object.keys(this.props.budgetInfo.categories).map(category=>
             <div className='budget-input-set-unit' key={category+'-budget-set-input-unit'}>
                 <FaTimes color='#a9c6c7' size='1.5rem' onClick={()=>this.deleteHandler(category)} className='budget-input-set-unit-icon'/>
                 <InputUnit inputtype='input' id={category+'-budget-set-input'} placeholder='i.e 200' type="number" labelname={category} onChange={event=>this.onChangeHandler(event,category)} defaultValue={this.props.budgetInfo.categories[category]}/>
-            </div>)
+            </div>):null
 
         let body =null
         if(this.props.loading){body=<Spinner/>}
@@ -100,10 +100,12 @@ class BudgetSettingsGeneral extends React.Component{
                 <h2>Your Monthly Budget goals</h2>
                 <div className='budget-dashboard-body-inside'>
                     <div className='budget-dashboard-body-left'>
-                        {Object.keys(this.props.budgetInfo.categories).map(category=>< BudgetSettingsCell title={category} key={category} usedpercent={(totalSpendingcalculator(this.props.transactionsList,'category',category)/this.props.budgetInfo.categories[category]*100).toFixed(1)} usedamount={totalSpendingcalculator(this.props.transactionsList,'category',category)} amountIsNumber amount={this.props.budgetInfo.categories[category]}/>)}
+                        {this.props.budgetInfo.categories?
+                            Object.keys(this.props.budgetInfo.categories).map(category=>< BudgetSettingsCell title={category} key={category} usedpercent={(totalSpendingcalculator(this.props.transactionsList,'category',category)/this.props.budgetInfo.categories[category]*100).toFixed(1)} usedamount={totalSpendingcalculator(this.props.transactionsList,'category',category)} amountIsNumber amount={this.props.budgetInfo.categories[category]}/>)
+                        :<button className="btn btn-primary" onClick={()=>this.setState({budgetSettingsInfo:this.props.budgetInfo,changing:true})}>Set your budget</button>}
                     </div>
                     <div className='budget-dashboard-body-right'>
-                        < BudgetSettingsCell title='Total monthly budget' amount={this.props.budgetInfo.totalBudget} usedpercent={(totalSpendingcalculator(this.props.transactionsList,'type','spending')/this.props.budgetInfo.totalBudget*100).toFixed(1)} usedamount={totalSpendingcalculator(this.props.transactionsList,'type','spending')} amountIsNumber/>
+                        < BudgetSettingsCell title='Total monthly budget' amount={this.props.budgetInfo.totalBudget} usedpercent={+this.props.budgetInfo.totalBudget>0?(totalSpendingcalculator(this.props.transactionsList,'type','spending')/this.props.budgetInfo.totalBudget*100).toFixed(1):null} usedamount={totalSpendingcalculator(this.props.transactionsList,'type','spending')} amountIsNumber/>
                         < BudgetSettingsCell title='Total monthly earning' amount={'$'+totalSpendingcalculator(this.props.transactionsList,'type','earning')}/>
                         < BudgetSettingsCell title='Monthly saving goal' amount={'$'+this.props.budgetInfo.savingGoal}/>
                         < BudgetSettingsCell title='Remaining days of this month' amount={remainingDaysOfMonth}/>

@@ -1,5 +1,5 @@
 import * as actionTypes from './action-types'
-import axios from 'axios'
+// import axios from 'axios'
 
 export const authStart = () => {
     return{type:actionTypes.AUTH_START}
@@ -57,11 +57,10 @@ export const addUser = (email,password,isValid) =>{
           })
         .then(res => {
             console.log(res)
-            // const expirationDate = new Date (new Date().getTime()+res.data.expirationDate*1000)
             localStorage.setItem("token",res.token)
+            localStorage.setItem("userID",res.userId)
+            // const expirationDate = new Date (new Date().getTime()+res.data.expirationDate*1000)
             // localStorage.setItem("expirationDate",expirationDate)
-            localStorage.setItem("userID",res.localId)
-
             dispatch(authSuccess(res.token,res.userId))
         })
         .catch(err=>{dispatch(authFail(err));console.log(err)})

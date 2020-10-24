@@ -8,7 +8,9 @@ import {connect} from 'react-redux'
 class BudgetList extends React.Component{
    componentDidMount(){
         this.props.onFetchTransactions(this.props.token,this.props.userId)
+        console.log(this.props.transactionsList)
     }
+    componentWillUpdate(){console.log(this.props.transactionsList>=1)}
     render(){
         return(
             <div className='budget-list-section'>
@@ -24,15 +26,15 @@ class BudgetList extends React.Component{
                         <div className='budget-list-item-by'>Added by</div>
                         <div className='budget-list-item-edit'>Edit</div>
                     </div>
-                    {this.props.transactionsList.map(transaction=>{
+                    {this.props.transactionsList.length>=1?this.props.transactionsList.map(transaction=>{
                         return(<BudgetListItem 
-                            key={transaction.id} 
+                            key={transaction._id} 
                             date={transaction.date} 
                             amount={transaction.amount} 
                             title={transaction.title} 
                             person={transaction.person}
-                            onDeleteClicked={()=>this.props.onDeleteHandler(transaction.id,this.props.token)}/>)
-                    })}
+                            onDeleteClicked={()=>this.props.onDeleteHandler(transaction._id,this.props.token)}/>)
+                    }):'start adding transactions'}
                 </div>
             </div>
         )

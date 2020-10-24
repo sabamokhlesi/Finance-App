@@ -1,5 +1,5 @@
 import * as actionTypes from './action-types'
-import axios from '../../axios-transactions'
+// import axios from '../../axios-transactions'
 
 export const addTransactionStart=() =>{return{type:actionTypes.ADD_START}}
 export const addTransactionFailed =(error) =>{return{type:actionTypes.ADD_FAILED,error:error}}
@@ -17,9 +17,8 @@ export const addTransactionSuccess =(id,data) =>{return{type:actionTypes.ADD_SUC
 export const addTransaction = (transactionInfo,token) =>{
     return dispatch => {
         dispatch(addTransactionStart())
-        
         fetch('http://localhost:8080/budget-manager/transaction', 
-            {method: 'POST',body: transactionInfo,headers: {Authorization: 'Bearer ' + token}})
+            {method: 'POST',body:JSON.stringify(transactionInfo), headers: {Authorization: 'Bearer ' + token,'Content-Type': 'application/json'}})
         .then(res => {
             if (res.status !== 200 && res.status !== 201) {throw new Error('Creating or editing a post failed!');}
             return res.json();
@@ -76,14 +75,14 @@ export const fetchTransactions = (token,userId) =>{
     return dispatch => {
         dispatch(fetchTransactionsStart())
         let page = 1
-        // userId should not contain " " and page should be fixed
-        fetch(`http://localhost:8080/budget-manager/transactions?page=${page}&userId=${userId}`, 
-        {headers: {Authorization: 'Bearer ' + token}})
+        // page should be fixed
+        fetch(`http://localhost:8080/budget-manager/transactions/${userId}?page=${page}`
+            ,{method: 'GET',headers: {Authorization: 'Bearer ' + token}})
             .then(res => {
                 if (res.status !== 200) {throw new Error('Failed to fetch transactions.')}
                 return res.json();
             })
-        .then(res=>{dispatch(fetchTransactionsSuccess(res.transactionData))})
+        .then(res=>{dispatch(fetchTransactionsSuccess(res.transactions))})
         .catch(err=>dispatch(fetchTransactionsFail(err)))
     }
 }

@@ -52,7 +52,7 @@ class SignUpPage extends React.Component{
                         <p className='sign-up-message'>{errorMessage}</p>
                         <div className="sign-up-form-fields">
                             <div className="sign-up-form-field"><input key='sign-up-email' ref={input => {this.signUpEmail = input;}} type="email" className="sign-up-form-username" placeholder="Email" /></div>
-                            <div className="sign-up-form-field"><input key='sign-up-pass' ref={input => {this.signUpPass = input;}} type="password" className="sign-up-form-password" placeholder="Password" /></div>
+                            <div className="sign-up-form-field"><input key='sign-up-pass'  autoComplete='new-password' ref={input => {this.signUpPass = input;}} type="password" className="sign-up-form-password" placeholder="Password" /></div>
                             <div className="sign-up-form-field"><input key='sign-up-pass-repeat' ref={input => {this.signUpPassRepeat = input;}} type="password" className="sign-up-form-password" placeholder="Repeat Your Password" /></div>
                             <input type="checkbox" id="termsAndConditions" name="termsAndConditions" ref={input => {this.termsAndConditions = input;}}></input>
                             <label htmlFor="termsAndConditions" className='sign-up-form-terms'> I agree to the <Link to="/" className='sign-up-to-sign-in-link'>Terms and Conditions</Link></label><br></br>
