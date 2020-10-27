@@ -2,7 +2,7 @@ import React from 'react'
 import  './navbar.scss'
 import NavItems from './nav-items/nav-items' 
 import NavItem from './nav-items/nav-item/nav-item'
-import logo from '../../logo.png'
+import logo from '../../logo.jpg'
 import {connect} from 'react-redux'
 import * as actions from '../../store/actions/index'
 

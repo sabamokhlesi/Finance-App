@@ -1,24 +1,119 @@
 .header{
-    text-align: center;
     height: 80vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    padding: 0 4% 0 8%;
     &-text{
         padding: 2rem;
         flex: auto;
         display: flex;
-        align-items: center;
         justify-content: center;
         flex-direction: column;
         & > * {
             margin: 1rem;
         }
+        & a{
+            align-self: flex-start;
+            margin-right: 1rem;
+        }
     }
     &-img{
-        padding: 2rem;
-        height: 50%;
+        height: 75%;
         
+    }
+
+}
+
+.why-us-section{
+    text-align: center;
+    padding: 4rem 2rem;
+    h2{
+        padding: 3rem;
+        font-size: 4rem;
+        font-weight: 400;
+        color: black;
+    }
+    &-box{
+        img{width: 75%;height: auto; transform: translateY(-8rem);margin-bottom: -4rem;}
+        border-radius: 1rem;
+        box-shadow: .5rem .5rem 1.5rem rgba(0, 0, 0, 0.082);
+        padding: 2rem;
+        padding-top: 0;
+        margin: 3rem;
+        margin-top: 10rem;
+        width: 22rem;
+        height: 24rem;
+    }
+    &-body{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+.how-it-works-section{
+    padding: 6rem 2rem;
+    &-body{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        img{width: 45%; padding: 4rem;}
+    }
+    &-text{
+        padding: 0 3rem;
+    }
+    h2{
+        padding: 3rem;
+        font-size: 4rem;
+        font-weight: 400;
+        text-align: center;
+        color: black;
+    }
+    h3{
+        padding: 2rem 0;
+        font-size: 2.8rem;
+        font-weight: 400;
+    }
+    p{
+        font-weight: 600;
+        font-size: 1.6rem;
+        color: #444444;
+        padding: .5rem 0;
+    }
+}
+
+.features-section{
+    padding: 4rem 2rem;
+    &-body{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap-reverse;
+        img{width: 40%; padding: 2rem;}
+    }
+    &-text{
+        padding: 0 5rem;
+        max-width: 55rem;
+    }
+    h2{
+        padding: 3rem;
+        font-size: 4rem;
+        font-weight: 400;
+        text-align: center;
+        color: black;
+    }
+    h3{
+        padding: 2rem 0;
+        font-size: 2.8rem;
+        font-weight: 400;
+    }
+    p{
+        font-weight: 600;
+        font-size: 1.6rem;
+        color: #444444;
+        padding: .5rem 0;
     }
 }
