@@ -1,7 +1,7 @@
 import React from 'react'
 import './sign-up-page.scss'
 import {Link,Redirect} from 'react-router-dom'
-import SignUpImg from '../../sign-up-img.png'
+import SignUpImg from '../../signUpImg.gif'
 import {connect} from 'react-redux'
 import * as actions from '../../store/actions/index'
 import Spinner from '../../components/spinner/spinner'
@@ -47,6 +47,7 @@ class SignUpPage extends React.Component{
         let form = 
             <form className='sign-up'>
                 <div className='sign-up-form'>
+                        <p>--Welcome--</p>
                         <div className="sign-up-form-title h3">Start Budgeting!</div>
                         <p className='sign-up-message'>{this.state.signUpMessage}</p>
                         <p className='sign-up-message'>{errorMessage}</p>
@@ -57,7 +58,7 @@ class SignUpPage extends React.Component{
                             <input type="checkbox" id="termsAndConditions" name="termsAndConditions" ref={input => {this.termsAndConditions = input;}}></input>
                             <label htmlFor="termsAndConditions" className='sign-up-form-terms'> I agree to the <Link to="/" className='sign-up-to-sign-in-link'>Terms and Conditions</Link></label><br></br>
                         </div>
-                        <input type="submit" className="btn btn-primary sign-up-btn" value='Sign Up' onClick={this.submitHandler.bind(this)}></input>
+                        <input type="submit" className="btn btn-four sign-up-btn" value='Sign Up' onClick={this.submitHandler.bind(this)}></input>
                         <div className="sign-up-to-sign-in">
                             <h4>Already have an account? <Link to="/sign-in" className='sign-up-to-sign-in-link'> Sign In</Link></h4>
                         </div>
@@ -70,7 +71,7 @@ class SignUpPage extends React.Component{
         
         return(
             <div className='sign-up-page'>
-                <h1>{this.props.loading?'Loading information... please wait':"Create Your Account Now, It's Free To Sign Up!"}</h1>
+                <h1>{this.props.loading?'Loading information... please wait':null}</h1>
                 {authRedirect}
                 {form}  
             </div>

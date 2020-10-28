@@ -14,12 +14,12 @@ class HomePage extends React.Component{
         render(){
             return(
                 <div className='home-page'>
-                   <div className='header'>
+                   <div className='header' id='home-hero'>
                        <div className='header-text'>
                             <h5>--- Your budgeting app</h5>
                             <h1 className='h1'>Never Loose Track Of Your Spendings Again!</h1>
                             <h4 className='h4'>We are here to help you manage your budget and reach your financial goals. It's so simple, start now!</h4>
-                            <div>
+                            <div className='header-btn'>
                                 {this.props.isloggedIn?<Link to='my-list' className='btn btn-four'>Your status</Link>:<Link to='sign-up' className='btn btn-four'>Sign Up For Free</Link>}
                                 {this.props.isloggedIn?null:<Link to='log-in' className='btn btn-primary'>Log In</Link>}
                             </div>
@@ -46,7 +46,7 @@ class HomePage extends React.Component{
                            </div>
                        </div>
                    </div>
-                   <div className='how-it-works-section'>
+                   <div className='how-it-works-section' id='whyus'>
                         <h2>How It Works</h2>
                         <div className='how-it-works-section-body'>
                             <img src={stepsImg} alt="how it works"/>
@@ -60,7 +60,7 @@ class HomePage extends React.Component{
                         </div>
                    </div>
                    <div className='features-section'>
-                        <h2>Features</h2>
+                        <h2>What We Offer</h2>
                         <div className='features-section-body'>
                             <div className='features-section-text'>
                                 <h3>Features you'll love</h3>
@@ -72,9 +72,24 @@ class HomePage extends React.Component{
                             <img src={featuresImg} alt="features"/>
                         </div>
                    </div>
-                   <footer>
-
-                   </footer>
+                   <footer className="footer">
+                        <div className="footer-cta">
+                            <h2>Wanna Try?</h2>
+                            <Link to='sign-up' className="footer-cta-btn">
+                                <span className="footer-cta-btn-visible">Register now</span> 
+                                <span className="footer-cta-btn-invisible">It's easy</span>
+                            </Link>
+                        </div>
+                        <div className="footer-nav">
+                                <p className="footer-copyright">&copy;Copyright 2020 all rights reserved for <span>Saba Mokhlesi</span></p>
+                            <div className="footer-nav-lists">
+                                <a href='#whyus'>About</a >
+                                <a href='#home-hero'>Home</a >
+                                <Link to='sign-up'>Register</Link >
+                                <Link to='log-in'>Log In</Link >
+                            </div>
+                        </div>
+                    </footer>
                 </div>
             )
         }

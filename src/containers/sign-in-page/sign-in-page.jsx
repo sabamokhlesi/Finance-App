@@ -1,7 +1,7 @@
 import React from 'react'
 import './sign-in-page.scss'
 import {Link,Redirect} from 'react-router-dom'
-import SignInImg from '../../sign-in-img.png'
+import SignInImg from '../../signInImg.png'
 import {connect} from 'react-redux'
 import * as actions from '../../store/actions/index'
 import Spinner from '../../components/spinner/spinner'
@@ -36,10 +36,11 @@ class SignInPage extends React.Component{
 
             let form = 
                 <div className='sign-in'>
-                <div className='sign-in-img'>
-                    <img src={SignInImg} alt="sign in here"/>
-                </div>
+                    <div className='sign-in-img'>
+                        <img src={SignInImg} alt="sign in here"/>
+                    </div>
                     <form className='sign-in-form'>
+                        <p>--Welcome Back--</p>
                         <div className="sign-in-form-title h3">Start Budgeting!</div>
                         <p className='sign-in-message'>{this.state.signInMessage}</p>
                         <p className='sign-in-message'>{errorMassage}</p>
@@ -48,7 +49,7 @@ class SignInPage extends React.Component{
                             <div className="sign-in-form-field"><input ref={input => {this.signInPass = input;}} type="password" className="sign-in-form-password" placeholder="Password" autoComplete='current-password'/></div>
                             <h5>Forgot Your Password? <a href="/">Click Here</a></h5>
                         </div>
-                        <input type="submit" className="btn btn-primary sign-in-btn" value='Sign In' onClick={this.submitHandler.bind(this)}></input>
+                        <input type="submit" className="btn btn-four sign-in-btn" value='Sign In' onClick={this.submitHandler.bind(this)}></input>
                         <div className="sign-in-to-sign-up">
                             <h4>Do not have an account? <Link to="/sign-up" className='sign-in-to-sign-up-link'> Sign Up</Link></h4>
                         </div>
@@ -61,7 +62,7 @@ class SignInPage extends React.Component{
             return(
                 <div className='sign-in-page'>
                     {authRedirect}
-                   <h1>{this.props.loading? 'Loading information... Please wait' : 'Welcome Back! Sign In And Start Using Budget Manager'}</h1>
+                   <h1>{this.props.loading? 'Loading information... Please wait' : null}</h1>
                    {form}     
             </div>
             )

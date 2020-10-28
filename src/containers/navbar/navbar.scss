@@ -1,12 +1,19 @@
+//mediaqueries breakpoints
+$bp-largest: 80em;
+$bp-large: 64em;  
+$bp-medium: 47em; 
+$bp-small: 36.5em; 
+$bp-smaller: 25em; 
 .navbar{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem 4rem 2rem 4rem;
+    padding: 2rem;
     list-style: none;
     &-logo{
-        height: 8rem;
+        height: 7rem;
         width: auto;
         padding-left: 2rem;
     }
+    @media only screen and (max-width:$bp-medium) {padding:2rem;}
 }

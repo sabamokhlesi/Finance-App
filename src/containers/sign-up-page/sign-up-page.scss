@@ -1,17 +1,12 @@
 .sign-up-page{
-    height: 70vh;
-    width: 80vw;
-    border-radius: 7rem;
+    min-height: 80vh;
     margin: auto;
     margin-top: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #edf9fa;
-    box-shadow: 13px 13px 20px #cbced1,
-    -13px -13px 20px #ffffff;
-    padding: 3rem;
+    padding: 0 7%;
     h1{
         text-align: center;
         color: #e9884b;
@@ -25,6 +20,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    flex-wrap: wrap;
     &-message{
         color: red;
     }
@@ -32,40 +28,42 @@
         width: 60%;
         margin: auto;
         text-align: center;
-        box-shadow: 1rem 1rem 20px #cbced1,
-                     -1rem -1rem 20px #ffffff;
     }
     &-form{
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        // width: 30%;
-        // height: 80%;
-        border-radius: 40px;
+        border-radius: 2rem;
         padding: 2.5rem;
-        background: #f1f7f8;
-        box-shadow: 13px 13px 20px #cbced1,
-                     -13px -13px 20px #ffffff;
-        &-terms{
-            font-size: 1.5rem;
+        background: rgba(255, 255, 255, 0.514);
+        a{
+            color: #324a6d;
         }
+        
         &-title{
             text-align: center;
-            color: #32606d;
+            color: #324a6d;
             padding: 1.5rem;
+            padding-top: .5rem;
         }
         &-fields{
-            margin: auto;
+            margin:1rem auto;
             padding: 1rem .5rem;
             width: 80%;
             input {
-                border: none;
+                box-sizing: border-box;
+                border: 2px solid transparent;
                 outline:none;
                 background: none;
                 color: rgb(124, 124, 124);
-                padding:1rem 2rem;
+                padding:1rem 3rem;
                 font-size: inherit;
+                border-radius: .5rem;
+                transition: all .2s;
+                &:focus{
+                    border: 2px solid rgb(104, 182, 255);
+                }
                 &::placeholder{
                     color: rgb(165, 165, 165);
                 }
@@ -73,15 +71,15 @@
         
         }
         &-field{
-            margin-bottom: 30px;
-            border-radius: 25px;
-            box-shadow: inset 8px 8px 8px #cbced1,
-                inset -8px -8px 8px #ffffff;
+            margin-bottom: 3rem;
+            border-radius: .5rem;
+            background-color: rgb(227, 240, 255);
         }
         
     }
     &-img{
-        width: 37%;
+        width: 55%;
+        @media only screen and (max-width:50em) {width: 70%;}
         img{
           width: 100%;  
         }
@@ -95,7 +93,7 @@
     padding: 2rem;
     &-link{
         text-decoration: underline;
-        color: #32606d;
+        color: #324d6d;
         
     }
 }
