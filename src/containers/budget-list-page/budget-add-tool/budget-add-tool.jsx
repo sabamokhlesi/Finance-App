@@ -9,7 +9,8 @@ class BudgetAddTool extends React.Component{
     state = {
         validationMessage:null,
         dispatchMessage:null,
-        transactionInfo:{amount:'',title:'', date:'',type:'spending',person:'',category:'-select-', note:'not defined'}
+        transactionInfo:{amount:'',title:'', date:'',type:'spending',person:'',category:'-select-', note:'not defined'},
+        modalOpen: false
     }
     
     resetHandler(){
@@ -27,6 +28,14 @@ class BudgetAddTool extends React.Component{
         } else {this.props.onAddTransactionClicked({...this.state.transactionInfo,userId:this.props.id},this.props.token); 
             validationMessage= null
             this.setState({transactionInfo:initialState,validationMessage:validationMessage})}
+    }
+
+    closeModal= ()=> {
+        this.setState({modalOpen:false})
+    }
+    
+    openModal= ()=> {
+        this.setState({modalOpen:true})
     }
     
     render(){
@@ -49,12 +58,21 @@ class BudgetAddTool extends React.Component{
             </form>
         }
         return(
-            <div className='budget-add-section'>
-                <h2>Add a New Transaction</h2>
-                <h3>{this.state.validationMessage}</h3>
-                <h3>{this.state.validationMessage===null?this.props.errorMessage:null}</h3>
-                <h4>{this.state.validationMessage===null?this.props.successMessage:null}</h4>
-                {form}
+            <div style={{display:'flex'}}>
+                <button onClick={this.openModal} className='btn btn-four modal-btn'>Add a new transaction</button>
+                <div className="modal">
+                    <dialog style={!this.state.modalOpen?{display:'none'}:{display:'block'}} className="modal__content">
+                        <button className="modal__close" onClick={this.closeModal}>&times;</button>
+                        <div className='budget-add-section'>
+                            <h2>Add a New Transaction</h2>
+                            <h3>{this.state.validationMessage}</h3>
+                            <h3>{this.state.validationMessage===null?this.props.errorMessage:null}</h3>
+                            <h4>{this.state.validationMessage===null?this.props.successMessage:null}</h4>
+                            {form}
+                        </div>
+                    </dialog>
+                    <div className="modal__overlay" style={!this.state.modalOpen?{display:'none'}:{display:'block'}} onClick={this.closeModal}></div>
+                </div>  
             </div>
         )
     }

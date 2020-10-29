@@ -28,7 +28,7 @@ class BudgetSummary extends React.Component{
                 <h2>Budget Summary</h2>
                     <div className='budget-summary-total-body'>
                         <div className='budget-summary-total-monthly'>
-                            <FaRegChartBar color='#ce5f1a' size='4.5rem'/>
+                            <FaRegChartBar color='#F277A4' size='4.5rem'/>
                             <h4 className='budget-summary-total-monthly-title'>Total Budget</h4>
                             <div className='budget-summary-total-monthly-body'>
                                     <h1>${this.props.budgetSettingsInfo.totalBudget}</h1>
@@ -36,7 +36,7 @@ class BudgetSummary extends React.Component{
                             </div>
                         </div>
                         <div className='budget-summary-total-monthly'>
-                            <FaProjectDiagram color='#ce5f1a' size='4.5rem'/>
+                            <FaProjectDiagram color='#FFCD52' size='4.5rem'/>
                             <h4 className='budget-summary-total-monthly-title'>Total Spending</h4>
                             <div className='budget-summary-total-monthly-body'>
                                     <h1>${totalSpendingcalculator(this.props.transactionsList,'type','spending')}</h1>
@@ -44,7 +44,7 @@ class BudgetSummary extends React.Component{
                             </div>
                         </div>
                         <div className='budget-summary-total-monthly'>
-                            <FaChartPie color='#ce5f1a' size='4.5rem'/>
+                            <FaChartPie color='#F277A4' size='4.5rem'/>
                             <h4 className='budget-summary-total-monthly-title'>Total Remaining</h4>
                             <div className='budget-summary-total-monthly-body'>
                                     <h1>${this.props.budgetSettingsInfo.totalBudget-totalSpendingcalculator(this.props.transactionsList,'type','spending')}</h1>
@@ -52,7 +52,7 @@ class BudgetSummary extends React.Component{
                             </div>
                         </div>
                         <div className='budget-summary-total-monthly'>
-                            <FaChartLine color='#ce5f1a' size='4.5rem'/>
+                            <FaChartLine color='#6B5AFB' size='4.5rem'/>
                             <h4 className='budget-summary-total-monthly-title'>Total Saving</h4>
                             <div className='budget-summary-total-monthly-body'>
                                     <h1>${this.props.budgetSettingsInfo.totalEarning-this.props.budgetSettingsInfo.totalBudget}</h1>
@@ -68,7 +68,7 @@ class BudgetSummary extends React.Component{
                 <h2>Spendings Overview</h2>
                     <div className='budget-summary-total-body'>
                         <div className='budget-summary-total-monthly'>
-                            <FaChartArea color='#ce5f1a' size='4.5rem'/>
+                            <FaChartArea color='#FFCD52' size='4.5rem'/>
                             <h4 className='budget-summary-total-monthly-title'>Groceries</h4>
                             <div className='budget-summary-total-monthly-body'>
                                     <h1>${totalSpendingcalculator(this.props.transactionsList,'category','groceries')}</h1>
@@ -76,7 +76,7 @@ class BudgetSummary extends React.Component{
                             </div>
                         </div>
                         <div className='budget-summary-total-monthly'>
-                            <FaClipboardList color='#ce5f1a' size='4.5rem'/>
+                            <FaClipboardList color='#F277A4' size='4.5rem'/>
                             <h4 className='budget-summary-total-monthly-title'>Bills And Rent</h4>
                             <div className='budget-summary-total-monthly-body'>
                                     <h1>${totalSpendingcalculator(this.props.transactionsList,'category','bills')}</h1>
@@ -84,7 +84,7 @@ class BudgetSummary extends React.Component{
                             </div>
                         </div>
                         <div className='budget-summary-total-monthly'>
-                            <FaCocktail color='#ce5f1a' size='4.5rem'/>
+                            <FaCocktail color='#6B5AFB' size='4.5rem'/>
                             <h4 className='budget-summary-total-monthly-title'>Entertainment</h4>
                             <div className='budget-summary-total-monthly-body'>
                                     <h1>${totalSpendingcalculator(this.props.transactionsList,'category','entertainment')}</h1>
@@ -92,7 +92,7 @@ class BudgetSummary extends React.Component{
                             </div>
                         </div>
                         <div className='budget-summary-total-monthly'>
-                            <FaCalculator color='#ce5f1a' size='4.5rem'/>
+                            <FaCalculator color='#FFCD52' size='4.5rem'/>
                             <h4 className='budget-summary-total-monthly-title'>Other expenses</h4>
                             <div className='budget-summary-total-monthly-body'>
                                     <h1>${totalSpendingcalculator(this.props.transactionsList,'type','spending')-totalSpendingcalculator(this.props.transactionsList,'category','Entertainment')-totalSpendingcalculator(this.props.transactionsList,'category','Bills')-totalSpendingcalculator(this.props.transactionsList,'category','Groceries')}</h1>
