@@ -6,6 +6,7 @@ import SignUpPage from './containers/sign-up-page/sign-up-page'
 import SignInPage from './containers/sign-in-page/sign-in-page'
 import BudgetSettingsPage from './containers/budget-settings-page/budget-settings-page'
 import BudgetListPage from './containers/budget-list-page/budget-list-page'
+import Dashboard from './containers/dashboard/dashboard'
 import * as actions from './store/actions/index'
 import {connect} from 'react-redux'
 import {Route,Switch} from 'react-router-dom'
@@ -27,6 +28,7 @@ class App extends React.Component{
             <Route path='/sign-in' exact component={SignInPage}/>
             <Route path='/my-list' exact component={BudgetListPage}/>
             <Route path='/budget-settings'exact component={BudgetSettingsPage}/>
+            <Route path ='/dashboard' exact component={Dashboard}/>
           </Switch>
         </header>
       </div>
