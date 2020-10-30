@@ -35,11 +35,6 @@ class SignUpPage extends React.Component{
     
 
     render(){
-        
-        let authRedirect = null;
-        if (this.props.isLogedIn) {
-            authRedirect = <Redirect to='/'/>
-        }
         let errorMessage = null
         if (this.props.error && this.state.signUpMessage === null) {
             errorMessage = 'Please try again'
@@ -72,7 +67,7 @@ class SignUpPage extends React.Component{
         return(
             <div className='sign-up-page'>
                 <h1>{this.props.loading?'Loading information... please wait':null}</h1>
-                {authRedirect}
+                {this.props.isLogedIn?<Redirect to='/'/>:null}
                 {form}  
             </div>
         )

@@ -18,19 +18,21 @@ class App extends React.Component{
   
 
   render(){
+    let view
     return (
       <div className="App">
-        <header className="App-header">
-          <NavBar/>
-          <Switch>
-            <Route path='/' exact component={HomePage}/>
-            <Route path='/sign-up' exact component={SignUpPage}/>
-            <Route path='/sign-in' exact component={SignInPage}/>
-            <Route path='/my-list' exact component={BudgetListPage}/>
-            <Route path='/budget-settings'exact component={BudgetSettingsPage}/>
-            <Route path ='/dashboard' exact component={Dashboard}/>
-          </Switch>
+        {!this.props.isSignedUp?
+          <header className="App-header">
+            <NavBar/>
+            <Switch>
+              <Route path='/' exact component={!this.props.isSignedUp?HomePage:Dashboard}/>
+              <Route path='/sign-up' exact component={SignUpPage}/>
+              <Route path='/sign-in' exact component={SignInPage}/>
+              <Route path='/my-list' exact component={BudgetListPage}/>
+              <Route path='/budget-settings'exact component={BudgetSettingsPage}/>
+            </Switch>
         </header>
+        :<Dashboard/>}
       </div>
     );
   }

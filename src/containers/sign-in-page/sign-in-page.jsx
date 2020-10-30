@@ -17,18 +17,13 @@ class SignInPage extends React.Component{
         if (this.signInPass.value.trim().length < 6) {message = 'password is too short'}
         if(message === null){
             this.props.onSignIn(this.signInEmail.value,this.signInPass.value);  
-            this.signInEmail.value='';this.signInPass.value=''
+            this.signInEmail.value='';
+            this.signInPass.value=''
         } 
         this.setState({signInMessage:message})
     }
 
         render(){
-
-            let authRedirect = null;
-            if (this.props.isLogedIn) {
-                authRedirect = <Redirect to='/'/>
-            }
-
             let errorMassage =null
             if(this.props.error && this.state.signInMessage === null){
                 errorMassage ='Please try again'
@@ -61,7 +56,7 @@ class SignInPage extends React.Component{
             
             return(
                 <div className='sign-in-page'>
-                    {authRedirect}
+                    {/* {this.props.isLogedIn?<Redirect to='/'/>:null} */}
                    <h1>{this.props.loading? 'Loading information... Please wait' : null}</h1>
                    {form}     
             </div>

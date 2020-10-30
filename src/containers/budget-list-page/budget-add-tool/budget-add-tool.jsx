@@ -59,7 +59,7 @@ class BudgetAddTool extends React.Component{
         }
         return(
             <div style={{display:'flex'}}>
-                <button onClick={this.openModal} className='btn btn-four modal-btn'>Add a new transaction</button>
+                <button onClick={this.openModal} className='btn btn-four modal-btn'>+ New Transaction</button>
                 <div className="modal">
                     <dialog style={!this.state.modalOpen?{display:'none'}:{display:'block'}} className="modal__content">
                         <button className="modal__close" onClick={this.closeModal}>&times;</button>

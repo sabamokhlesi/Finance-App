@@ -5,9 +5,9 @@
     width: 95%;
     margin: auto;
     &-total{
-        border-radius: 1rem;
+        border-radius: 2rem;
         // background-color: #32606d;
-        padding: 3rem;
+        padding: 2rem;
         margin: 1rem;
         h2{ color:  #5e6163; padding: 2rem; font-style: italic;}
         &-body{
@@ -15,19 +15,19 @@
             flex-wrap: wrap;
         }
         &-monthly{
-            padding: 1.5rem;
-            margin: 1.5rem;
-            border-radius: .5rem;
-            background-color: #eaf6ff;
+            padding: 2rem;
+            margin: 1.2rem;
+            border-radius: 1.5rem;
+            background-color: white;
             // box-shadow: .5rem 1rem 2rem #02020218;
             // border: 1px solid gray;
             flex: 1;
-            &-title{color: #8f8f8f;}
+            &-title{color: #8f8f8f; font-weight: 400;}
             &-body{
                 display: flex;
                 align-items: center;
                 justify-content: flex-start;
-                h1{font-weight: bolder; color: #32456d;}
+                h1{font-weight: bolder; color: #32456d; font-size: 2.7rem;}
             }
         }
         &-spending{}

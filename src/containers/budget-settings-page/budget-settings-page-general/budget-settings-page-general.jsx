@@ -75,7 +75,6 @@ class BudgetSettingsGeneral extends React.Component{
         if(this.state.changing){
             body=
             <div className='budget-dashboard-body'>
-                <h2>General Settings</h2>
                 <div className='budget-dashboard-body-inside'>
                     <div className='budget-dashboard-general-categories'>
                         <h2>Set Budget for each category</h2>
@@ -105,10 +104,9 @@ class BudgetSettingsGeneral extends React.Component{
                         :<button className="btn btn-primary" onClick={()=>this.setState({budgetSettingsInfo:this.props.budgetInfo,changing:true})}>Set your budget</button>}
                     </div>
                     <div className='budget-dashboard-body-right'>
-                        < BudgetSettingsCell title='Total monthly budget' amount={this.props.budgetInfo.totalBudget} usedpercent={+this.props.budgetInfo.totalBudget>0?(totalSpendingcalculator(this.props.transactionsList,'type','spending')/this.props.budgetInfo.totalBudget*100).toFixed(1):null} usedamount={totalSpendingcalculator(this.props.transactionsList,'type','spending')} amountIsNumber/>
-                        < BudgetSettingsCell title='Total monthly earning' amount={'$'+totalSpendingcalculator(this.props.transactionsList,'type','earning')}/>
-                        < BudgetSettingsCell title='Monthly saving goal' amount={'$'+this.props.budgetInfo.savingGoal}/>
-                        < BudgetSettingsCell title='Remaining days of this month' amount={remainingDaysOfMonth}/>
+                        < BudgetSettingsCell title='Total budget' amount={this.props.budgetInfo.totalBudget} usedpercent={+this.props.budgetInfo.totalBudget>0?(totalSpendingcalculator(this.props.transactionsList,'type','spending')/this.props.budgetInfo.totalBudget*100).toFixed(1):null} usedamount={totalSpendingcalculator(this.props.transactionsList,'type','spending')} amountIsNumber/>
+                        < BudgetSettingsCell title='Total earning' amount={'$'+totalSpendingcalculator(this.props.transactionsList,'type','earning')}/>
+                        < BudgetSettingsCell title='Saving goal' amount={'$'+this.props.budgetInfo.savingGoal}/>
                     </div>
                 </div>
                 <button className='btn btn-primary budget-save-changes-btn' onClick={()=>this.setState({budgetSettingsInfo:this.props.budgetInfo,changing:true})}>Click here to modify your settings</button>

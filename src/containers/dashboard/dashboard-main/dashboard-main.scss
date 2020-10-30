@@ -1,0 +1,22 @@
+.dashboard-body{
+    min-height: 90vh;
+    flex: 1;
+    padding: 6rem 3rem;
+    display: flex;
+    flex-direction: column;
+    &-top{
+        display: flex;
+        padding: 0 3rem;
+        img{width: 50%; padding-left: 3rem;}
+        h2{font-size: 4rem; font-weight: 400; color: rgb(20, 48, 71);}
+        h3{font-weight: 400; color: rgb(122, 130, 138);}
+    }
+    &-main{
+        border-radius: 2rem;
+        padding:2rem 3rem;
+        flex: 1;
+        background-color: #EEF4FF;
+        img{width: 98%; height: 30%;}
+
+    }
+}

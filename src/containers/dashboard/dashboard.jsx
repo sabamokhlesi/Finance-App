@@ -1,73 +1,30 @@
 import React from 'react'
 import './dashboard.scss'
-import logo from '../../logo.jpg'
-import dashboardLeftVector from '../../dashboard-left.png'
-import dashboardBodyTop from '../../dashboard-body-1.png'
-import barchart from '../../barchart.png'
-import { FaHome } from "react-icons/fa";
-class Dashoard extends React.Component{
+// import {connect} from 'react-redux'
+// import * as actions from '../../store/actions/index'
+import {Route,Switch,Redirect} from 'react-router-dom'
+import DashboardLeft from './dashboard-left/dashboard-left'
+import DashboardMain from './dashboard-main/dashboard-main'
+import DashboardMainList from '../budget-list-page/budget-list/budget-list'
+import DashboardRight from './dashboard-right/dashboard-right'
+import DashboardMainSettings from '../budget-settings-page/budget-settings-page-general/budget-settings-page-general'
+class Dashboard extends React.Component{
     render(){
         return(
             <div className='dashboard'>
-                <div className='dashboard-left'>
-                    <div className='dashboard-left-logo'>
-                        <img src={logo} alt="MyMoney logo"/>
-                    </div>
-                    <div className='dashboard-left-options'>
-                        <div className='dashboard-left-options-unit'>
-                            <FaHome color='#6D6D6D' size='2rem'/>
-                            <h4>Overview</h4>
-                        </div>
-                        <div className='dashboard-left-options-unit'>
-                            <FaHome color='#6D6D6D' size='2rem'/>
-                            <h4>Transactions</h4>
-                        </div>
-                        <div className='dashboard-left-options-unit'>
-                            <FaHome color='#6D6D6D' size='2rem'/>
-                            <h4>Personal Settings</h4>
-                        </div>
-                        <div className='dashboard-left-options-unit'>
-                            <FaHome color='#6D6D6D' size='2rem'/>
-                            <h4>Budget Settings</h4>
-                        </div>
-                        <div className='dashboard-left-options-unit'>
-                            <FaHome color='#6D6D6D' size='2rem'/>
-                            <h4>Goals</h4>
-                        </div>
-                    </div>
-                    <div className='dashboard-left-vector'>
-                        <img src={dashboardLeftVector} alt="dashboard vector"/>
-                        <button className='btn btn-four'>Change Account</button>
-                    </div>
-                </div>
-                <div className='dashboard-body'>
-                    <div className='dashboard-body-top'>
-                        <div>
-                            <h2>Hi Saba!</h2>
-                            <h3>Welcome Back, Nice To See You Again.</h3>
-                        </div>
-                        <img src={dashboardBodyTop} alt="dashboard body"/>
-                    </div>
-                    <div className='dashboard-body-main'>
-                        <h1>Overview</h1>
-                        <div className='dashboard-body-main-body'>
-                            <div></div>
-                        </div>
-                    </div>
-                </div>
-                <div className='dashboard-right'>
-                    <button className='btn btn-four'>+ New Transaction</button>
-                    <img src={barchart} alt="bar chart"/>
-                    <div className='dashboard-right-activities'>
-                        <h3>Recent activities</h3>
-                        <div className='dashboard-right-activities-1'></div>
-                        <div className='dashboard-right-activities-2'></div>
-                        <div className='dashboard-right-activities-3'></div>
-                    </div>
-                </div>
+                <DashboardLeft/>
+                <Switch>
+                    <Route path='/' exact component={DashboardMain}/>
+                    <Route path='/list' exact component={DashboardMainList}/>
+                    <Route path='/settings' exact component={DashboardMainSettings}/>
+                    <Redirect to='/'/>
+                </Switch>
+                <DashboardRight/>
             </div>
         )
     }
 }
-
-export default Dashoard
+// const mapStateToProps = state =>{ return{ isloggedIn : state.auth.token !==null}}
+// const mapDispatchToProps = dispatch =>{return{onLogOut : () => dispatch(actions.logout())}}
+// export default connect(mapStateToProps,mapDispatchToProps)(Dashboard)
+export default Dashboard
