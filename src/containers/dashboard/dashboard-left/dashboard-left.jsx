@@ -29,7 +29,7 @@ class DashboardLeft extends React.Component{
                         </div>
                         <div className='dashboard-left-options-unit'>
                             <FaSlidersH color='#6D6D6D' size='2rem'/>
-                            <h4>Budget Settings</h4>
+                            <NavLink activeClassName='dashboard-left-options-active' exact to='/details' className='btn'>Budget Details</NavLink>
                         </div>
                         <div className='dashboard-left-options-unit'>
                             <FaFunnelDollar color='#6D6D6D' size='2rem'/>
