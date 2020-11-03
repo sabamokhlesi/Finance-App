@@ -1,7 +1,7 @@
 import React from 'react'
 import './dashboard-edit.scss'
 // import {FaTimes} from 'react-icons/fa'
-import editingPageImg from '../../../../editPage.png'
+import editingPageImg from '../../../../images/editPage.png'
 class DashboardBudgetDetails extends React.Component{
     render(){
         return(

@@ -1,7 +1,7 @@
 import React from 'react'
 import './sign-up-page.scss'
 import {Link,Redirect} from 'react-router-dom'
-import SignUpImg from '../../signUpImg.gif'
+import SignUpImg from '../../images/signUpImg.gif'
 import {connect} from 'react-redux'
 import * as actions from '../../store/actions/index'
 import Spinner from '../../components/spinner/spinner'

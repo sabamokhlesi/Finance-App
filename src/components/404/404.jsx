@@ -1,6 +1,6 @@
 import React from'react'
 import './404.scss'
-import errorImg from '../../404.png'
+import errorImg from '../../images/404.png'
 import {Link} from 'react-router-dom'
 const spinner = (props) => {
     return (

@@ -1,7 +1,7 @@
 import React from 'react'
 import './dashboard-main.scss'
-import dashboardBodyTop from '../../../headerImg1.png'
-import chart2 from '../../../chart2.png'
+import dashboardBodyTop from '../../../images/headerImg1.png'
+import chart2 from '../../../images/chart2.png'
 
 class DashboardMainOverView extends React.Component{
     render(){

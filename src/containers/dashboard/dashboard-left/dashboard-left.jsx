@@ -3,9 +3,9 @@ import {connect} from 'react-redux'
 import * as actions from '../../../store/actions/index'
 import './dashboard-left.scss'
 import {NavLink} from 'react-router-dom'
-import logo from '../../../logo.jpg'
+import logo from '../../../images/logo.jpg'
 import { FaHome,FaRegCreditCard,FaUserCog,FaSlidersH,FaFunnelDollar } from "react-icons/fa";
-import dashboardLeftVector from '../../../dashboard-left.png'
+import dashboardLeftVector from '../../../images/dashboard-left.png'
 
 class DashboardLeft extends React.Component{
     render(){

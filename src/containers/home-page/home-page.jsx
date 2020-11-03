@@ -3,12 +3,12 @@ import {Link,Redirect} from 'react-router-dom'
 import './home-page.scss'
 import {connect} from 'react-redux'
 import * as actions from '../../store/actions/index'
-import HeaderImg from '../../headerImg3.png'
-import whyUs1 from '../../1111.jpg'
-import whyUs2 from '../../2222.jpg'
-import whyUs3 from '../../3333.jpg'
-import stepsImg from '../../steps.png'
-import featuresImg from '../../features.jpg'
+import HeaderImg from '../../images/headerImg3.png'
+import whyUs1 from '../../images/1111.jpg'
+import whyUs2 from '../../images/2222.jpg'
+import whyUs3 from '../../images/3333.jpg'
+import stepsImg from '../../images/steps.png'
+import featuresImg from '../../images/features.jpg'
 class HomePage extends React.Component{
     
         render(){

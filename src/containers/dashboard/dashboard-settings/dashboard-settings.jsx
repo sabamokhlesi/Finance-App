@@ -1,6 +1,6 @@
 import React from 'react'
 import './dashboard-settings.scss'
-import dashboardDetailsBottom from '../../../settings-bottom.png'
+import dashboardDetailsBottom from '../../../images/settings-bottom.png'
 
 class DashboardBudgetDetails extends React.Component{
     render(){
