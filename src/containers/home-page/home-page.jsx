@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link,Redirect} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import './home-page.scss'
 import {connect} from 'react-redux'
 import * as actions from '../../store/actions/index'
@@ -14,7 +14,6 @@ class HomePage extends React.Component{
         render(){
             return(
                 <div className='home-page'>
-                    {/* {this.props.isLogedIn?<Redirect to='/dashboard'/>:null} */}
                    <div className='header' id='home-hero'>
                        <div className='header-text'>
                             <h5>--- Your budgeting app</h5>

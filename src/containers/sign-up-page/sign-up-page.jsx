@@ -1,6 +1,6 @@
 import React from 'react'
 import './sign-up-page.scss'
-import {Link,Redirect} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import SignUpImg from '../../images/signUpImg.gif'
 import {connect} from 'react-redux'
 import * as actions from '../../store/actions/index'
@@ -67,7 +67,6 @@ class SignUpPage extends React.Component{
         return(
             <div className='sign-up-page'>
                 <h1>{this.props.loading?'Loading information... please wait':null}</h1>
-                {this.props.isLogedIn?<Redirect to='/'/>:null}
                 {form}  
             </div>
         )

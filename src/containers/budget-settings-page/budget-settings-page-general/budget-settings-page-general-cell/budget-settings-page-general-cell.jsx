@@ -1,5 +1,5 @@
 import React from 'react'
-import {FaChartLine,FaRegMoneyBillAlt,FaRegCreditCard} from 'react-icons/fa'
+// import {FaChartLine,FaRegMoneyBillAlt,FaRegCreditCard} from 'react-icons/fa'
 const budgetSettingsGeneralCell = (props) =>{
     let cell = null
     if(props.icontype==='moneybill'){

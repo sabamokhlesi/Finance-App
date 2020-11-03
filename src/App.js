@@ -19,7 +19,6 @@ class App extends React.Component{
   
 
   render(){
-    let view
     return (
       <div className="App">
         {!this.props.isSignedUp?

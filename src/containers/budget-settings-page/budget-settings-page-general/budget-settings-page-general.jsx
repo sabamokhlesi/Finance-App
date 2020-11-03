@@ -56,13 +56,6 @@ class BudgetSettingsGeneral extends React.Component{
             }
             return spendingAmountList.reduce((total, amount) => total + amount,0)
         }
-        
-        let remainingDaysOfMonth = 0
-        const date = new Date();
-        const time = new Date(date.getTime());
-        time.setMonth(date.getMonth() + 1);
-        time.setDate(0);
-        remainingDaysOfMonth= time.getDate() > date.getDate() ? time.getDate() - date.getDate() : 0;
 
         const inputs = this.props.budgetInfo.categories?Object.keys(this.props.budgetInfo.categories).map(category=>
             <div className='budget-input-set-unit' key={category+'-budget-set-input-unit'}>
