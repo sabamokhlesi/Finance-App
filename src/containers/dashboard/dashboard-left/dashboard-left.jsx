@@ -28,12 +28,16 @@ class DashboardLeft extends React.Component{
                             <NavLink activeClassName='dashboard-left-options-active' exact to='/settings' className='btn'>Settings</NavLink>
                         </div>
                         <div className='dashboard-left-options-unit'>
+                            <FaUserCog color='#6D6D6D' size='2rem'/>
+                            <NavLink activeClassName='dashboard-left-options-active' exact to='/settings2' className='btn'>Settings2</NavLink>
+                        </div>
+                        <div className='dashboard-left-options-unit'>
                             <FaSlidersH color='#6D6D6D' size='2rem'/>
                             <NavLink activeClassName='dashboard-left-options-active' exact to='/details' className='btn'>Budget Details</NavLink>
                         </div>
                         <div className='dashboard-left-options-unit'>
                             <FaFunnelDollar color='#6D6D6D' size='2rem'/>
-                            <h4>Goals</h4>
+                            <NavLink activeClassName='dashboard-left-options-active' exact to='/goals' className='btn'>Goals</NavLink>
                         </div>
                     </div>
                     <div className='dashboard-left-vector'>

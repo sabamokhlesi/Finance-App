@@ -1,11 +1,9 @@
 .budget-list{
     &-section{
         padding: 2rem;
-        margin: 3rem;
+        margin: 6rem 0 3rem 0;
         border-radius: 2rem;
         background-color: #EEF4FF;
-        width: 91%;
-        margin: auto;
         overflow-y: scroll;
         &::-webkit-scrollbar {width: 3px;}
         &::-webkit-scrollbar-track { background: transparent;border-radius: 1rem;}
@@ -13,8 +11,8 @@
         &:hover{
             &::-webkit-scrollbar-thumb {background: gainsboro;}
         }
-        height: 80vh;
-        
+        height: 84vh;
+        width: 100%;
     }
 
     &-top{

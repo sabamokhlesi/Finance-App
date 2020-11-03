@@ -1,5 +1,5 @@
 .dashboard-right{
-    min-height: 90vh;
+    min-height: 85vh;
     flex: 0 0 23%;
     display: flex;
     flex-direction: column;
@@ -7,7 +7,7 @@
     padding:4rem 2rem;
     img{width: 65%; margin: auto;}
     &-activities{
-        padding:0 4rem;
+        padding:0 2rem;
         &-1{padding: 1.5rem; background-color: #FFEBF5;margin: 1rem;font-weight: 500;}
         &-2{padding: 1.5rem; background-color: #fffdda;margin: 1rem;font-weight: 500;}
         &-3{padding: 1.5rem; background-color: #EAE7FF;margin: 1rem;font-weight: 500;}
