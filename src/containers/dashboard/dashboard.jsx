@@ -25,8 +25,8 @@ class Dashboard extends React.Component{
                 <Switch>
                     <Route path='/' exact component={DashboardMain}/>
                     <Route path='/list' exact component={DashboardMainList}/>
-                    <Route path='/details' exact component={DashboardSettings}/>
-                    <Route path='/settings' exact component={DashboardDetails}/>
+                    <Route path='/settings' exact component={DashboardSettings}/>
+                    <Route path='/details' exact component={DashboardDetails}/>
                     <Route path='/goals' exact component={DashboardMainSettings}/>
                     {/* <Route path='/404' exact component={ErrorPage}/>
                     <Redirect to='/404'/> */}

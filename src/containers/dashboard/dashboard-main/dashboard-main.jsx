@@ -41,7 +41,7 @@ class DashboardMainOverView extends React.Component{
                             <h4 className='dashboard-summary-total-monthly-title'>Total Budget</h4>
                             <div className='dashboard-summary-total-monthly-body'>
                                 <h1>${this.totalBudgetCal(this.props.budgetSettingsInfo.categories)}</h1>
-                                <h5>({(this.totalSpendingcalculator(this.props.transactionsList,'type','spending')/this.totalBudgetCal(this.props.budgetSettingsInfo.categories)).toFixed(2)*100}%)used</h5>
+                                <h5>({(this.totalSpendingcalculator(this.props.transactionsList,'type','spending')/this.totalBudgetCal(this.props.budgetSettingsInfo.categories)*100).toFixed()}%)used</h5>
                             </div>
                             </div>
                             <div className='dashboard-summary-total-monthly'>
@@ -58,13 +58,13 @@ class DashboardMainOverView extends React.Component{
                                     {/* <h5 className='color-green'> (+70%)</h5> */}
                                 </div>
                             </div>
-                            {/* <div className='dashboard-summary-total-monthly'>
+                            <div className='dashboard-summary-total-monthly'>
                                 <h4 className='dashboard-summary-total-monthly-title'>Total Saving</h4>
                                 <div className='dashboard-summary-total-monthly-body'>
-                                        <h1>$350</h1>
-                                        <h5 className='color-green'> (+15%)</h5>
+                                    <h1>${this.totalSpendingcalculator(this.props.transactionsList,'type','earning')-this.totalBudgetCal(this.props.budgetSettingsInfo.categories)}</h1>
+                                    {/* <h5 className='color-green'> (+15%)</h5> */}
                                 </div>
-                            </div> */}
+                            </div>
                             <div className='dashboard-summary-total-monthly'>
                                 <h4 className='dashboard-summary-total-monthly-title'>Total earning</h4>
                                 <div className='dashboard-summary-total-monthly-body'>
