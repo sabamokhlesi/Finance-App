@@ -6,11 +6,7 @@ import * as actions from '../../../store/actions/index'
 import {connect} from 'react-redux'
 
 class BudgetList extends React.Component{
-   componentDidMount(){
-        this.props.onFetchTransactions(this.props.token,this.props.userId)
-        console.log(this.props.transactionsList)
-    }
-    componentWillUpdate(){console.log(this.props.transactionsList>=1)}
+    
     render(){
         return(
             <div className='budget-list-section'>
@@ -50,7 +46,6 @@ const mapStateToProps = state =>{
 }
 const mapDispatchToProps = dispatch =>{
     return {
-        onFetchTransactions:(token,userId)=>{dispatch(actions.fetchTransactions(token,userId))},
         onDeleteHandler:(transactionId,token)=>{dispatch(actions.deleteTransaction(transactionId,token))}
     }
 }

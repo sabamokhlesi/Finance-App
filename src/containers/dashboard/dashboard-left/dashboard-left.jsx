@@ -16,24 +16,19 @@ class DashboardLeft extends React.Component{
                     </div>
                     <div className='dashboard-left-options'>
                         <div className='dashboard-left-options-unit'>
-                            <FaHome color='#6D6D6D' size='2rem'/>
-                            <NavLink activeClassName='dashboard-left-options-active' to='/' className='btn'>Overview</NavLink>
+                            <NavLink activeClassName='dashboard-left-options-active' to='/' exact className='btn'><FaHome color='inherit' size='2rem'/> &nbsp; Overview</NavLink>
                         </div>
                         <div className='dashboard-left-options-unit'>
-                            <FaRegCreditCard color='#6D6D6D' size='2rem'/>
-                            <NavLink activeClassName='dashboard-left-options-active' exact to='/list' className='btn'>Transactions</NavLink>
+                            <NavLink activeClassName='dashboard-left-options-active' exact to='/list' className='btn'><FaRegCreditCard color='inherit' size='2rem'/>  &nbsp; Transactions</NavLink>
                         </div>
                         <div className='dashboard-left-options-unit'>
-                            <FaUserCog color='#6D6D6D' size='2rem'/>
-                            <NavLink activeClassName='dashboard-left-options-active' exact to='/settings' className='btn'>Settings</NavLink>
+                            <NavLink activeClassName='dashboard-left-options-active' exact to='/details' className='btn'><FaSlidersH color='inherit' size='2rem'/>  &nbsp; Budget Details</NavLink>
                         </div>
                         <div className='dashboard-left-options-unit'>
-                            <FaSlidersH color='#6D6D6D' size='2rem'/>
-                            <NavLink activeClassName='dashboard-left-options-active' exact to='/details' className='btn'>Budget Details</NavLink>
+                            <NavLink activeClassName='dashboard-left-options-active' exact to='/settings' className='btn'><FaUserCog color='inherit' size='2rem'/>  &nbsp; Settings</NavLink>
                         </div>
                         <div className='dashboard-left-options-unit'>
-                            <FaFunnelDollar color='#6D6D6D' size='2rem'/>
-                            <NavLink activeClassName='dashboard-left-options-active' exact to='/goals' className='btn'>Goals</NavLink>
+                            <NavLink activeClassName='dashboard-left-options-active' exact to='/goals' className='btn'><FaFunnelDollar color='inherit' size='2rem'/>  &nbsp; Goals</NavLink>
                         </div>
                     </div>
                     <div className='dashboard-left-vector'>

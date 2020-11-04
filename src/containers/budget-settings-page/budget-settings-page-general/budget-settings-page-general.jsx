@@ -19,11 +19,6 @@ class BudgetSettingsGeneral extends React.Component{
         },
         changing: false
     }
-    componentDidMount(){
-        this.props.onFetchBudgetInfo(this.props.token,this.props.userId)
-        this.props.onFetchTransactions(this.props.token,this.props.userId)
-    }
-
    
     deleteHandler(item){
         const updatedState = {...this.state.budgetSettingsInfo}
@@ -124,8 +119,6 @@ const mapStateToProps = state =>{
 }
 const mapDispatchToProps = dispatch =>{
     return {
-        onFetchTransactions:(token,userId)=>{dispatch(actions.fetchTransactions(token,userId))},
-        onFetchBudgetInfo:(token,userId)=>{dispatch(actions.fetchBudgetInfo(token,userId))},
         onSaveChangesHandler:(newInfo,token,userId)=>{dispatch(actions.saveChangedSettingsInfo(newInfo,token,userId))}
     }
 }

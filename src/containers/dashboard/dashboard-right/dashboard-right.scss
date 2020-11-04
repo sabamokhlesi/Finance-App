@@ -1,11 +1,11 @@
 .dashboard-right{
-    min-height: 85vh;
+    height: 100vh;
     flex: 0 0 23%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    padding:4rem 2rem;
-    img{width: 65%; margin: auto;}
+    justify-content: space-around;
+    padding:0 2rem;
+    img{width: 65%; margin: 0 auto;}
     &-activities{
         padding:0 2rem;
         &-1{padding: 1.5rem; background-color: #FFEBF5;margin: 1rem;font-weight: 500;}

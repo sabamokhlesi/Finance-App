@@ -2,13 +2,9 @@ import React from 'react'
 import { FaRegChartBar,FaProjectDiagram,FaChartPie,FaChartLine,FaChartArea,FaCalculator,FaClipboardList,FaCocktail} from "react-icons/fa";
 import './budget-summary.scss'
 import {connect} from 'react-redux'
-import * as actions from '../../../store/actions/index'
+// import * as actions from '../../../store/actions/index'
 
 class BudgetSummary extends React.Component{
-    
-    componentDidMount(){
-        this.props.onFetchBudgetInfo(this.props.token,this.props.userId)
-      }
 
     render(){
 
@@ -113,7 +109,6 @@ class BudgetSummary extends React.Component{
             </div>
         )
     }
-    
 }
 const mapStateToProps = state =>{
     return{
@@ -125,10 +120,5 @@ const mapStateToProps = state =>{
     }
 }
 
-const mapDispatchToProps = dispatch =>{
-    return {
-        onFetchBudgetInfo:(token,userId)=>{dispatch(actions.fetchBudgetInfo(token,userId))}
-    }
-}
 
-export default connect(mapStateToProps,mapDispatchToProps)(BudgetSummary)
+export default connect(mapStateToProps)(BudgetSummary)

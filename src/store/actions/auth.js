@@ -44,10 +44,10 @@ export const logout = ()=>{
 //     }
 // }
 
-export const addUser = (email,password,isValid) =>{
+export const addUser = (email,password,firstName,lastName,isValid) =>{
     return dispatch => {
         isValid? dispatch(authStart()):dispatch(authFail('invalid info'))
-        const authData = {email:email,password:password}
+        const authData = {email:email,password:password,firstName:firstName,lastName:lastName}
         const url = 'http://localhost:8080/auth/signup'
         fetch(url, {method:'PUT',headers: {'Content-Type': 'application/json'},body: JSON.stringify(authData)})
         .then(res => {
@@ -102,7 +102,6 @@ export const userSignIn = (email,password) =>{
             localStorage.setItem("token",res.token)
             // localStorage.setItem("expirationDate",expirationDate)
             localStorage.setItem("userID",res.userId)
-
             dispatch(authSuccess(res.token,res.userId))
         })
         .catch(err=>{dispatch(authFail(err));console.log(err)})

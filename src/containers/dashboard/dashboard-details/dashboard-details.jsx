@@ -1,7 +1,7 @@
 import React from 'react'
-import './dashboard-edit.scss'
+import './dashboard-details.scss'
 // import {FaTimes} from 'react-icons/fa'
-import editingPageImg from '../../../../images/editPage.png'
+import editingPageImg from '../../../images/editPage.png'
 class DashboardBudgetDetails extends React.Component{
     state={
         editing:false
@@ -141,5 +141,6 @@ class DashboardBudgetDetails extends React.Component{
         return(<div className='dashboard-settings'>{view}</div>)
     }
 }
+
 
 export default DashboardBudgetDetails

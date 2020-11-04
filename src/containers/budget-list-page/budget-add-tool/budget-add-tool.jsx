@@ -25,7 +25,12 @@ class BudgetAddTool extends React.Component{
         if(this.state.transactionInfo.amount.trim() === '' || this.state.transactionInfo.title.trim() === '' || this.state.transactionInfo.date.trim() === '' || this.state.transactionInfo.person.trim() === '' || this.state.transactionInfo.category.trim() === '-select-'){
             validationMessage= 'please enter valid inputs'
             this.setState({validationMessage:validationMessage})
-        } else {this.props.onAddTransactionClicked({...this.state.transactionInfo,userId:this.props.id},this.props.token); 
+        }
+        if(!this.props.id){
+            validationMessage= 'no user Id'
+            this.setState({validationMessage:validationMessage})
+        } 
+        else {this.props.onAddTransactionClicked({...this.state.transactionInfo,userId:this.props.id},this.props.token); 
             validationMessage= null
             this.setState({transactionInfo:initialState,validationMessage:validationMessage})}
     }

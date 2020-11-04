@@ -13,10 +13,9 @@ import {connect} from 'react-redux'
 import {Redirect, Route,Switch} from 'react-router-dom'
 class App extends React.Component{
 
-  componentWillMount(){
+  componentDidMount(){
     this.props.onTryAutoSignUp()
   }
-  
 
   render(){
     return (
@@ -39,14 +38,8 @@ class App extends React.Component{
     );
   }
 }
-const mapStateToProps = state =>{
-  return{
-    isSignedUp : state.auth.token !== null
-  }
-}
-const mapDispatchToProps = dispatch =>{
-  return{
-    onTryAutoSignUp: () => dispatch(actions.checkSignIn())
-  }
-}
+const mapStateToProps = state =>{return{isSignedUp : state.auth.token !== null}}
+
+const mapDispatchToProps = dispatch =>{return{onTryAutoSignUp: () => dispatch(actions.checkSignIn())}}
+
 export default connect(mapStateToProps,mapDispatchToProps)(App);

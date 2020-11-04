@@ -8,12 +8,9 @@ class NavItems extends React.Component{
         render(){
             return(
                 <div className='nav-items'>
-                    <NavItem link='/' exact className='btn btn-three' activeClassName='btn btn-secondary'>Home</NavItem>
+                    <NavItem key='home-nav-home' link='/' exact className='btn btn-three' activeClassName='btn btn-secondary'>Home</NavItem>
                     <a href='/#whyus' className='btn btn-three' activeClassName='btn btn-secondary'>About</a>
-                    {/* <NavItem link='/contact' className='btn btn-three' activeClassName='btn btn-secondary'>Contact</NavItem> */}
-                    {this.props.isloggedIn?[<NavItem link='/my-list' className='btn btn-three' activeClassName='btn btn-secondary' onClick={this.props.logout}>My List</NavItem>
-                    ,<NavItem link='/budget-settings' className='btn btn-three' activeClassName='btn btn-secondary'>Budget Settings</NavItem>]
-                    :<NavItem link='/sign-in' className='btn btn-three' activeClassName='btn btn-secondary'>Sign In</NavItem>}
+                    <NavItem key='home-nav-login' link='/sign-in' className='btn btn-three' activeClassName='btn btn-secondary'>Log In</NavItem>
                 </div>
             )
         }    
