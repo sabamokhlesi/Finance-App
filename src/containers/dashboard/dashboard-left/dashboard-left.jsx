@@ -4,7 +4,7 @@ import * as actions from '../../../store/actions/index'
 import './dashboard-left.scss'
 import {NavLink} from 'react-router-dom'
 import logo from '../../../images/logo.jpg'
-import { FaHome,FaRegCreditCard,FaUserCog,FaSlidersH,FaFunnelDollar } from "react-icons/fa";
+import { FaHome,FaRegCreditCard,FaUserCog,FaSlidersH} from "react-icons/fa";
 import dashboardLeftVector from '../../../images/dashboard-left.png'
 
 class DashboardLeft extends React.Component{
@@ -27,9 +27,9 @@ class DashboardLeft extends React.Component{
                         <div className='dashboard-left-options-unit'>
                             <NavLink activeClassName='dashboard-left-options-active' exact to='/settings' className='btn'><FaUserCog color='inherit' size='2rem'/>  &nbsp; Settings</NavLink>
                         </div>
-                        <div className='dashboard-left-options-unit'>
+                        {/* <div className='dashboard-left-options-unit'>
                             <NavLink activeClassName='dashboard-left-options-active' exact to='/goals' className='btn'><FaFunnelDollar color='inherit' size='2rem'/>  &nbsp; Goals</NavLink>
-                        </div>
+                        </div> */}
                     </div>
                     <div className='dashboard-left-vector'>
                         <img src={dashboardLeftVector} alt="dashboard vector"/>

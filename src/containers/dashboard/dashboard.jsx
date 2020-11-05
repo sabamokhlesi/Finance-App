@@ -7,7 +7,6 @@ import DashboardLeft from './dashboard-left/dashboard-left'
 import DashboardMain from './dashboard-main/dashboard-main'
 import DashboardMainList from '../budget-list-page/budget-list/budget-list'
 import DashboardRight from './dashboard-right/dashboard-right'
-import DashboardMainSettings from '../budget-settings-page/budget-settings-page-general/budget-settings-page-general'
 import DashboardSettings from './dashboard-settings/dashboard-settings'
 import DashboardDetails from './dashboard-details/dashboard-details'
 // import ErrorPage from '../../components/404/404'
@@ -27,7 +26,7 @@ class Dashboard extends React.Component{
                     <Route path='/list' exact component={DashboardMainList}/>
                     <Route path='/settings' exact component={DashboardSettings}/>
                     <Route path='/details' exact component={DashboardDetails}/>
-                    <Route path='/goals' exact component={DashboardMainSettings}/>
+                    {/* <Route path='/goals' exact component={}/> */}
                     {/* <Route path='/404' exact component={ErrorPage}/>
                     <Redirect to='/404'/> */}
                     <Redirect to='/'/>

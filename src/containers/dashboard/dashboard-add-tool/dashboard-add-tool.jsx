@@ -1,11 +1,11 @@
 import React from 'react'
-import './budget-add-tool.scss'
+import './dashboard-add-tool.scss'
 import InputUnit from '../../../components/input-unit/input-unit'
 import {connect} from 'react-redux'
 import * as actions from '../../../store/actions/index'
 import Spinner from '../../../components/spinner/spinner'
 
-class BudgetAddTool extends React.Component{
+class DashboardAddTool extends React.Component{
     state = {
         validationMessage:null,
         dispatchMessage:null,
@@ -22,21 +22,20 @@ class BudgetAddTool extends React.Component{
         event.preventDefault()
         let validationMessage = null
         const initialState = {amount:'',title:'',date:'',type:'spending',person:'',category:'-select-',note:'not defined'}
-        if(this.state.transactionInfo.amount.trim() === '' || this.state.transactionInfo.title.trim() === '' || this.state.transactionInfo.date.trim() === '' || this.state.transactionInfo.person.trim() === '' || this.state.transactionInfo.category.trim() === '-select-'){
+        if(!this.props.id){
+            validationMessage= 'not authenticated'
+            this.setState({validationMessage:validationMessage})
+        } if(this.state.transactionInfo.amount.trim() === '' || this.state.transactionInfo.title.trim() === '' || this.state.transactionInfo.date.trim() === '' || this.state.transactionInfo.person.trim() === '' || this.state.transactionInfo.category.trim() === '-select-'){
             validationMessage= 'please enter valid inputs'
             this.setState({validationMessage:validationMessage})
-        }
-        if(!this.props.id){
-            validationMessage= 'no user Id'
-            this.setState({validationMessage:validationMessage})
-        } 
-        else {this.props.onAddTransactionClicked({...this.state.transactionInfo,userId:this.props.id},this.props.token); 
+        } else {this.props.onAddTransactionClicked({...this.state.transactionInfo,userId:this.props.id},this.props.token); 
             validationMessage= null
             this.setState({transactionInfo:initialState,validationMessage:validationMessage})}
     }
 
     closeModal= ()=> {
-        this.setState({modalOpen:false})
+        const initialState = {amount:'',title:'',date:'',type:'spending',person:'',category:'-select-',note:'not defined'}
+        this.setState({transactionInfo:initialState,validationMessage:'',modalOpen:false})
     }
     
     openModal= ()=> {
@@ -99,4 +98,4 @@ const mapDispatchToProps = dispatch =>{
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(BudgetAddTool)
+export default connect(mapStateToProps,mapDispatchToProps)(DashboardAddTool)

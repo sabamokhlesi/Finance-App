@@ -13,7 +13,7 @@ const initialState ={
 const reducer = (state=initialState,action) => {
     switch(action.type){
         case actionTypes.ADD_START: return { ...state,loading:true,error:null,errorMessage:'',successMessage:''}
-        case actionTypes.ADD_SUCCESSFUL:return{...state,loading:false,errorMessage:'',successMessage:'Successfull',transactionsList: state.transactionsList.concat({...action.transactionData, _id: action.transactionId})}
+        case actionTypes.ADD_SUCCESSFUL:return{...state,loading:false,errorMessage:'',successMessage:'Successful',transactionsList: state.transactionsList.concat({...action.transactionData, _id: action.transactionId})}
         case actionTypes.ADD_FAILED: return {...state,loading:false,error:action.error,errorMessage:'Failed, please try again',successMessage:''}
         case actionTypes.DELETE_START: return { ...state,loading:true,error:null}
         case actionTypes.DELETE_SUCCESSFUL:return{...state,loading:false,...state.transactionsList.splice(state.transactionsList.findIndex(transaction => transaction._id === action.transactionId),1)}

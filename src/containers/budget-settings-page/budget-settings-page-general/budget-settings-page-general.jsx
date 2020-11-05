@@ -17,7 +17,7 @@ class BudgetSettingsGeneral extends React.Component{
             totalBudget:null,
             totalEarning:null
         },
-        changing: false
+        editing: false
     }
    
     deleteHandler(item){
@@ -60,7 +60,7 @@ class BudgetSettingsGeneral extends React.Component{
 
         let body =null
         if(this.props.loading){body=<Spinner/>}
-        if(this.state.changing){
+        if(this.state.editing){
             body=
             <div className='budget-dashboard-body'>
                 <div className='budget-dashboard-body-inside'>
@@ -79,7 +79,7 @@ class BudgetSettingsGeneral extends React.Component{
                         <BudgetSettingsGeneralCell icontype='chart' iconsize='5rem' iconolor='#32606d' subject='How much are you planning to save this month?' inputplaceholder='i.e 1000' inputtype='number' inputonchange={(event)=>this.setState({budgetSettingsInfo:{...this.state.budgetSettingsInfo,savingGoal:event.target.value}})} defaultvalue={this.props.budgetInfo.savingGoal}/>
                     </div>
                 </div>
-                <button className='btn btn-primary budget-save-changes-btn' onClick={()=>{this.props.onSaveChangesHandler(this.state.budgetSettingsInfo,this.props.token,this.props.userId);this.setState({changing: false})}}>Save Changes</button>
+                <button className='btn btn-primary budget-save-changes-btn' onClick={()=>{this.props.onSaveChangesHandler(this.state.budgetSettingsInfo,this.props.token,this.props.userId);this.setState({editing: false})}}>Save Changes</button>
                 <div/>
             </div>
         } else { body = 
@@ -89,7 +89,7 @@ class BudgetSettingsGeneral extends React.Component{
                     <div className='budget-dashboard-body-left'>
                         {this.props.budgetInfo.categories?
                             Object.keys(this.props.budgetInfo.categories).map(category=>< BudgetSettingsCell title={category} key={category} usedpercent={(totalSpendingcalculator(this.props.transactionsList,'category',category)/this.props.budgetInfo.categories[category]*100).toFixed(1)} usedamount={totalSpendingcalculator(this.props.transactionsList,'category',category)} amountIsNumber amount={this.props.budgetInfo.categories[category]}/>)
-                        :<button className="btn btn-primary" onClick={()=>this.setState({budgetSettingsInfo:this.props.budgetInfo,changing:true})}>Set your budget</button>}
+                        :<button className="btn btn-primary" onClick={()=>this.setState({budgetSettingsInfo:this.props.budgetInfo,editing:true})}>Set your budget</button>}
                     </div>
                     <div className='budget-dashboard-body-right'>
                         < BudgetSettingsCell title='Total budget' amount={this.props.budgetInfo.totalBudget} usedpercent={+this.props.budgetInfo.totalBudget>0?(totalSpendingcalculator(this.props.transactionsList,'type','spending')/this.props.budgetInfo.totalBudget*100).toFixed(1):null} usedamount={totalSpendingcalculator(this.props.transactionsList,'type','spending')} amountIsNumber/>
@@ -97,7 +97,7 @@ class BudgetSettingsGeneral extends React.Component{
                         < BudgetSettingsCell title='Saving goal' amount={'$'+this.props.budgetInfo.savingGoal}/>
                     </div>
                 </div>
-                <button className='btn btn-primary budget-save-changes-btn' onClick={()=>this.setState({budgetSettingsInfo:this.props.budgetInfo,changing:true})}>Click here to modify your settings</button>
+                <button className='btn btn-primary budget-save-changes-btn' onClick={()=>this.setState({budgetSettingsInfo:this.props.budgetInfo,editing:true})}>Click here to modify your settings</button>
             </div>}
         return(
                 <div>

@@ -4,8 +4,8 @@ import NavBar from '../src/containers/navbar/navbar'
 import HomePage from './containers/home-page/home-page'
 import SignUpPage from './containers/sign-up-page/sign-up-page'
 import SignInPage from './containers/sign-in-page/sign-in-page'
-import BudgetSettingsPage from './containers/budget-settings-page/budget-settings-page'
-import BudgetListPage from './containers/budget-list-page/budget-list-page'
+// import BudgetSettingsPage from './containers/budget-settings-page/budget-settings-page'
+// import BudgetListPage from './containers/budget-list-page/budget-list-page'
 import ErrorPage from './components/404/404'
 import Dashboard from './containers/dashboard/dashboard'
 import * as actions from './store/actions/index'
@@ -27,8 +27,8 @@ class App extends React.Component{
               <Route path='/' exact component={!this.props.isSignedUp?HomePage:Dashboard}/>
               <Route path='/sign-up' exact component={SignUpPage}/>
               <Route path='/sign-in' exact component={SignInPage}/>
-              <Route path='/my-list' exact component={BudgetListPage}/>
-              <Route path='/budget-settings'exact component={BudgetSettingsPage}/>
+              {/* <Route path='/my-list' exact component={BudgetListPage}/>
+              <Route path='/budget-settings'exact component={BudgetSettingsPage}/> */}
               <Route path='/404' exact component={ErrorPage}/>
               <Redirect to='/404'/>
             </Switch>

@@ -1,6 +1,6 @@
 import React from 'react'
 import './dashboard-right.scss'
-import AddTool from '../../budget-list-page/budget-add-tool/budget-add-tool'
+import AddTool from '../dashboard-add-tool/dashboard-add-tool'
 import barchart from '../../../images/chart.png'
 
 class DashboardRight extends React.Component{
