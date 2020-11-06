@@ -66,11 +66,8 @@ class DashboardBudgetDetails extends React.Component{
 
 const mapStateToProps = state =>{
     return{
-        // token : state.auth.token,
-        // userId :state.auth.userId,
         budgetSettingsInfo:state.budgetCal.budgetInfo,
-        transactionsList:state.list.transactionsList,
-        list:state.list
+        transactionsList:state.list.transactionsList
     }
 }
 export default connect(mapStateToProps)(DashboardBudgetDetails)

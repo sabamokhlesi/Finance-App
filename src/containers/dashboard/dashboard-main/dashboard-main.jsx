@@ -2,7 +2,7 @@ import React from 'react'
 import './dashboard-main.scss'
 import dashboardBodyTop from '../../../images/headerImg1.png'
 import {connect} from 'react-redux'
-import chart2 from '../../../images/chart2.png'
+// import chart2 from '../../../images/chart2.png'
 
 class DashboardMainOverView extends React.Component{
     
@@ -28,7 +28,7 @@ class DashboardMainOverView extends React.Component{
             <div className='dashboard-body'>
                 <div className='dashboard-body-top'>
                     <div>
-                        <h2>Hi Saba!</h2>
+                        <h2>Hi {this.props.budgetSettingsInfo.firstName}!</h2>
                         <h3>Welcome Back, Nice To See You Again.</h3>
                     </div>
                     <img src={dashboardBodyTop} alt="dashboard body"/>
@@ -73,7 +73,20 @@ class DashboardMainOverView extends React.Component{
                                 </div>
                             </div>
                         </div>
-                        <img src={chart2} alt="chart"/>
+                        {/* <img src={chart2} alt="chart"/> */}
+                        <p className="dashboard-main-bottom-bars-title"><span style={{color:'#6266EA'}}></span> Used Budget for each category</p>
+                        <div className="dashboard-main-bottom">
+                            <div className="dashboard-main-bottom-bars">
+                                {Object.keys(this.props.budgetSettingsInfo.categories).map(category=>
+                                    <div className='dashboard-main-bottom-bar'>
+                                        <span style={{
+                                            backgroundColor:this.totalSpendingcalculator(this.props.transactionsList,'category',category)/this.props.budgetSettingsInfo.categories[category]>=0.9?'#F27BA7':'#6266EA',
+                                            height:(this.totalSpendingcalculator(this.props.transactionsList,'category',category)/this.props.budgetSettingsInfo.categories[category]*100).toFixed(1)+'%'}}><h5>{(this.totalSpendingcalculator(this.props.transactionsList,'category',category)/this.props.budgetSettingsInfo.categories[category]*100).toFixed(1)+'%'}</h5></span>
+                                        <p>{category}</p>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
