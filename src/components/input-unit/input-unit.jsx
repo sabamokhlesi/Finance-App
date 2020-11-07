@@ -7,7 +7,7 @@ function inputUnit (props){
     if (props.inputtype === 'textArea') { inputunit = <textarea id={props.id} {...props} className='budget-input'/>}
     if (props.inputtype === 'select') { 
         inputunit = 
-            <select id={props.id} {...props} className='budget-input'>
+            <select id={props.id} {...props} className='budget-input' ref={props.inputRef}>
                 {props.options.split(',').map(option => { return (<option key={props.id+option}className='budget-input' value={option}>{option}</option>);})}
             </select>
     }

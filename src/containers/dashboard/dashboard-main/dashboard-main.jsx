@@ -81,7 +81,7 @@ class DashboardMainOverView extends React.Component{
                                     <div className='dashboard-main-bottom-bar'>
                                         <span style={{
                                             backgroundColor:this.totalSpendingcalculator(this.props.transactionsList,'category',category)/this.props.budgetSettingsInfo.categories[category]>=0.9?'#F27BA7':'#6266EA',
-                                            height:(this.totalSpendingcalculator(this.props.transactionsList,'category',category)/this.props.budgetSettingsInfo.categories[category]*100).toFixed(1)+'%'}}><h5>{(this.totalSpendingcalculator(this.props.transactionsList,'category',category)/this.props.budgetSettingsInfo.categories[category]*100).toFixed(1)+'%'}</h5></span>
+                                            height:(this.totalSpendingcalculator(this.props.transactionsList,'category',category)/this.props.budgetSettingsInfo.categories[category]*100).toFixed(1)+'%'}}><h5>{(this.totalSpendingcalculator(this.props.transactionsList,'category',category)/this.props.budgetSettingsInfo.categories[category]*100).toFixed()+'%'}</h5></span>
                                         <p>{category}</p>
                                     </div>
                                 )}
