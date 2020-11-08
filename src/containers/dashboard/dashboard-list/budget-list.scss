@@ -18,7 +18,9 @@
     &-top{
         display: flex;
         justify-content: space-between;
-        padding: 1.5rem 3rem;
+        padding: 1.5rem 0rem;
+        label{font-size: 1.4rem; font-weight: 600;}
+        input{font-size: 1.4rem;}
     }
 
     &-body{

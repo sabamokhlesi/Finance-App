@@ -7,7 +7,9 @@ import {connect} from 'react-redux'
 
 class BudgetList extends React.Component{
     state={
-        sortType:'Newest'
+        sortType:'Newest',
+        searchFor:null,
+        showMonth:'Current Month'
     }
     sortHandler(){
         if(this.state.sortType ==='High to low'){return (a, b) => {return b.amount - a.amount}}
@@ -16,12 +18,27 @@ class BudgetList extends React.Component{
         if(this.state.sortType ==="Oldest"){return((a, b) => {const dateA = new Date(a.date);const dateB = new Date(b.date);return dateA - dateB;})}
     }
 
+    searchHandler = item => {
+        if(!this.state.searchFor){return item}
+        else{
+            return(
+                item.title.toLowerCase().includes(this.state.searchFor.trim().toLowerCase())
+                || item.amount.toLowerCase().includes(this.state.searchFor.trim().toLowerCase())
+                || item.date.toLowerCase().includes(this.state.searchFor.trim().toLowerCase())
+                || item.person.toLowerCase().includes(this.state.searchFor.trim().toLowerCase())
+                || item.type.toLowerCase().includes(this.state.searchFor.trim().toLowerCase())
+                || item.category.toLowerCase().includes(this.state.searchFor.trim().toLowerCase())
+                || item.note.toLowerCase().includes(this.state.searchFor.trim().toLowerCase())
+            )} 
+    }
+
     render(){
         return(
             <div className='budget-list-section'>
                 <div className='budget-list-top'>
-                    <InputUnit inputtype='select' id="budget-list-sorting" name="SortBy" labelname='Sort by' options='Newest,Oldest,High to low,Low to high' onChange={event=>this.setState({sortType:event.target.value})} />
-                    <InputUnit inputtype='input' type="search" id="budget-list-search" placeholder='i.e grocery' labelname='Search'/>
+                    <InputUnit style={{fontSize:'1.4rem'}} inputtype='select' id="budget-list-sorting" name="SortBy" labelname='Sort by' options='Newest,Oldest,High to low,Low to high' onChange={event=>this.setState({sortType:event.target.value})}/>
+                    <InputUnit style={{fontSize:'1.4rem'}} inputtype='select' id="budget-list-month" name="showMonth" labelname='Month' options='Current Month,Last Month,Last 3 Months,Last 6 Months,2020,2019,2018' onChange={event=>this.setState({showMonth:event.target.value})} />
+                    <InputUnit style={{fontSize:'1.4rem'}} inputtype='input' type="search" id="budget-list-search" placeholder='i.e grocery' labelname='Search' onChange={event=>this.setState({searchFor:event.target.value})}/>
                 </div>
                 <div className='budget-list-body'>
                     <div className='budget-list-item'>
@@ -31,7 +48,7 @@ class BudgetList extends React.Component{
                         <div className='budget-list-item-by'>Added by</div>
                         <div className='budget-list-item-edit'>Edit</div>
                     </div>
-                    {this.props.transactionsList.length>=1?this.props.transactionsList.sort(this.sortHandler().bind(this)).map(transaction=>{
+                    {this.props.transactionsList.length>=1?this.props.transactionsList.filter(this.searchHandler).sort(this.sortHandler().bind(this)).map(transaction=>{
                         return(<BudgetListItem 
                             key={transaction._id} 
                             date={transaction.date} 
