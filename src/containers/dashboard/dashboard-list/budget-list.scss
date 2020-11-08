@@ -23,10 +23,6 @@
         input{font-size: 1.4rem;}
     }
 
-    &-body{
-        
-    }
-
     &-item{
         display: grid;
         grid-template-columns: repeat(4,1fr) 3rem 10rem 2rem;
@@ -41,5 +37,14 @@
         &:nth-child(even){
             background-color: white;
         }
+    }
+}
+
+.modal-info{
+    padding: 3rem;
+    h4{
+        color: #676886;
+        padding: 1.4rem 4rem;
+        span{font-weight: 500; padding: 0 1rem; color: #8e91ee;}
     }
 }

@@ -9,7 +9,9 @@ class BudgetList extends React.Component{
     state={
         sortType:'Newest',
         searchFor:null,
-        showMonth:'Current Month'
+        showMonth:'Current Month',
+        infoModalOpen:false,
+        modalTransactionInfo: null
     }
     sortHandler(){
         if(this.state.sortType ==='High to low'){return (a, b) => {return b.amount - a.amount}}
@@ -30,6 +32,12 @@ class BudgetList extends React.Component{
                 || item.category.toLowerCase().includes(this.state.searchFor.trim().toLowerCase())
                 || item.note.toLowerCase().includes(this.state.searchFor.trim().toLowerCase())
             )} 
+    }
+
+    infoHandler(transactionId){
+        const transaction = this.props.transactionsList.find(item=>item._id === transactionId)
+        this.setState({modalTransactionInfo:transaction,infoModalOpen:true})
+       
     }
 
     render(){
@@ -55,9 +63,26 @@ class BudgetList extends React.Component{
                             amount={transaction.amount} 
                             title={transaction.title} 
                             person={transaction.person}
-                            onDeleteClicked={()=>this.props.onDeleteHandler(transaction._id,this.props.token)}/>)
+                            onDeleteClicked={()=>this.props.onDeleteHandler(transaction._id,this.props.token)}
+                            onInfoClicked={()=>this.infoHandler(transaction._id)}/>)
                     }):'start adding transactions'}
                 </div>
+                {this.state.modalTransactionInfo?
+                <div className="modal">
+                    <dialog style={!this.state.infoModalOpen?{display:'none'}:{display:'block',width:'max-content'}} className="modal__content">
+                        <button className="modal__close" onClick={()=>this.setState({infoModalOpen:false,modalTransactionInfo:null})}>&times;</button>
+                        <div className='modal-info'>
+                            <h4>Title: <span>{this.state.modalTransactionInfo.title}</span></h4>
+                            <h4>Amount: <span>{this.state.modalTransactionInfo.amount}</span></h4>
+                            <h4>By: <span>{this.state.modalTransactionInfo.person}</span></h4>
+                            <h4>Date: <span>{this.state.modalTransactionInfo.date}</span></h4>
+                            <h4>Category: <span>{this.state.modalTransactionInfo.category}</span></h4>
+                            <h4>Type: <span>{this.state.modalTransactionInfo.type}</span></h4>
+                            <h4>Note: <span>{this.state.modalTransactionInfo.note}</span></h4>
+                        </div>
+                    </dialog>
+                    <div className="modal__overlay" style={!this.state.infoModalOpen?{display:'none'}:{display:'block'}} onClick={()=>this.setState({infoModalOpen:false,modalTransactionInfo:null})}></div>
+                </div>:null}
             </div>
         )
     }
