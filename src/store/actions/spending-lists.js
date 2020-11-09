@@ -20,7 +20,7 @@ export const addTransaction = (transactionInfo,token) =>{
         fetch('http://localhost:8080/budget-manager/transaction', 
             {method: 'POST',body:JSON.stringify(transactionInfo), headers: {Authorization: 'Bearer ' + token,'Content-Type': 'application/json'}})
         .then(res => {
-            if (res.status !== 200 && res.status !== 201) {throw new Error('Creating or editing a post failed!');}
+            if (res.status !== 200 && res.status !== 201) {throw new Error('Creating the transaction failed!');}
             return res.json();
             })
         .then(res =>{dispatch(addTransactionSuccess(res.transaction._id,transactionInfo))})
@@ -84,5 +84,33 @@ export const fetchTransactions = (token,userId) =>{
             })
         .then(res=>{dispatch(fetchTransactionsSuccess(res.transactions))})
         .catch(err=>dispatch(fetchTransactionsFail(err)))
+    }
+}
+
+
+export const editTransactionStart=() =>{return{type:actionTypes.EDIT_START}}
+export const editTransactionFailed =(error) =>{return{type:actionTypes.EDIT_FAILED,error:error}}
+export const editTransactionSuccess =(id,data) =>{return{type:actionTypes.EDIT_SUCCESSFUL,transactionId: id,transactionData: data }
+}
+// export const editTransaction = (transactionInfo,token) =>{
+//     return dispatch => {
+//         dispatch(editTransactionStart())
+//         axios.post('/transactions.json?auth=' +token, transactionInfo)
+//         .then(res =>{dispatch(editTransactionSuccess(res.data.name,transactionInfo))})
+//         .catch(err=>{dispatch(editTransactionFailed(err))})
+//     }
+// }
+
+export const editTransaction = (transactionInfo,token) =>{
+    return dispatch => {
+        dispatch(editTransactionStart())
+        fetch('http://localhost:8080/budget-manager/transaction', 
+            {method: 'PUT',body:JSON.stringify(transactionInfo), headers: {Authorization: 'Bearer ' + token,'Content-Type': 'application/json'}})
+        .then(res => {
+            if (res.status !== 200 && res.status !== 201) {throw new Error('Editing failed!');}
+            return res.json();
+            })
+        .then(res =>{dispatch(editTransactionSuccess(res.transaction._id,transactionInfo))})
+        .catch(err=>{dispatch(editTransactionFailed(err))})
     }
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import './dashboard-add-tool.scss'
 import InputUnit from '../../../components/input-unit/input-unit'
+import Modal from '../../../components/modal/modal'
 import {connect} from 'react-redux'
 import * as actions from '../../../store/actions/index'
 import Spinner from '../../../components/spinner/spinner'
@@ -13,15 +14,15 @@ class DashboardAddTool extends React.Component{
         modalOpen: false
     }
     
+    initialState = {amount:'',title:'',date:'',type:'spending',person:'',category:'-select-',note:'not defined'}
+
     resetHandler(){
-        const initialState = {amount:'',title:'',date:'',type:'spending',person:'',category:'-select-',note:'not defined'}
-        this.setState({transactionInfo:initialState,validationMessage:''})
+        this.setState({transactionInfo:this.initialState,validationMessage:''})
     }
 
     addHandler(event){
         event.preventDefault()
         let validationMessage = null
-        const initialState = {amount:'',title:'',date:'',type:'spending',person:'',category:'-select-',note:'not defined'}
         if(!this.props.id){
             validationMessage= 'not authenticated'
             this.setState({validationMessage:validationMessage})
@@ -30,12 +31,11 @@ class DashboardAddTool extends React.Component{
             this.setState({validationMessage:validationMessage})
         } else {this.props.onAddTransactionClicked({...this.state.transactionInfo,userId:this.props.id},this.props.token); 
             validationMessage= null
-            this.setState({transactionInfo:initialState,validationMessage:validationMessage})}
+            this.setState({transactionInfo:this.initialState,validationMessage:validationMessage})}
     }
 
     closeModal= ()=> {
-        const initialState = {amount:'',title:'',date:'',type:'spending',person:'',category:'-select-',note:'not defined'}
-        this.setState({transactionInfo:initialState,validationMessage:'',modalOpen:false})
+        this.setState({transactionInfo:this.initialState,validationMessage:'',modalOpen:false})
     }
     
     openModal= ()=> {
@@ -64,19 +64,23 @@ class DashboardAddTool extends React.Component{
         return(
             <div style={{display:'flex'}}>
                 <button onClick={this.openModal} className='btn btn-four modal-btn'>+ New Transaction</button>
-                <div className="modal">
-                    <dialog style={!this.state.modalOpen?{display:'none'}:{display:'block'}} className="modal__content">
-                        <button className="modal__close" onClick={this.closeModal}>&times;</button>
-                        <div className='budget-add-section'>
-                            <h2>Add a New Transaction</h2>
-                            <h3>{this.state.validationMessage}</h3>
-                            <h3>{this.state.validationMessage===null?this.props.errorMessage:null}</h3>
-                            <h4>{this.state.validationMessage===null?this.props.successMessage:null}</h4>
-                            {form}
-                        </div>
-                    </dialog>
-                    <div className="modal__overlay" style={!this.state.modalOpen?{display:'none'}:{display:'block'}} onClick={this.closeModal}></div>
-                </div>  
+                <Modal modalStyle={!this.state.modalOpen?{display:'none'}:{display:'block'}} closeBtnClick={this.closeModal} overlayClick={this.closeModal} overLayStyle={!this.state.modalOpen?{display:'none'}:{display:'block'}}>
+                {this.props.successMessage === 'Successful' && this.state.validationMessage===null?
+                    <div className='modal-success-view'>
+                        <h1>Saved Transaction Successfully!</h1>
+                        <div className='budget-input-btn'>
+                            <button className='btn btn-four' onClick={()=>this.setState({transactionInfo:this.initialState,validationMessage:''})}>Add another transaction</button>
+                            <button className='btn btn-primary' onClick={()=>this.setState({modalOpen:false,transactionInfo:this.initialState,validationMessage:''})}>Close This Window</button>
+                        </div>    
+                    </div>
+                    :<div className='budget-add-section'>
+                        <h2>Add a New Transaction</h2>
+                        <h3>{this.state.validationMessage}</h3>
+                        <h3>{this.state.validationMessage===null?this.props.errorMessage:null}</h3>
+                        <h4>{this.state.validationMessage===null?this.props.successMessage:null}</h4>
+                        {form}
+                    </div>}
+                </Modal>
             </div>
         )
     }
