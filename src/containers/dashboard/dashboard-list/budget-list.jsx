@@ -44,13 +44,13 @@ class BudgetList extends React.Component{
     }
 
     onEditHandler(transactionId){
-        const transaction = this.props.transactionsList.find(item=>item._id === transactionId)
+        const transaction = this.props.transactionsList.all.find(item=>item._id === transactionId)
         this.setState({editingInfo:transaction,editModalOpen:true})
        
     }
 
     infoHandler(transactionId){
-        const transaction = this.props.transactionsList.find(item=>item._id === transactionId)
+        const transaction = this.props.transactionsList.all.find(item=>item._id === transactionId)
         this.setState({modalTransactionInfo:transaction,infoModalOpen:true})
     }
 
@@ -76,6 +76,48 @@ class BudgetList extends React.Component{
 
     render(){
         const currentDate=(new Date().getFullYear()+'-'+('0'+(new Date().getMonth()+1)).slice(-2)+'-'+('0'+new Date().getDate()).slice(-2)).toString()
+        
+        let list = 'No transaction found!'
+        if(this.state.showMonth === 'Current Month'){
+            list = 
+            this.props.currentMonthTransactions.length>=1?this.props.currentMonthTransactions.filter(this.searchHandler).sort(this.sortHandler().bind(this)).map(transaction=>{
+                return(<BudgetListItem 
+                    key={transaction._id} 
+                    date={transaction.date} 
+                    amount={transaction.amount} 
+                    title={transaction.title} 
+                    person={transaction.person}
+                    onDeleteClicked={()=>this.setState({deleteModalOpen:true,deleteTransactionId:transaction._id})}
+                    onInfoClicked={()=>this.infoHandler(transaction._id)}
+                    onEditClicked={()=>this.onEditHandler(transaction._id)}/>)
+            }):'No transaction found!'
+        }
+        if (this.state.showMonth === 'Last Month'){
+            list = 
+            this.props.transactionsList.lastMonth.length>=1?this.props.transactionsList.lastMonth.filter(this.searchHandler).sort(this.sortHandler().bind(this)).map(transaction=>{
+                return(<BudgetListItem 
+                    key={transaction._id} 
+                    date={transaction.date} 
+                    amount={transaction.amount} 
+                    title={transaction.title} 
+                    person={transaction.person}
+                    onDeleteClicked={()=>this.setState({deleteModalOpen:true,deleteTransactionId:transaction._id})}
+                    onInfoClicked={()=>this.infoHandler(transaction._id)}
+                    onEditClicked={()=>this.onEditHandler(transaction._id)}/>)
+            }):'No transaction found!'
+        } 
+        if (this.state.showMonth !== 'Last Month' && this.state.showMonth !=='Current Month') { list = 
+            this.props.transactionsList.all.length>=1?this.props.transactionsList.all.filter(this.searchHandler).sort(this.sortHandler().bind(this)).map(transaction=>{
+                return(<BudgetListItem 
+                    key={transaction._id} 
+                    date={transaction.date} 
+                    amount={transaction.amount} 
+                    title={transaction.title} 
+                    person={transaction.person}
+                    onDeleteClicked={()=>this.setState({deleteModalOpen:true,deleteTransactionId:transaction._id})}
+                    onInfoClicked={()=>this.infoHandler(transaction._id)}
+                    onEditClicked={()=>this.onEditHandler(transaction._id)}/>)
+            }):'No transaction found!' }
         return(
             <div className='budget-list-section'>
                 <div className='budget-list-top'>
@@ -91,17 +133,7 @@ class BudgetList extends React.Component{
                         <div className='budget-list-item-by'>Added by</div>
                         <div className='budget-list-item-edit'>Edit</div>
                     </div>
-                    {this.props.transactionsList.length>=1?this.props.transactionsList.filter(this.searchHandler).sort(this.sortHandler().bind(this)).map(transaction=>{
-                        return(<BudgetListItem 
-                            key={transaction._id} 
-                            date={transaction.date} 
-                            amount={transaction.amount} 
-                            title={transaction.title} 
-                            person={transaction.person}
-                            onDeleteClicked={()=>this.setState({deleteModalOpen:true,deleteTransactionId:transaction._id})}
-                            onInfoClicked={()=>this.infoHandler(transaction._id)}
-                            onEditClicked={()=>this.onEditHandler(transaction._id)}/>)
-                    }):'start adding transactions'}
+                    {list}
                 </div>
                 {this.state.deleteModalOpen && this.state.deleteTransactionId?
                 <Modal modalStyle={!this.state.deleteModalOpen?{display:'none'}:{display:'block',width:'max-content'}} closeBtnClick={()=>this.setState({deleteModalOpen:false,deleteTransactionId:null})} overlayClick={()=>this.setState({deleteModalOpen:false,deleteTransactionId:null})} overLayStyle={!this.state.deleteModalOpen?{display:'none'}:{display:'block'}}>
@@ -170,6 +202,7 @@ const mapStateToProps = state =>{
         token : state.auth.token,
         userId :state.auth.userId,
         transactionsList: state.list.transactionsList,
+        currentMonthTransactions:state.list.transactionsList.currentMonth,
         loading:state.list.loading,
         budgetInfo:state.budgetCal.budgetInfo,
         errorMessage:state.list.errorMessage,

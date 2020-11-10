@@ -75,7 +75,7 @@ class DashboardRight extends React.Component{
 const mapStateToProps = state =>{
     return{
         budgetSettingsInfo:state.budgetCal.budgetInfo,
-        transactionsList:state.list.transactionsList
+        transactionsList:state.list.transactionsList.currentMonth
     }
 }
 export default connect(mapStateToProps)(DashboardRight)

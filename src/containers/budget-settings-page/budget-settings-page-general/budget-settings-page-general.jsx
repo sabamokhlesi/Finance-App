@@ -113,7 +113,7 @@ const mapStateToProps = state =>{
         userId :state.auth.userId,
         loading:state.budgetCal.loading,
         budgetInfo:state.budgetCal.budgetInfo,
-        transactionsList:state.list.transactionsList,
+        transactionsList:state.list.transactionsList.currentMonth,
         list:state.list
     }
 }

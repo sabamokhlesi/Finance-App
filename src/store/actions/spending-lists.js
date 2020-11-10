@@ -74,9 +74,21 @@ export const fetchTransactionsStart =() => {return{type: actionTypes.FETCH_TRANS
 export const fetchTransactions = (token,userId) =>{
     return dispatch => {
         dispatch(fetchTransactionsStart())
-        let page = 1
+        
+        // const toDate = new Date().toLocaleDateString()
+        // let fromDate = new Date()
+        // fromDate.setMonth(fromDate.getMonth() - 3);
+        // fromDate.setDate(1);
+        // fromDate.toLocaleDateString()
+        const toDate = (new Date().getFullYear()+'-'+('0'+(new Date().getMonth()+1)).slice(-2)+'-'+('0'+new Date().getDate()).slice(-2)).toString()
+        const fromDate = (
+            (new Date().getMonth() !== 0?new Date().getFullYear():new Date().getFullYear()-1)+'-'
+            +('0'+(new Date().getMonth()!==0? new Date().getMonth():12)).slice(-2)+'-01'
+            ).toString()
+
+
         // page should be fixed
-        fetch(`http://localhost:8080/budget-manager/transactions/${userId}?page=${page}`
+        fetch(`http://localhost:8080/budget-manager/transactions/${userId}?fromDate=${fromDate}&toDate=${toDate}`
             ,{method: 'GET',headers: {Authorization: 'Bearer ' + token}})
             .then(res => {
                 if (res.status !== 200) {throw new Error('Failed to fetch transactions.')}
