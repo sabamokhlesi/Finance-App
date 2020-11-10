@@ -74,14 +74,23 @@ class DashboardMainOverView extends React.Component{
                             </div>
                         </div>
                         {/* <img src={chart2} alt="chart"/> */}
-                        <p className="dashboard-main-bottom-bars-title"><span style={{color:'#6266EA'}}></span> Used Budget for each category</p>
+                        <div className='dashboard-main-bottom-bars-title'>
+                            <p>Used Budget for each category</p>
+                            <p><span style={{color:'#F27BA7'}}></span>Last Month</p>
+                            <p><span style={{color:'#6266EA'}}></span>This Month</p>
+                        </div>
                         <div className="dashboard-main-bottom">
                             <div className="dashboard-main-bottom-bars">
                                 {Object.keys(this.props.budgetSettingsInfo.categories).map(category=>
                                     <div className='dashboard-main-bottom-bar'>
-                                        <span style={{
-                                            backgroundColor:this.totalSpendingcalculator(this.props.transactionsList.currentMonth,'category',category)/this.props.budgetSettingsInfo.categories[category]>=0.9?'#F27BA7':'#6266EA',
-                                            height:(this.totalSpendingcalculator(this.props.transactionsList.currentMonth,'category',category)/this.props.budgetSettingsInfo.categories[category]*100).toFixed(1)+'%'}}><h5>{(this.totalSpendingcalculator(this.props.transactionsList.currentMonth,'category',category)/this.props.budgetSettingsInfo.categories[category]*100).toFixed()+'%'}</h5></span>
+                                        <span className='dashboard-main-bottom-bar-span-1' style={{
+                                            backgroundColor:'#6266EA',
+                                            height:(this.totalSpendingcalculator(this.props.transactionsList.currentMonth,'category',category)/this.props.budgetSettingsInfo.categories[category]*100).toFixed(1)+'%'}}><h5>{(this.totalSpendingcalculator(this.props.transactionsList.currentMonth,'category',category)/this.props.budgetSettingsInfo.categories[category]*100).toFixed()+'%'}</h5>
+                                        </span>
+                                        <span className='dashboard-main-bottom-bar-span-2' style={{
+                                            backgroundColor:'#F27BA7',
+                                            height:(this.totalSpendingcalculator(this.props.transactionsList.lastMonth,'category',category)/this.props.budgetSettingsInfo.categories[category]*100).toFixed(1)+'%'}}><h5>{(this.totalSpendingcalculator(this.props.transactionsList.lastMonth,'category',category)/this.props.budgetSettingsInfo.categories[category]*100).toFixed()+'%'}</h5>
+                                        </span>
                                         <p>{category}</p>
                                     </div>
                                 )}
