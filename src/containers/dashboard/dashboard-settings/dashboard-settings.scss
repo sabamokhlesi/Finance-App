@@ -49,6 +49,7 @@
             width: 100%;
             h1,h2{font-weight: 500; color: white;}
             border-radius: 2rem 0 0 2rem;
+            @media only screen and (max-width:30em) {border-radius: 2rem 2rem 0 0;}
         }
     }
 }
@@ -62,7 +63,7 @@
         background-color: white;
         margin: 2rem 1rem;
         border-radius: 2rem;
-        @media only screen and (max-width:70em) {flex-wrap: wrap;}
+        @media only screen and (max-width:30em) {flex-wrap: wrap;}
         &-add-box{
             padding: 3rem;
             border-right: 1px solid gray;

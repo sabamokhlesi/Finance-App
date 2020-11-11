@@ -3,12 +3,12 @@
     height: 85vh;
     flex-direction: column;
     justify-content: space-between;
-    padding: 3rem 4rem;
-    padding-bottom: 0;
+    padding: 3rem 4rem 0 4rem;
     margin: 6rem 0 3rem 0;
     border-radius: 2rem;
     background-color: #EEF4FF;
     h2{color: rgb(75, 82, 133);}
+    @media only screen and (max-width:30em) {padding: 3rem 3rem 0 3rem;}
     &-top{
         display: flex;
         justify-content: space-between;
@@ -48,6 +48,7 @@
             padding: 1rem 0;
             margin: 1rem;
             p{flex: 0 0 35%;}
+            @media only screen and (max-width:30em) {display: initial;}
         }
         &-chart{ flex: 1;}
         &-bar{
@@ -72,6 +73,7 @@
         align-items: center;
         img{width: 55%;}
         a{padding: 2rem 4rem; background-color: #5E33FF;border: none;color: white; margin-left: 2rem; font-weight: 500;}
+        @media only screen and (max-width:30em) {flex-direction: column; padding-top: 3rem;}
 
     }
 }
