@@ -1,16 +1,13 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import * as actions from '../../../store/actions/index'
 import './dashboard-left.scss'
 import {NavLink} from 'react-router-dom'
 import logo from '../../../images/logo.jpg'
 import { FaHome,FaRegCreditCard,FaUserCog,FaSlidersH} from "react-icons/fa";
 import dashboardLeftVector from '../../../images/dashboard-left.png'
 
-class DashboardLeft extends React.Component{
-    render(){
+function dashboardLeft (props){
         return(
-            <div className='dashboard-left'>
+            <div className='dashboard-left' {...props}>
                     <div className='dashboard-left-logo'>
                         <img src={logo} alt="MyMoney logo"/>
                     </div>
@@ -33,11 +30,11 @@ class DashboardLeft extends React.Component{
                     </div>
                     <div className='dashboard-left-vector'>
                         <img src={dashboardLeftVector} alt="dashboard vector"/>
-                        <button className='btn btn-four' onClick ={this.props.onLogOut}>Log Out</button>
+                        <button className='btn btn-four' onClick ={props.onLogOut}>Log Out</button>
                     </div>
                 </div>
         )
-    }
+    
 }
-const mapDispatchToProps = dispatch =>{return{onLogOut : () => dispatch(actions.logout())}}
-export default connect(null,mapDispatchToProps)(DashboardLeft)
+
+export default dashboardLeft

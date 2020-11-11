@@ -11,16 +11,21 @@ import DashboardSettings from './dashboard-settings/dashboard-settings'
 import DashboardDetails from './dashboard-details/dashboard-details'
 // import ErrorPage from '../../components/404/404'
 class Dashboard extends React.Component{
-
+    state={
+        navRightOpen:false,
+        navLeftOpen:false
+    }
     componentDidMount(){
         this.props.onFetchBudgetInfo(this.props.token,this.props.userId)
         this.props.onFetchTransactions(this.props.token,this.props.userId) 
       }
 
+    componentDidUpdate(){console.log(this.state)}
+
     render(){
         return(
             <div className='dashboard'>
-                <DashboardLeft/>
+                <DashboardLeft onLogOut={this.props.onLogOut} style={this.state.navLeftOpen?{transform: 'translateX(0)'}:null}/>
                 <Switch>
                     <Route path='/' exact component={DashboardMain}/>
                     <Route path='/list' exact component={DashboardMainList}/>
@@ -31,7 +36,10 @@ class Dashboard extends React.Component{
                     <Redirect to='/404'/> */}
                     <Redirect to='/'/>
                 </Switch>
-                <DashboardRight/>
+                <DashboardRight style={this.state.navRightOpen?{transform: 'translateX(0)'}:null} transactionsList={this.props.transactionsList} budgetSettingsInfo={this.props.budgetSettingsInfo}/>
+                <div className='right-nav' onClick={()=>this.setState({navRightOpen:true,navLeftOpen:false})}>+</div>
+                <div className="modal__overlay"  style={this.state.navRightOpen || this.state.navLeftOpen?{display:"block"}:{display:'none'}} onClick={()=>this.setState({navRightOpen:false,navLeftOpen:false})}></div>
+                <div className='left-nav' onClick={()=>this.setState({navRightOpen:false,navLeftOpen:true})}>=</div>
             </div>
         )
     }
@@ -39,7 +47,9 @@ class Dashboard extends React.Component{
 const mapStateToProps = state =>{return{
      isloggedIn : state.auth.token !==null,
      token : state.auth.token,
-     userId :state.auth.userId
+     userId :state.auth.userId,
+     budgetSettingsInfo:state.budgetCal.budgetInfo,
+    transactionsList:state.list.transactionsList.currentMonth
     }}
 const mapDispatchToProps = dispatch =>{return{
     onLogOut : () => dispatch(actions.logout()),

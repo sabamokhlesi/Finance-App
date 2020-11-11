@@ -5,7 +5,10 @@
     flex-direction: column;
     justify-content: space-around;
     padding:0 2rem;
-    img{width: 65%; margin: 0 auto;}
+    z-index: 100;
+    transition: all .4s ease-in-out;
+    @media only screen and (max-width:70em) {width:35rem; position: fixed; top:0; right:0; background-color: white; border-left: 1px solid palevioletred; transform: translateX(100%);}
+    
     &-notifications{
         max-height: 35%;
         overflow-y: scroll;
@@ -22,21 +25,6 @@
         &-3{padding: 1.5rem; background-color: #EAE7FF;margin: 1rem;font-weight: 500; border-radius: .5rem;}
     }
     &-pie-chart{
-        // background:
-		// radial-gradient(
-        //     circle closest-side,
-		// 	white 0,
-		// 	white 60%,
-		// 	transparent 60%,
-		// 	transparent 90%,
-		// 	white 0
-        // ),
-        // conic-gradient(
-	 	// 	#6266EA 0,
-	 	// 	#6266EA 73%,
-	 	// 	#EAE7FF 0,
-	 	// 	#EAE7FF 100%
-        // );
         width: 75%;
         padding: 2rem;
         height: 13rem;
@@ -57,3 +45,5 @@
         }
     }
 }
+
+
