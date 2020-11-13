@@ -22,18 +22,17 @@ class Dashboard extends React.Component{
         this.props.onFetchBudgetInfo(this.props.token,this.props.userId)
         this.props.onFetchTransactions(this.props.token,this.props.userId) 
       }
-
-    componentDidUpdate(){console.log(this.state)}
-
+    
+    componentWillMount(){console.log(Dashboard)}
     render(){
         return(
             <div className='dashboard'>
                 <DashboardLeft onLogOut={this.props.onLogOut} style={this.state.navLeftOpen?{transform: 'translateX(0)'}:null} onNavItemClicked={()=>this.setState({navRightOpen:false,navLeftOpen:false})}/>
                 <Switch>
-                    <Route path='/' exact component={DashboardMain}/>
+                    <Route path='/' exact render={() => <DashboardMain budgetSettingsInfo={this.props.budgetSettingsInfo} transactionsList={this.props.transactionsListTotal}/> }/>
                     <Route path='/list' exact component={DashboardMainList}/>
                     <Route path='/settings' exact component={DashboardSettings}/>
-                    <Route path='/details' exact component={DashboardDetails}/>
+                    <Route path='/details' exact render={() => <DashboardDetails budgetSettingsInfo={this.props.budgetSettingsInfo} transactionsList={this.props.transactionsList}/> }/>
                     {/* <Route path='/goals' exact component={}/> */}
                     {/* <Route path='/404' exact component={ErrorPage}/>
                     <Redirect to='/404'/> */}
@@ -43,7 +42,6 @@ class Dashboard extends React.Component{
                 <AddTool style={this.state.addToolOpen? {display:'flex',zIndex:'130'}:{display:'none'}} onCloseClicked={()=>this.setState({addToolOpen:false})} cancelClicked={()=>this.setState({navRightOpen:false,navLeftOpen:false,addToolOpen:false})}/>
                 <div className='right-nav' onClick={()=>this.setState({navRightOpen:true,navLeftOpen:false})}><FaEllipsisV/></div>
                 <div className="modal__overlay"  style={this.state.navRightOpen || this.state.navLeftOpen?{display:"block"}:{display:'none'}} onClick={()=>this.setState({navRightOpen:false,navLeftOpen:false,addToolOpen:false})}></div>
-                
                 <div className='left-nav' onClick={()=>this.setState({navRightOpen:false,navLeftOpen:true})}><FaBars/></div>
             </div>
         )
@@ -54,7 +52,8 @@ const mapStateToProps = state =>{return{
      token : state.auth.token,
      userId :state.auth.userId,
      budgetSettingsInfo:state.budgetCal.budgetInfo,
-    transactionsList:state.list.transactionsList.currentMonth
+     transactionsList:state.list.transactionsList.currentMonth,
+     transactionsListTotal:state.list.transactionsList
     }}
 const mapDispatchToProps = dispatch =>{return{
     onLogOut : () => dispatch(actions.logout()),

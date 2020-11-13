@@ -1,10 +1,10 @@
 import React from 'react'
 import './sign-up-page.scss'
 import {Link} from 'react-router-dom'
-import SignUpImg from '../../images/signUpImg.gif'
+import SignUpImg from '../../../images/signUpImg.gif'
 import {connect} from 'react-redux'
-import * as actions from '../../store/actions/index'
-import Spinner from '../../components/spinner/spinner'
+import * as actions from '../../../store/actions/index'
+import Spinner from '../../../components/spinner/spinner'
 class SignUpPage extends React.Component{
     state = {
         signUpMessage : null,

@@ -2,7 +2,7 @@ import React from 'react'
 import './nav-items.scss'
 import NavItem from './nav-item/nav-item'
 import {connect} from 'react-redux'
-import * as actions from '../../../store/actions/index'
+import * as actions from '../../../../store/actions/index'
 
 class NavItems extends React.Component{
         render(){
