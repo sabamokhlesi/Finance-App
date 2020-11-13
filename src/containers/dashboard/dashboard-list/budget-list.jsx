@@ -167,14 +167,16 @@ class BudgetList extends React.Component{
                         <div className='modal-success-view'>
                             <h1>Saved Changes Successfully!</h1>
                             <div className='budget-input-btn'>
-                                <button className='btn btn-four' onClick={()=>this.setState({editModalOpen:false,editingInfo:this.initialModalEdit,editValidationMessage:''})}>Close This Window</button>
+                                <button className='btn btn-four' onClick={()=>this.setState({editModalOpen:false,editingInfo:this.initialModalEdit,editValidationMessage:''})}>Close</button>
                             </div>    
                         </div>
-                        :<div className='budget-add-section'>
-                            <h2>Edit your transaction here</h2>
-                            <h3>{this.state.editValidationMessage}</h3>
-                            <h3>{this.state.editValidationMessage===null?this.props.errorMessage:null}</h3>
-                            <h4>{this.state.editValidationMessage===null?this.props.successMessage:null}</h4>
+                        :<div className='budget-add-section ' style={{padding:'3rem'}}>
+                            <div>
+                                <h2>Edit your transaction here</h2>
+                                <h3>{this.state.editValidationMessage}</h3>
+                                <h3>{this.state.editValidationMessage===null?this.props.errorMessage:null}</h3>
+                                <h4>{this.state.editValidationMessage===null?this.props.successMessage:null}</h4>
+                            </div>
                             <form className='budget-add-body'>
                                 <InputUnit inputtype='input' id='edit-spending-amount-input' placeholder='i.e 100' type="number" defaultValue={this.state.editingInfo.amount} labelname='Amount' onChange={event=>this.setState({ editingInfo: { ...this.state.editingInfo, amount:event.target.value}})}/>
                                 <InputUnit inputtype='input' type="text" id='edit-spending-amount-title' placeholder='i.e internet bill' defaultValue={this.state.editingInfo.title} labelname='Title' onChange={event=>this.setState({ editingInfo: { ...this.state.editingInfo, title:event.target.value}})}/>
@@ -182,7 +184,7 @@ class BudgetList extends React.Component{
                                 <InputUnit inputtype='select' id="edit-transaction-type" defaultValue={this.state.editingInfo.type} labelname='Type' options='spending,earning' onChange={event=>this.setState({ editingInfo: { ...this.state.editingInfo, type:event.target.value}})}/>
                                 <InputUnit inputtype='input' type="text" id='edit-spending-writer-input' placeholder='i.e John' defaultValue={this.state.editingInfo.person} labelname='By' onChange={event=>this.setState({ editingInfo: { ...this.state.editingInfo, person:event.target.value}})}/>
                                 <InputUnit inputtype='select' id="edit-transaction-category" name="categories" defaultValue={this.state.editingInfo.category} labelname='Category' options={`-select-,${this.props.budgetInfo.categories?Object.keys(this.props.budgetInfo.categories).join():null},others`} onChange={event=>this.setState({ editingInfo: { ...this.state.editingInfo, category:event.target.value}})}/>
-                                <InputUnit inputtype='textArea' type="textarea" rows="1" cols='50' id='edit-spending-note' placeholder='i.e note: Paid fedit-or the next 6 months' defaultValue={this.state.editingInfo.note} labelname='Note(optional)' onChange={event=>this.setState({ editingInfo: { ...this.state.editingInfo, note:event.target.value}})}/>
+                                <InputUnit inputtype='textArea' type="textarea" rows="1" cols='35' id='edit-spending-note' placeholder='i.e note: Paid fedit-or the next 6 months' defaultValue={this.state.editingInfo.note} labelname='Note(optional)' onChange={event=>this.setState({ editingInfo: { ...this.state.editingInfo, note:event.target.value}})}/>
                                 <div className='budget-input-btn'>
                                     <input type="submit" id='edit-spending-input-submit' value='Save' className='btn btn-four budget-add-submit' onClick={this.saveEditHandler.bind(this)}/>
                                     <button className='btn btn-primary budget-add-submit' onClick={()=>this.setState({editModalOpen:false,editingInfo:this.initialModalEdit,editValidationMessage:''})}>Cancel</button>

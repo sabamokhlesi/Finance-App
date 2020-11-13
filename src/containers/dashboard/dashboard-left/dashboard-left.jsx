@@ -13,16 +13,16 @@ function dashboardLeft (props){
                     </div>
                     <div className='dashboard-left-options'>
                         <div className='dashboard-left-options-unit'>
-                            <NavLink activeClassName='dashboard-left-options-active' to='/' exact className='btn'><FaHome color='inherit' size='2rem'/> &nbsp; Overview</NavLink>
+                            <NavLink activeClassName='dashboard-left-options-active' to='/' exact className='btn' onClick={props.onNavItemClicked}><FaHome color='inherit' size='2rem'/> &nbsp; Overview</NavLink>
                         </div>
                         <div className='dashboard-left-options-unit'>
-                            <NavLink activeClassName='dashboard-left-options-active' exact to='/list' className='btn'><FaRegCreditCard color='inherit' size='2rem'/>  &nbsp; Transactions</NavLink>
+                            <NavLink activeClassName='dashboard-left-options-active' exact to='/list' className='btn' onClick={props.onNavItemClicked}><FaRegCreditCard color='inherit' size='2rem'/>  &nbsp; Transactions</NavLink>
                         </div>
                         <div className='dashboard-left-options-unit'>
-                            <NavLink activeClassName='dashboard-left-options-active' exact to='/details' className='btn'><FaSlidersH color='inherit' size='2rem'/>  &nbsp; Budget Details</NavLink>
+                            <NavLink activeClassName='dashboard-left-options-active' exact to='/details' className='btn' onClick={props.onNavItemClicked}><FaSlidersH color='inherit' size='2rem'/>  &nbsp; Budget Details</NavLink>
                         </div>
                         <div className='dashboard-left-options-unit'>
-                            <NavLink activeClassName='dashboard-left-options-active' exact to='/settings' className='btn'><FaUserCog color='inherit' size='2rem'/>  &nbsp; Settings</NavLink>
+                            <NavLink activeClassName='dashboard-left-options-active' exact to='/settings' className='btn' onClick={props.onNavItemClicked}><FaUserCog color='inherit' size='2rem'/>  &nbsp; Settings</NavLink>
                         </div>
                         {/* <div className='dashboard-left-options-unit'>
                             <NavLink activeClassName='dashboard-left-options-active' exact to='/goals' className='btn'><FaFunnelDollar color='inherit' size='2rem'/>  &nbsp; Goals</NavLink>

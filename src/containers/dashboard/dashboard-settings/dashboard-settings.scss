@@ -9,6 +9,7 @@
     background-color: #EEF4FF;
     p{color:#4122b1; font-size: 1.8rem;}
     h4{ font-weight: 600; color: #6d6e85; padding-bottom: 1rem;}
+    @media only screen and (max-width:70em) {margin-top: 10rem;}
     input{
         width: 90%; 
         margin-bottom: 1.5rem;

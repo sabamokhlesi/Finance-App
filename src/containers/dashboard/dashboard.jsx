@@ -9,11 +9,14 @@ import DashboardMainList from './dashboard-list/budget-list'
 import DashboardRight from './dashboard-right/dashboard-right'
 import DashboardSettings from './dashboard-settings/dashboard-settings'
 import DashboardDetails from './dashboard-details/dashboard-details'
+import { FaBars,FaEllipsisV } from "react-icons/fa";
+import AddTool from './dashboard-add-tool/dashboard-add-tool'
 // import ErrorPage from '../../components/404/404'
 class Dashboard extends React.Component{
     state={
         navRightOpen:false,
-        navLeftOpen:false
+        navLeftOpen:false,
+        addToolOpen:false
     }
     componentDidMount(){
         this.props.onFetchBudgetInfo(this.props.token,this.props.userId)
@@ -25,7 +28,7 @@ class Dashboard extends React.Component{
     render(){
         return(
             <div className='dashboard'>
-                <DashboardLeft onLogOut={this.props.onLogOut} style={this.state.navLeftOpen?{transform: 'translateX(0)'}:null}/>
+                <DashboardLeft onLogOut={this.props.onLogOut} style={this.state.navLeftOpen?{transform: 'translateX(0)'}:null} onNavItemClicked={()=>this.setState({navRightOpen:false,navLeftOpen:false})}/>
                 <Switch>
                     <Route path='/' exact component={DashboardMain}/>
                     <Route path='/list' exact component={DashboardMainList}/>
@@ -36,10 +39,12 @@ class Dashboard extends React.Component{
                     <Redirect to='/404'/> */}
                     <Redirect to='/'/>
                 </Switch>
-                <DashboardRight style={this.state.navRightOpen?{transform: 'translateX(0)'}:null} transactionsList={this.props.transactionsList} budgetSettingsInfo={this.props.budgetSettingsInfo}/>
-                <div className='right-nav' onClick={()=>this.setState({navRightOpen:true,navLeftOpen:false})}>+</div>
-                <div className="modal__overlay"  style={this.state.navRightOpen || this.state.navLeftOpen?{display:"block"}:{display:'none'}} onClick={()=>this.setState({navRightOpen:false,navLeftOpen:false})}></div>
-                <div className='left-nav' onClick={()=>this.setState({navRightOpen:false,navLeftOpen:true})}>=</div>
+                <DashboardRight addBtnClicked={()=>this.setState({navRightOpen:false,navLeftOpen:false,addToolOpen:true})} style={this.state.navRightOpen?{transform: 'translateX(0)'}:null} transactionsList={this.props.transactionsList} budgetSettingsInfo={this.props.budgetSettingsInfo}/>
+                <AddTool style={this.state.addToolOpen? {display:'flex',zIndex:'130'}:{display:'none'}} onCloseClicked={()=>this.setState({addToolOpen:false})} cancelClicked={()=>this.setState({navRightOpen:false,navLeftOpen:false,addToolOpen:false})}/>
+                <div className='right-nav' onClick={()=>this.setState({navRightOpen:true,navLeftOpen:false})}><FaEllipsisV/></div>
+                <div className="modal__overlay"  style={this.state.navRightOpen || this.state.navLeftOpen?{display:"block"}:{display:'none'}} onClick={()=>this.setState({navRightOpen:false,navLeftOpen:false,addToolOpen:false})}></div>
+                
+                <div className='left-nav' onClick={()=>this.setState({navRightOpen:false,navLeftOpen:true})}><FaBars/></div>
             </div>
         )
     }

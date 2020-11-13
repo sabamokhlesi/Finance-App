@@ -1,7 +1,7 @@
 .budget-list{
     &-section{
         padding: 2rem;
-        margin: 6rem 0 3rem 0;
+        margin: 8rem 0 3rem 0;
         border-radius: 2rem;
         background-color: #EEF4FF;
         overflow-y: scroll;
@@ -13,6 +13,7 @@
         }
         height: 84vh;
         width: 100%;
+        @media only screen and (max-width:70em) {margin-top: 10rem;}
         @media only screen and (max-width:35em) {padding: 1rem;}
     }
 
@@ -63,6 +64,7 @@
 
 .modal-info{
     padding: 3rem;
+    
     h4{
         color: #676886;
         padding: 1.4rem 4rem;
@@ -72,6 +74,26 @@
 
 .modal-success-view{
     padding:6rem;
-    h1{padding: 2rem 5rem 5rem 5rem; color: rgb(51, 97, 165); font-weight: 400; font-size: 3.5rem;}
-    button{margin: 0 1rem;padding: 1.5rem 2.5rem;}
+    border-radius: 1rem;
+    width: max-content;
+    min-width: 50%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+    h1{
+        padding: 2rem 2rem 5rem 2rem; 
+        color: rgb(51, 97, 165); 
+        font-weight: 400; 
+        font-size: 3rem;
+        @media only screen and (max-width:50em) {font-size:2.5rem;}
+    }
+    button{
+        margin: 0 1rem;
+        padding: 1.5rem 2.5rem;
+        @media only screen and (max-width:50em) {padding:1rem 1.5rem ;}
+    }
+    @media only screen and (max-width:70em) {padding: 3rem;}
+    @media only screen and (max-width:55em) {width: auto;}
 }

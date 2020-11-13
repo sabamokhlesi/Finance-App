@@ -1,7 +1,6 @@
 import React from 'react'
 import './dashboard-add-tool.scss'
 import InputUnit from '../../../components/input-unit/input-unit'
-import Modal from '../../../components/modal/modal'
 import {connect} from 'react-redux'
 import * as actions from '../../../store/actions/index'
 import Spinner from '../../../components/spinner/spinner'
@@ -31,7 +30,7 @@ class DashboardAddTool extends React.Component{
             this.setState({validationMessage:validationMessage})
         } else {this.props.onAddTransactionClicked({...this.state.transactionInfo,userId:this.props.id},this.props.token); 
             validationMessage= null
-            this.setState({transactionInfo:this.initialState,validationMessage:validationMessage})}
+            this.setState({transactionInfo:this.initialState,validationMessage:validationMessage,successMessage:this.props.successMessage})}
     }
 
     closeModal= ()=> {
@@ -40,6 +39,12 @@ class DashboardAddTool extends React.Component{
     
     openModal= ()=> {
         this.setState({modalOpen:true})
+    }
+
+    closeHandler=()=>{
+        this.props.cancelClicked();
+        this.setState({transactionInfo:this.initialState,validationMessage:''})
+
     }
     
     render(){
@@ -54,7 +59,7 @@ class DashboardAddTool extends React.Component{
                 <InputUnit inputtype='select' id="transaction-type" labelname='Type' options='spending,earning' onChange={event=>this.setState({ transactionInfo: { ...this.state.transactionInfo, type:event.target.value}})}/>
                 <InputUnit inputtype='input' type="text" id='spending-writer-input' placeholder='i.e John' labelname='By' onChange={event=>this.setState({ transactionInfo: { ...this.state.transactionInfo, person:event.target.value}})}/>
                 <InputUnit inputtype='select' id="transaction-category" name="categories" labelname='Category' options={`-select-,${this.props.budgetInfo.categories?Object.keys(this.props.budgetInfo.categories).join():null},others`} onChange={event=>this.setState({ transactionInfo: { ...this.state.transactionInfo, category:event.target.value}})}/>
-                <InputUnit inputtype='textArea' type="textarea" rows="1" cols='50' id='spending-note' placeholder='i.e note: Paid for the next 6 months' labelname='Note(optional)' onChange={event=>this.setState({ transactionInfo: { ...this.state.transactionInfo, note:event.target.value}})}/>
+                <InputUnit inputtype='textArea' type="textarea" rows="1" cols='35' id='spending-note' placeholder='i.e note: Paid for the next 6 months' labelname='Note(optional)' onChange={event=>this.setState({ transactionInfo: { ...this.state.transactionInfo, note:event.target.value}})}/>
                 <div className='budget-input-btn'>
                     <input type="submit" id='spending-input-submit' value='Add' className='btn btn-primary budget-add-submit' onClick={this.addHandler.bind(this)}/>
                     <input type="reset" value='Reset' className='btn btn-four budget-add-submit' onClick={this.resetHandler.bind(this)}/>
@@ -62,15 +67,14 @@ class DashboardAddTool extends React.Component{
             </form>
         }
         return(
-            <div style={{display:'flex'}}>
-                <button onClick={this.openModal} className='btn btn-four modal-btn'>+ New Transaction</button>
-                <Modal modalStyle={!this.state.modalOpen?{display:'none'}:{display:'block'}} closeBtnClick={this.closeModal} overlayClick={this.closeModal} overLayStyle={!this.state.modalOpen?{display:'none'}:{display:'block'}}>
+            <div {...this.props} className='add-tool-body'>
+                <div className="modal__overlay " onClick={()=>this.closeHandler()}></div>
                 {this.props.successMessage === 'Successful' && this.state.validationMessage===null?
                     <div className='modal-success-view'>
                         <h1>Saved Transaction Successfully!</h1>
                         <div className='budget-input-btn'>
-                            <button className='btn btn-four' onClick={()=>this.setState({transactionInfo:this.initialState,validationMessage:''})}>Add another transaction</button>
-                            <button className='btn btn-primary' onClick={()=>this.setState({modalOpen:false,transactionInfo:this.initialState,validationMessage:''})}>Close This Window</button>
+                            <button className='btn btn-four' onClick={()=>this.setState({transactionInfo:this.initialState,validationMessage:''})}>New transaction</button>
+                            <button className='btn btn-primary'onClick={()=>this.closeHandler()}>Close</button>
                         </div>    
                     </div>
                     :<div className='budget-add-section'>
@@ -80,7 +84,6 @@ class DashboardAddTool extends React.Component{
                         <h4>{this.state.validationMessage===null?this.props.successMessage:null}</h4>
                         {form}
                     </div>}
-                </Modal>
             </div>
         )
     }

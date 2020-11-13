@@ -1,13 +1,20 @@
 .budget-add-section{
     margin: 2rem;
-    padding:1rem 3rem;
-    width: 90%;
+    padding:3rem 6%;
+    width: min-content;
     border-radius: 1rem;
     margin: 1rem auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+    z-index: 150;
+
     h2{
         color: #525252;
         font-style: italic;
-        margin: 3rem;
+        margin: 3rem 0;
         display: inline;
     }
     h3{
@@ -32,7 +39,6 @@
     border-radius: 1rem;
 }
 .budget-add-body{
-    display: flex;
     flex-wrap: wrap;
     align-items: center; 
     justify-content: center;
@@ -44,4 +50,10 @@
         display: flex;
         justify-content: center;
         width: 100%;
+}
+
+.add-tool-body{
+    display: flex;
+    background-color: white;
+    z-index: 100;
 }

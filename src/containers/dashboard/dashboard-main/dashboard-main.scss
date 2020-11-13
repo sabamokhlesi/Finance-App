@@ -10,8 +10,8 @@
         padding: 0 3rem;
         @media only screen and (max-width:45em) {padding: 0; padding-bottom: 3rem;flex-direction: column-reverse;}
         img{width: 47%; padding-left: 3rem; 
-            @media only screen and (max-width:70em) {width: 60%; padding-top: 5rem;}
-            @media only screen and (max-width:45em) {padding: 0; width: 65%;}
+            @media only screen and (max-width:70em) {width: 55%;}
+            @media only screen and (max-width:45em) {padding: 0; width: 60%;}
             @media only screen and (max-width:30em) {width: 70%;}
         }
         h2{font-size: 4rem; font-weight: 400; color: rgb(20, 48, 71);}
@@ -75,7 +75,7 @@
         min-width: 95%;
         // width: max-content;
         margin: 0 auto 7rem auto;
-        @media only screen and (max-width:70em) {padding-top: 5rem;}
+        // @media only screen and (max-width:70em) {padding-top: 5rem;}
         @media only screen and (max-width:45em) {width: auto; margin-bottom: 10rem;}
         &-bars{
             display: flex;
@@ -88,7 +88,7 @@
                 display: flex;
                 align-items: center;
                 flex-wrap: wrap;
-                @media only screen and (max-width:70em) {padding-top: 5rem;}
+                // @media only screen and (max-width:70em) {padding-top: 5rem;}
                 
                 p{padding: 0 1rem;
                     &:first-child{color: grey;}
@@ -115,8 +115,8 @@
             color: grey;
             @media only screen and (max-width:45em) {width: 4%; min-width: 1rem;}
             p{
-                transform: rotate(32deg) translateY(2rem) translateX(2.5rem); font-size: 1.4rem;
-                @media only screen and (max-width:45em) {transform: rotate(55deg) translateY(1rem) translateX(2rem);}
+                transform: rotate(32deg) translateY(3rem) translateX(2.5rem); font-size: 1.4rem;
+                @media only screen and (max-width:35em) {transform: rotate(55deg) translateY(1rem) translateX(2.5rem);}
             }
             &-span-1,&-span-2{
                 position: absolute;

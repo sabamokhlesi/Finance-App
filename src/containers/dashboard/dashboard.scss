@@ -2,16 +2,16 @@
     min-height: 85vh;
     display: flex;
     position: relative;
-    @media only screen and (max-width:70em) {padding: 6rem 3rem 3rem 0;}
-    @media only screen and (max-width:45em) {padding: 6rem 3rem 3rem 3rem;}
+    @media only screen and (max-width:70em) {padding: 0rem 3rem 3rem 0;}
+    @media only screen and (max-width:45em) {padding: 2rem 2rem 2rem 3rem;}
 }
 
 .right-nav{
     position: absolute;
     top: 0;
     right: 0;
-    padding: 6rem 4rem;
-    font-size: 10rem;
+    padding: 5rem 3rem;
+    font-size: 2.5rem;
     line-height: 0;
     color: palevioletred;
     display: none;
@@ -23,8 +23,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    padding: 6rem 4rem;
-    font-size: 10rem;
+    padding: 5rem 3rem;
+    font-size: 2.5rem;
     line-height: 0;
     color: palevioletred;
     display: none;

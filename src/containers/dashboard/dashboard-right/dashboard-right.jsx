@@ -1,6 +1,5 @@
 import React from 'react'
 import './dashboard-right.scss'
-import AddTool from '../dashboard-add-tool/dashboard-add-tool'
 import { FaBell } from "react-icons/fa";
 
 function dashboardRight (props){
@@ -31,7 +30,7 @@ function dashboardRight (props){
 
         return(
             <div className='dashboard-right' {...props} >
-                <AddTool/>
+                <button className='btn btn-four modal-btn' onClick={props.addBtnClicked}>+ New Transaction</button>
                 <div className='dashboard-right-pie-chart-box'>
                         <div className='dashboard-right-pie-chart-caption'>
                             <p><span style={{color:"#6266EA"}}></span>Used Budget {(totalSpendingcalculator(props.transactionsList,'type','spending')/totalBudgetCal(props.budgetSettingsInfo.categories)*100).toFixed()}%</p>
