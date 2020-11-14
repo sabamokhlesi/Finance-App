@@ -1,7 +1,7 @@
 import React from 'react'
 import './dashboard-main.scss'
 import dashboardBodyTop from '../../../images/headerImg1.png'
-
+import Alert from '../../../components/alert/alert'
 function dashBoardOverview(props){
     
     const totalBudgetCal = (budgetList) =>{
@@ -30,6 +30,7 @@ function dashBoardOverview(props){
                 </div>
                 <img src={dashboardBodyTop} alt="dashboard body"/>
             </div>
+            {props.budgetSettingsInfo.categories?
             <div className='dashboard-body-main'>
                 <h1>Overview</h1>
                 <div className='dashboard-body-main-body'>
@@ -89,7 +90,7 @@ function dashBoardOverview(props){
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>:<Alert/>}
         </div>
     )
     

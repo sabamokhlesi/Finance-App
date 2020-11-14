@@ -8,7 +8,7 @@ import editingPageImg from '../../../images/editPage.png'
 class DashboardBudgetDetails extends React.Component{
     state={
         budgetSettingsInfo:{
-            categories:{},
+            categories:{others:0},
             firstName:null,
             lastName:null
         },
@@ -29,7 +29,8 @@ class DashboardBudgetDetails extends React.Component{
 
     addCategoryHandler(){
         const newCategory = this.newCategoryName.value.trim()
-        const newState = {...this.state.budgetSettingsInfo}
+        const newState = this.state.budgetSettingsInfo.categories?{...this.state.budgetSettingsInfo}:{...this.state.budgetSettingsInfo,categories:{}}
+        console.log(newState.categories)
         newState.categories[newCategory]=this.newCategoryBudget.value.trim()
         this.setState({ budgetSettingsInfo: newState})
         this.newCategoryName.value=''
@@ -63,17 +64,17 @@ class DashboardBudgetDetails extends React.Component{
                             <input type="text" id="new-category-name" name="new-category-name" placeholder='Category Name' ref={input=>{this.newCategoryName = input}}/>
                         </div>
                         <div>
-                            <input type="number" id="new-category-amount" name="new-category-amount" min="0" max="1000000" placeholder='Category Budget'ref={input=>{this.newCategoryBudget = input}}/>
+                            <input type="number" id="new-category-amount" name="new-category-amount" min="0" max="1000000" placeholder='Category Budget' ref={input=>{this.newCategoryBudget = input}}/>
                         </div>
                         <button className='btn btn-primary' onClick={this.addCategoryHandler.bind(this)}>Add</button>
                     </div>
                     <div className='dashboard-edit-categories-items'>
                         <h3>Edit Your Categories</h3>
                         <div className='dashboard-edit-categories-items-body'>
-                            {this.props.budgetInfo.categories?Object.keys(this.props.budgetInfo.categories).map(category=>
+                            {this.state.budgetSettingsInfo.categories?Object.keys(this.state.budgetSettingsInfo.categories).map(category=>
                                 <div className='dashboard-edit-categories-item' key={category+'-dashboard-edit-category-unit'}>
                                     <label htmlFor={category+'-dashboard-edit-category-item'}><span onClick={()=>this.deleteHandler(category)}>&times;</span>{category}</label><br/>
-                                    <input type="number" id={category+'-dashboard-edit-category-item'} name={category+'-dashboard-edit-category-item'} onChange={event=>this.onChangeHandler(event,category)} defaultValue={this.props.budgetInfo.categories[category]} placeholder='i.e 200'/>
+                                    <input type="number" id={category+'-dashboard-edit-category-item'} name={category+'-dashboard-edit-category-item'} onChange={event=>this.onChangeHandler(event,category)} defaultValue={this.state.budgetSettingsInfo.categories[category]} placeholder='i.e 200'/>
                                 </div>):'Start adding categories'}
                         </div>
                     </div>

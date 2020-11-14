@@ -90,7 +90,7 @@ class BudgetList extends React.Component{
                     onDeleteClicked={()=>this.setState({deleteModalOpen:true,deleteTransactionId:transaction._id})}
                     onInfoClicked={()=>this.infoHandler(transaction._id)}
                     onEditClicked={()=>this.onEditHandler(transaction._id)}/>)
-            }):'No transaction found!'
+            }):<h3 style={{paddingLeft:'3rem'}}>No transaction found!</h3>
         }
         if (this.state.showMonth === 'Last Month'){
             list = 
@@ -104,7 +104,7 @@ class BudgetList extends React.Component{
                     onDeleteClicked={()=>this.setState({deleteModalOpen:true,deleteTransactionId:transaction._id})}
                     onInfoClicked={()=>this.infoHandler(transaction._id)}
                     onEditClicked={()=>this.onEditHandler(transaction._id)}/>)
-            }):'No transaction found!'
+            }):<h3 style={{paddingLeft:'3rem'}}>No transaction found!</h3>
         } 
         if (this.state.showMonth !== 'Last Month' && this.state.showMonth !=='Current Month') { list = 
             this.props.transactionsList.all.length>=1?this.props.transactionsList.all.filter(this.searchHandler).sort(this.sortHandler().bind(this)).map(transaction=>{
@@ -117,7 +117,7 @@ class BudgetList extends React.Component{
                     onDeleteClicked={()=>this.setState({deleteModalOpen:true,deleteTransactionId:transaction._id})}
                     onInfoClicked={()=>this.infoHandler(transaction._id)}
                     onEditClicked={()=>this.onEditHandler(transaction._id)}/>)
-            }):'No transaction found!' }
+            }):<h3 style={{paddingLeft:'3rem'}}>No transaction found!</h3> }
         return(
             <div className='budget-list-section'>
                 <div className='budget-list-top'>

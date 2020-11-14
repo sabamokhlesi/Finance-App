@@ -42,7 +42,7 @@ function dashboardBudgetDetails(props){
                 </div>
                 <div className='dashboard-details-main'>
                     <h3>Spendings By Categories</h3>
-                    {Object.keys(props.budgetSettingsInfo.categories).map(category=>
+                    {props.budgetSettingsInfo.categories?Object.keys(props.budgetSettingsInfo.categories).map(category=>
                     <div className='dashboard-details-main-unit' key={category}>
                         <p>{category}</p>
                         <div className='dashboard-details-main-chart'>
@@ -50,12 +50,12 @@ function dashboardBudgetDetails(props){
                             <div className='dashboard-details-main-bar'><span style={{width:(totalSpendingcalculator(props.transactionsList,'category',category)/props.budgetSettingsInfo.categories[category]*100).toFixed(1)+'%',maxWidth:'100%',backgroundColor:'#F277A4'}}></span></div>
                         </div>
                     </div>
-                    )}
+                    ):'No categories or spendings specified'}
                 </div>
                 <div className='dashboard-details-bottom'>
                     <Link to='/settings' className='btn btn-primary'>SETTINGS</Link>
                     <img src={dashboardDetailsBottom} alt="dashboard Details"/>
-                </div>
+                </div> 
             </div>
         )
 }

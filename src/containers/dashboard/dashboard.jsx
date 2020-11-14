@@ -11,7 +11,7 @@ import DashboardSettings from './dashboard-settings/dashboard-settings'
 import DashboardDetails from './dashboard-details/dashboard-details'
 import { FaBars,FaEllipsisV } from "react-icons/fa";
 import AddTool from './dashboard-add-tool/dashboard-add-tool'
-// import ErrorPage from '../../components/404/404'
+
 class Dashboard extends React.Component{
     state={
         navRightOpen:false,
@@ -33,9 +33,6 @@ class Dashboard extends React.Component{
                     <Route path='/list' exact component={DashboardMainList}/>
                     <Route path='/settings' exact component={DashboardSettings}/>
                     <Route path='/details' exact render={() => <DashboardDetails budgetSettingsInfo={this.props.budgetSettingsInfo} transactionsList={this.props.transactionsList}/> }/>
-                    {/* <Route path='/goals' exact component={}/> */}
-                    {/* <Route path='/404' exact component={ErrorPage}/>
-                    <Redirect to='/404'/> */}
                     <Redirect to='/'/>
                 </Switch>
                 <DashboardRight addBtnClicked={()=>this.setState({navRightOpen:false,navLeftOpen:false,addToolOpen:true})} style={this.state.navRightOpen?{transform: 'translateX(0)'}:null} transactionsList={this.props.transactionsList} budgetSettingsInfo={this.props.budgetSettingsInfo}/>

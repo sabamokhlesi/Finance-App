@@ -31,10 +31,11 @@ function dashboardRight (props){
         return(
             <div className='dashboard-right' {...props} >
                 <button className='btn btn-four modal-btn' onClick={props.addBtnClicked}>+ New Transaction</button>
+                
                 <div className='dashboard-right-pie-chart-box'>
                         <div className='dashboard-right-pie-chart-caption'>
-                            <p><span style={{color:"#6266EA"}}></span>Used Budget {(totalSpendingcalculator(props.transactionsList,'type','spending')/totalBudgetCal(props.budgetSettingsInfo.categories)*100).toFixed()}%</p>
-                            <p><span style={{color:"#EAE7FF"}}></span>Remaining Budget {100-((totalSpendingcalculator(props.transactionsList,'type','spending')/totalBudgetCal(props.budgetSettingsInfo.categories)*100).toFixed())}%</p>
+                            <p><span style={{color:"#6266EA"}}></span>Used Budget {props.budgetSettingsInfo.categories?((totalSpendingcalculator(props.transactionsList,'type','spending')/totalBudgetCal(props.budgetSettingsInfo.categories)*100).toFixed()):0}%</p>
+                            <p><span style={{color:"#EAE7FF"}}></span>Remaining Budget {props.budgetSettingsInfo.categories?(100-((totalSpendingcalculator(props.transactionsList,'type','spending')/totalBudgetCal(props.budgetSettingsInfo.categories)*100).toFixed())):0}%</p>
                         </div>
                     <div className='dashboard-right-pie-chart' style={{background:
                     `radial-gradient(
@@ -47,7 +48,7 @@ function dashboardRight (props){
                     ),
                     conic-gradient(
                         #6266EA 0,
-                        #6266EA ${(totalSpendingcalculator(props.transactionsList,'type','spending')/totalBudgetCal(props.budgetSettingsInfo.categories)*100).toFixed()}%,
+                        #6266EA ${props.budgetSettingsInfo.categories?((totalSpendingcalculator(props.transactionsList,'type','spending')/totalBudgetCal(props.budgetSettingsInfo.categories)*100).toFixed()):0}%,
                         #EAE7FF 0,
                         #EAE7FF 100%
                     )`}}></div>
@@ -55,14 +56,14 @@ function dashboardRight (props){
                 <div className='dashboard-right-notifications'>
                     <h3>Notifications <FaBell color='#f277a4' style={{margin:'.5rem'}}/></h3>
                     <div className='dashboard-right-notifications-1'><span style={{fontWeight:'bolder'}}>{remainingDaysOfMonth} day(s)</span> until next month.</div>
-                    {Object.keys(props.budgetSettingsInfo.categories).map(category=> +totalSpendingcalculator(props.transactionsList,'category',category) > props.budgetSettingsInfo.categories[category]?
+                    {props.budgetSettingsInfo.categories?Object.keys(props.budgetSettingsInfo.categories).map(category=> +totalSpendingcalculator(props.transactionsList,'category',category) > props.budgetSettingsInfo.categories[category]?
                         <div className='dashboard-right-notifications-2'>You've exceeded your <span style={{fontWeight:'bolder'}}>{category}</span> budget.</div>
                         :null
-                    )}
-                    {Object.keys(props.budgetSettingsInfo.categories).map(category=> +totalSpendingcalculator(props.transactionsList,'category',category)/props.budgetSettingsInfo.categories[category] === 0?
+                    ):null}
+                    {props.budgetSettingsInfo.categories?Object.keys(props.budgetSettingsInfo.categories).map(category=> +totalSpendingcalculator(props.transactionsList,'category',category)/props.budgetSettingsInfo.categories[category] === 0?
                         <div className='dashboard-right-notifications-3'>You have not used any of your <span style={{fontWeight:'bolder'}}>{category}</span> budget.</div>
                         :null
-                    )}
+                    ):null}
                 </div>
             </div>
         )
