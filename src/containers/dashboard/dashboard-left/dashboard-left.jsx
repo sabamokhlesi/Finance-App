@@ -1,6 +1,6 @@
 import React from 'react'
 import './dashboard-left.scss'
-import {NavLink} from 'react-router-dom'
+import {NavLink,Link} from 'react-router-dom'
 import logo from '../../../images/logo.jpg'
 import { FaHome,FaRegCreditCard,FaUserCog,FaSlidersH} from "react-icons/fa";
 import dashboardLeftVector from '../../../images/dashboard-left.png'
@@ -9,7 +9,7 @@ function dashboardLeft (props){
         return(
             <div className='dashboard-left' {...props}>
                     <div className='dashboard-left-logo'>
-                        <img src={logo} alt="MyMoney logo"/>
+                        <Link to='/' exact><img src={logo} alt="MyMoney logo"/></Link>
                     </div>
                     <div className='dashboard-left-options'>
                         <div className='dashboard-left-options-unit'>

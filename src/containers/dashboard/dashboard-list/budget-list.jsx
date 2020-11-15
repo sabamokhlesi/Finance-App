@@ -122,14 +122,14 @@ class BudgetList extends React.Component{
             <div className='budget-list-section'>
                 <div className='budget-list-top'>
                     <InputUnit style={{fontSize:'1.4rem'}} inputtype='select' id="budget-list-sorting" name="SortBy" labelname='Sort by' options='Newest,Oldest,High to low,Low to high' onChange={event=>this.setState({sortType:event.target.value})}/>
-                    <InputUnit style={{fontSize:'1.4rem'}} inputtype='select' id="budget-list-month" name="showMonth" labelname='Date' options='Current Month,Last Month,Last 3 Months,Last 6 Months,2020,2019,2018' onChange={event=>this.setState({showMonth:event.target.value})} />
+                    <InputUnit style={{fontSize:'1.4rem'}} inputtype='select' id="budget-list-month" name="showMonth" labelname='Date' options='Current Month,Last Month,Last 3 Months,Last 6 Months,2020' onChange={event=>this.setState({showMonth:event.target.value})} />
                     <InputUnit style={{fontSize:'1.4rem'}} inputtype='input' type="search" id="budget-list-search" placeholder='i.e grocery' labelname='Search' onChange={event=>this.setState({searchFor:event.target.value})}/>
                 </div>
                 <div className='budget-list-body'>
                     <div className='budget-list-item'>
                         <div className='budget-list-item-date'>Date</div>
                         <div className='budget-list-item-amount'>Amount</div>
-                        <div className='budget-list-item-title'>For</div>
+                        <div className='budget-list-item-title'>Title</div>
                         <div className='budget-list-item-by'>Added by</div>
                         <div className='budget-list-item-edit'>Edit</div>
                     </div>

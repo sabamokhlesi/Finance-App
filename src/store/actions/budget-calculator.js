@@ -17,9 +17,11 @@ export const fetchBudgetInfoStart =() => {return{type: actionTypes.FETCH_BUDGETI
 //     }
 // }
 export const fetchBudgetInfo = (token,userId) =>{
+    
     return dispatch => {
         dispatch(fetchBudgetInfoStart())
-        fetch(`https://budget-manager-app-backend.herokuapp.com/budget-manager/budget-info/${userId}`, {
+        fetch(`http://localhost:8080/budget-manager/budget-info/${userId}`, {
+        // fetch(`https://budget-manager-app-backend.herokuapp.com/budget-manager/budget-info/${userId}`, {
             method: 'GET',headers: {Authorization: 'Bearer ' + token}
         })
         .then(res => {
@@ -48,8 +50,8 @@ export const saveChangedSettingsInfoStart =() => {return{type: actionTypes.SAVE_
 export const saveChangedSettingsInfo =(newInfo,token,userId)=>{
     return dispatch => {
         dispatch(saveChangedSettingsInfoStart())
-        console.log(JSON.stringify(newInfo))
-        fetch(`https://budget-manager-app-backend.herokuapp.com/budget-manager/budget-info/${userId}`, {
+        fetch(`http://localhost:8080/budget-manager/budget-info/${userId}`, {
+        // fetch(`https://budget-manager-app-backend.herokuapp.com/budget-manager/budget-info/${userId}`, {
             method: 'put',body:JSON.stringify(newInfo) ,headers: {Authorization: 'Bearer ' + token,'Content-Type': 'application/json'}
         })
         .then(res => {

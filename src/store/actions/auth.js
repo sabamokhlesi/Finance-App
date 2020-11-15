@@ -55,7 +55,9 @@ export const addUser = (email,password,firstName,lastName,isValid) =>{
     return dispatch => {
         isValid? dispatch(authStart()):dispatch(authFail('invalid info'))
         const authData = {email:email,password:password,firstName:firstName,lastName:lastName}
-        const url = 'https://budget-manager-app-backend.herokuapp.com/auth/signup'
+        
+        const url = 'http://localhost:8080/auth/signup'
+        // const url = 'https://budget-manager-app-backend.herokuapp.com/auth/signup'
         fetch(url, {method:'PUT',headers: {'Content-Type': 'application/json'},body: JSON.stringify(authData)})
         .then(res => {
             if (res.status === 422) {throw new Error('Validation failed.');}
@@ -96,9 +98,9 @@ export const addUser = (email,password,firstName,lastName,isValid) =>{
 export const userSignIn = (email,password) =>{
     return dispatch => {
         dispatch(authStart())
-        
         const authData = {email:email,password:password}
-        fetch('https://budget-manager-app-backend.herokuapp.com/auth/login', {method: 'POST',headers: {'Content-Type': 'application/json'},body: JSON.stringify(authData)})
+        // fetch('https://budget-manager-app-backend.herokuapp.com/auth/login', {method: 'POST',headers: {'Content-Type': 'application/json'},body: JSON.stringify(authData)})
+        fetch('http://localhost:8080/auth/login', {method: 'POST',headers: {'Content-Type': 'application/json'},body: JSON.stringify(authData)})
         .then(res => {
             if (res.status === 422) {throw new Error('Validation failed.');}
             if (res.status !== 200 && res.status !== 201) {console.log('Error!');throw new Error('Could not authenticate you!');}
