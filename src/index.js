@@ -17,9 +17,7 @@ const store = createStore(rootReducer,composeEnhancers(applyMiddleware(thunk)))
 
 ReactDOM.render(
 <Provider store={store}>
-  <BrowserRouter 
-  // basename='budget-manager'
-  >
+  <BrowserRouter basename='/Finance-App/'>
     <React.StrictMode>
       <App />
     </React.StrictMode>
